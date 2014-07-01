@@ -7,12 +7,14 @@ func len<T>(x: Array<T>) -> Int {
     return countElements(x)
 }
 
+assert(len(["foo", "bar"]) == 2)
+
 func len(x: String) -> Int {
     return countElements(x)
 }
+
 assert(len("") == 0)
 assert(len("foo") == 3)
-assert(len(["foo", "bar"]) == 2)
 
 extension String {
     func capitalize() -> String {
@@ -75,6 +77,7 @@ extension String {
         return self.substringWithRange(Range(start: start, end: end))
     }
 }
+
 assert("".strip() == "")
 assert(" foobar ".strip() == "foobar")
 assert("foobar".strip() == "foobar")
@@ -99,9 +102,11 @@ assert("foo bar".title() == "Foo Bar")
 assert("they're bill's friends from the UK".title() == "They're Bill's Friends From The Uk")
 
 let True: Bool = true
+
 assert(True)
 
 let False: Bool = false
+
 assert(!False)
 
 func all<R : Sequence where R.GeneratorType.Element : LogicValue>(iterable: R) -> Bool {
@@ -112,6 +117,7 @@ func all<R : Sequence where R.GeneratorType.Element : LogicValue>(iterable: R) -
     }
     return true
 }
+
 assert(all(["foo", "bar", "zonk"]))
 assert(!all([false, false, false]))
 assert(!all([false, false, true]))
@@ -125,6 +131,7 @@ func any<R : Sequence where R.GeneratorType.Element : LogicValue>(iterable: R) -
     }
     return false
 }
+
 assert(any(["foo", "bar", "zonk"]))
 assert(!any([false, false, false]))
 assert(any([false, false, true]))
@@ -132,6 +139,7 @@ assert(any([false, false, true]))
 func max<R : Sequence where R.GeneratorType.Element : Comparable>(range: R) -> R.GeneratorType.Element {
     return maxElement(range)
 }
+
 assert(max([1, 2, 3]) == 3)
 assert(max([1, 2]) == 2)
 assert(max(1, 2) == 2)
@@ -140,13 +148,14 @@ assert(max(1, 2, 3) == 3)
 func min<R : Sequence where R.GeneratorType.Element : Comparable>(range: R) -> R.GeneratorType.Element {
     return minElement(range)
 }
+
 assert(min([1, 2]) == 1)
 assert(min([1, 2, 3]) == 1)
 assert(min(1, 2) == 1)
 assert(min(1, 2, 3) == 1)
 
 func open(name: String, _ mode: String = "") -> NSFileHandle {
-    assert(mode == "" || mode == "r" || mode == "w" || mode == "a")
+    // TODO: Not all modes are implemented.
     switch mode {
         case "r":
             return NSFileHandle(forReadingAtPath: name)
@@ -170,9 +179,11 @@ func range(start: Int, stop: Int) -> Array<Int> {
     }
     return intArray
 }
+
 func range(stop: Int) -> Array<Int> {
     return range(0, stop)
 }
+
 assert(equal(range(10), [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]))
 assert(equal(range(1, 11), [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
 assert(equal(range(0), []))
@@ -203,14 +214,17 @@ func rawInput(prompt: String) -> String {
     }
     return ""
 }
-func rawInput() -> String {
-    return rawInput("")
-}
+
 func raw_input(prompt: String) -> String {
     return rawInput(prompt)
 }
+
+func rawInput() -> String {
+    return rawInput("")
+}
+
 func raw_input() -> String {
-    return raw_input()
+    return rawInput()
 }
 
 func sum(iterable: Array<Int>, _ start: Int = 0) -> Int {
@@ -220,6 +234,7 @@ func sum(iterable: Array<Int>, _ start: Int = 0) -> Int {
     }
     return total
 }
+
 assert(sum([1, 2, 3]) == 6)
 assert(sum([1, 2, 3], 1) == 7)
 
