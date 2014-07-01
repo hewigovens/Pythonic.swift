@@ -1,4 +1,4 @@
 pythonic-swift
 ==============
 
-A Swift implementation of selected parts of the Python's standard library.
+A Swift implementation of selected parts of Python's standard library.
