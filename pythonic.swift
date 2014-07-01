@@ -9,6 +9,12 @@ func len<T>(x: Array<T>) -> Int {
 
 assert(len(["foo", "bar"]) == 2)
 
+func len<T1, T2>(x: Dictionary<T1, T2>) -> Int {
+    return countElements(x)
+}
+
+assert(len(["foo": "bar"]) == 1)
+
 func len(x: String) -> Int {
     return countElements(x)
 }
@@ -33,6 +39,15 @@ extension Array : LogicValue {
 assert([1, 2, 3])
 assert([1, 2])
 assert([1])
+
+extension Dictionary : LogicValue {
+    func getLogicValue() -> Bool {
+        return len(self) != 0
+    }
+}
+
+assert(["foo": "bar"])
+assert(!Dictionary<String, String>())
 
 extension Double : LogicValue {
     func getLogicValue() -> Bool {
