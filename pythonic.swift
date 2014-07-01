@@ -241,13 +241,15 @@ func open(name: String, _ mode: String = "") -> NSFileHandle {
     }
 }
 
-// TODO: Handle third argument (step), with .by(...)?
-func range(start: Int, stop: Int) -> Array<Int> {
+func range(start: Int, stop: Int, _ step: Int = 1) -> Array<Int> {
     var intArray = Array<Int>()
+    if step <= 0 {
+        return intArray
+    }
     if start > stop {
         return intArray
     }
-    for i in start..stop {
+    for i in (start..stop).by(step) {
         intArray += i
     }
     return intArray
@@ -261,6 +263,9 @@ assert(equal(range(10), [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]))
 assert(equal(range(1, 11), [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
 assert(equal(range(0), []))
 assert(equal(range(1, 0), []))
+assert(equal(range(0, 5, -1), []))
+assert(equal(range(0, 10, 2), [0, 2, 4, 6, 8]))
+assert(equal(range(0, 50, 7), [0, 7, 14, 21, 28, 35, 42, 49]))
 
 func rawInput(prompt: String) -> String {
     if (prompt != "") {
