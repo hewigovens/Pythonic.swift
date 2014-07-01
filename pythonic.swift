@@ -7,13 +7,18 @@ func len<T>(x: Array<T>) -> Int {
     return countElements(x)
 }
 
+assert(len(Array<String>()) == 0)
+assert(len(["foo"]) == 1)
 assert(len(["foo", "bar"]) == 2)
+assert(len(["foo", "bar", "baz"]) == 3)
 
 func len<T1, T2>(x: Dictionary<T1, T2>) -> Int {
     return countElements(x)
 }
 
+assert(len(Dictionary<String, String>()) == 0)
 assert(len(["foo": "bar"]) == 1)
+assert(len(["foo": "bar", "baz": "foo"]) == 2)
 
 func len(x: String) -> Int {
     return countElements(x)
@@ -138,7 +143,7 @@ extension String {
         return self.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
     }
 
-    /// NOTE: Not equivalent to Python, but better.
+    // NOTE: Not equivalent to Python, but better.
     func title() -> String {
         return self.capitalizedString
     }
