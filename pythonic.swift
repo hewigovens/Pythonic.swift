@@ -70,8 +70,8 @@ extension String {
     }
 
     subscript (range: Range<Int>) -> String {
-        var start = advance(startIndex, range.startIndex)
-        var end = advance(startIndex, range.endIndex)
+        let start = advance(startIndex, range.startIndex)
+        let end = advance(startIndex, range.endIndex)
         return self.substringWithRange(Range(start: start, end: end))
     }
 }
@@ -166,7 +166,7 @@ func range(start: Int, stop: Int) -> Array<Int> {
         return intArray
     }
     for i in start..stop {
-        intArray.append(i)
+        intArray += i
     }
     return intArray
 }
@@ -181,20 +181,20 @@ assert(equal(range(1, 0), []))
 func rawInput(prompt: String) -> String {
     if (prompt != "") {
         // NOTE: Workaround for print(...) which appears not to flush properly.
-        var nsPromptString = prompt as NSString
-        var nsPromptData = nsPromptString.dataUsingEncoding(NSUTF8StringEncoding)
-        var stdout = NSFileHandle.fileHandleWithStandardOutput()
+        let nsPromptString = prompt as NSString
+        let nsPromptData = nsPromptString.dataUsingEncoding(NSUTF8StringEncoding)
+        let stdout = NSFileHandle.fileHandleWithStandardOutput()
         stdout.writeData(nsPromptData)
         stdout.synchronizeFile()
     }
-    var stdin = NSFileHandle.fileHandleWithStandardInput()
+    let stdin = NSFileHandle.fileHandleWithStandardInput()
     if let data = stdin.availableData {
-        var inputString = NSString(data: data, encoding: NSUTF8StringEncoding) as String
+        let inputString = NSString(data: data, encoding: NSUTF8StringEncoding) as String
         if len(inputString) == 0 {
             return ""
         }
         // TODO: Should use .rstrip("\n") here instead.
-        var lastChar = inputString[len(inputString) - 1]
+        let lastChar = inputString[len(inputString) - 1]
         if lastChar == "\n" {
             return inputString[0..len(inputString) - 1]
         } else {
