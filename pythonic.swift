@@ -25,6 +25,22 @@ extension String : LogicValue {
 assert(!"")
 assert(" ")
 
+let True: Bool = true
+
+assert(True)
+
+let False: Bool = false
+
+assert(!False)
+
+extension NilType : LogicValue {
+    func getLogicValue() -> Bool {
+        return False
+    }
+}
+
+assert(!nil)
+
 extension String {
     func capitalize() -> String {
         if len(self) == 0 {
@@ -109,14 +125,6 @@ assert("f".capitalize() == "F")
 assert("".capitalize() == "")
 assert("foo bar".title() == "Foo Bar")
 assert("they're bill's friends from the UK".title() == "They're Bill's Friends From The Uk")
-
-let True: Bool = true
-
-assert(True)
-
-let False: Bool = false
-
-assert(!False)
 
 func all<R : Sequence where R.GeneratorType.Element : LogicValue>(iterable: R) -> Bool {
     for element in iterable {
