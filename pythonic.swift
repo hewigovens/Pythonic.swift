@@ -183,29 +183,30 @@ assert("they're bill's friends from the UK".title() == "They're Bill's Friends F
 func all<R : Sequence where R.GeneratorType.Element : LogicValue>(iterable: R) -> Bool {
     for element in iterable {
         if !element {
-            return false
+            return False
         }
     }
-    return true
+    return True
 }
 
+assert(!all(["", "bar", "zonk"]))
 assert(all(["foo", "bar", "zonk"]))
-assert(!all([false, false, false]))
-assert(!all([false, false, true]))
-assert(all([true, true, true]))
+assert(!all([False, False, False]))
+assert(!all([False, False, True]))
+assert(all([True, True, True]))
 
 func any<R : Sequence where R.GeneratorType.Element : LogicValue>(iterable: R) -> Bool {
     for element in iterable {
         if element {
-            return true
+            return True
         }
     }
-    return false
+    return False
 }
 
 assert(any(["foo", "bar", "zonk"]))
-assert(!any([false, false, false]))
-assert(any([false, false, true]))
+assert(!any([False, False, False]))
+assert(any([False, False, True]))
 
 func max<R : Sequence where R.GeneratorType.Element : Comparable>(range: R) -> R.GeneratorType.Element {
     return maxElement(range)
