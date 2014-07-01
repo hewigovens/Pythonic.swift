@@ -16,6 +16,15 @@ func len(x: String) -> Int {
 assert(len("") == 0)
 assert(len("foo") == 3)
 
+extension String : LogicValue {
+    func getLogicValue() -> Bool {
+        return len(self) != 0
+    }
+}
+
+assert(!"")
+assert(" ")
+
 extension String {
     func capitalize() -> String {
         if len(self) == 0 {
