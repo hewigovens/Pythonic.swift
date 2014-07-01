@@ -39,6 +39,7 @@ extension Array : LogicValue {
 assert([1, 2, 3])
 assert([1, 2])
 assert([1])
+assert(!Array<Int>())
 
 extension Dictionary : LogicValue {
     func getLogicValue() -> Bool {
@@ -115,8 +116,8 @@ extension String {
         return self.lowercaseString
     }
 
-    func replace(old: String, _ `new`: String) -> String {
-        return self.stringByReplacingOccurrencesOfString(old, withString: `new`)
+    func replace(replaceOldString: String, _ withString: String) -> String {
+        return self.stringByReplacingOccurrencesOfString(replaceOldString, withString: withString)
     }
 
     func split(sep: String) -> String[] {
@@ -204,7 +205,7 @@ func any<R : Sequence where R.GeneratorType.Element : LogicValue>(iterable: R) -
     return False
 }
 
-assert(any(["foo", "bar", "zonk"]))
+assert(any(["", "foo", "bar", "zonk"]))
 assert(!any([False, False, False]))
 assert(any([False, False, True]))
 
