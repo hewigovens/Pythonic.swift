@@ -16,15 +16,6 @@ func len(x: String) -> Int {
 assert(len("") == 0)
 assert(len("foo") == 3)
 
-extension String : LogicValue {
-    func getLogicValue() -> Bool {
-        return len(self) != 0
-    }
-}
-
-assert(!"")
-assert(" ")
-
 let True: Bool = true
 
 assert(True)
@@ -33,6 +24,45 @@ let False: Bool = false
 
 assert(!False)
 
+extension Array : LogicValue {
+    func getLogicValue() -> Bool {
+        return len(self) != 0
+    }
+}
+
+assert([1, 2, 3])
+assert([1, 2])
+assert([1])
+
+extension Double : LogicValue {
+    func getLogicValue() -> Bool {
+        return self != 0
+    }
+}
+
+assert(!0.0)
+assert(0.00000001)
+assert(1.0)
+
+extension Float : LogicValue {
+    func getLogicValue() -> Bool {
+        return self != 0
+    }
+}
+
+assert(!(0.0 as Float))
+assert(0.00000001 as Float)
+assert(1.0 as Float)
+
+extension Int : LogicValue {
+    func getLogicValue() -> Bool {
+        return self != 0
+    }
+}
+
+assert(!0)
+assert(1)
+
 extension NilType : LogicValue {
     func getLogicValue() -> Bool {
         return False
@@ -40,6 +70,15 @@ extension NilType : LogicValue {
 }
 
 assert(!nil)
+
+extension String : LogicValue {
+    func getLogicValue() -> Bool {
+        return len(self) != 0
+    }
+}
+
+assert(!"")
+assert(" ")
 
 extension String {
     func capitalize() -> String {
