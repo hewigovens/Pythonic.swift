@@ -46,6 +46,14 @@ assert([1, 2])
 assert([1])
 assert(!Array<Int>())
 
+extension Character : LogicValue {
+    func getLogicValue() -> Bool {
+        return True
+    }
+}
+
+assert("x" as Character)
+
 extension Dictionary : LogicValue {
     func getLogicValue() -> Bool {
         return len(self) != 0
