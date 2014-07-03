@@ -15,6 +15,7 @@ func len(x: String) -> Int {
 
 let True: Bool = true
 let False: Bool = false
+let None: NilType = nil
 
 extension Array : LogicValue {
     func getLogicValue() -> Bool {

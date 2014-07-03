@@ -1,5 +1,6 @@
 import pythonic
 
+assert(!None)
 assert(len(Array<String>()) == 0)
 assert(len(["foo"]) == 1)
 assert(len(["foo", "bar"]) == 2)
