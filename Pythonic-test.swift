@@ -1,3 +1,5 @@
+#!/usr/bin/env xcrun swift -I. -i
+
 import Pythonic
 
 assert(!None)
