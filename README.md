@@ -3,7 +3,7 @@ Pythonic.swift
 
 Pythonic.swift is a Swift library implementating selected parts of Python's standard library and making them available to your Swift code.
 
-```import Pythonic``` will allow you to write Python flavored code such as:
+```import Pythonic``` allows you to write Python flavored code such as:
 
 ```
 #!/usr/bin/env xcrun swift -i -I .
