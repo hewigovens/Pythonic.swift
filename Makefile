@@ -1,5 +1,5 @@
 PWD=$(shell pwd)
-MODULE_NAME=pythonic
+MODULE_NAME=Pythonic
 TEST_APPLICATION=$(MODULE_NAME)-test
 LIB_NAME=lib$(MODULE_NAME).dylib
 LIB_PATH=$(PWD)/$(LIB_NAME)
