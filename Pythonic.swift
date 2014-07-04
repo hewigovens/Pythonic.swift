@@ -224,11 +224,7 @@ func raw_input() -> String {
 }
 
 func sum(iterable: Array<Int>, _ start: Int = 0) -> Int {
-    var total = start
-    for i in iterable {
-        total += i
-    }
-    return total
+    return reduce(iterable, start, { $0 + $1 })
 }
 
 func zip<S1: Sequence, S2: Sequence>(s1: S1, s2: S2) -> Array<(S1.GeneratorType.Element, S2.GeneratorType.Element)> {
