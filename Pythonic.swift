@@ -18,15 +18,10 @@ extension Array : LogicValue {
     }
 
     func count<T where T : Equatable>(element: T) -> Int {
-        var count = 0
-        for (idx, object) in Swift.enumerate(self) {
-            if let castedObject = object as? T {
-                if castedObject == element {
-                    count += 1
-                }
-            }
+        if element is Array.Element {
+            return Swift.countElements(Swift.filter(Swift.reinterpretCast(self) as Array<T>, { $0 == element }))
         }
-        return count
+        return 0
     }
 
     func index<T where T : Equatable>(element: T) -> Int? {
