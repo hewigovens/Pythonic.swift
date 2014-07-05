@@ -2,6 +2,23 @@
 
 import Pythonic
 
+// BUG: Due to a compiler bug (?) the following cannot be imported. Must be in same source file.
+extension Array {
+    mutating func pop(index: Int?) -> Array.Element? {
+        var i = index ? index! : self.count - 1
+        if count == 0 || i < 0 || i >= self.count {
+            return nil
+        }
+        var ret = self[i]
+        self.removeAtIndex(i)
+        return ret
+    }
+
+    mutating func pop() -> Array.Element? {
+        return self.pop(nil)
+    }
+}
+
 assert(bool([1]))
 assert(bool(1))
 assert(bool(0) == False)
@@ -77,6 +94,13 @@ assert([1, 2, 2, 3, 3, 3].count(3) == 3)
 
 let pythonIncompatibleTests = True
 if pythonIncompatibleTests {
+    var mutatingArr = [1, 2, 3]
+    assert(mutatingArr.pop() == 3)
+    assert(mutatingArr.pop(0) == 1)
+    assert(mutatingArr.pop(1) == nil)
+    assert(mutatingArr.pop(0) == 2)
+    assert(mutatingArr.pop() == nil)
+
     assert(["foo", "bar", "zonk"].index(1) == None)
     assert([1, 2, 3].index(4) == None)
     assert([1, 2, 3].index("foo") == None)
