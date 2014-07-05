@@ -270,23 +270,24 @@ func zip<S1 : Sequence, S2 : Sequence>(s1: S1, s2: S2) -> Array<(S1.GeneratorTyp
 
 // Candidates for extensions:
 //
-// SWIFT              FOUNDATION/OBJC   PYTHON
-// =====              ===============   ======
-// -                  NSDate            datetime/datetime.datetime
-// -                  NSFileHandle      open
-// Any                -                 -
-// AnyClass           Class             -
-// AnyObject          id                -
-// Array              NSArray           list
-// Bool               BOOL              bool
-// Character          -                 -
-// Dictionary         NSDictionary      dict
-// Double             -                 -
-// Float              -                 float
-// Int                NSInteger         int
-// NilType/Optional   nil               None
-// Range              NSRange           range/xrange
-// String             NSString          str
+// SWIFT              FOUNDATION/OBJC       PYTHON
+// =====              ===============       ======
+// -                  NSDate                datetime/datetime.datetime
+// -                  NSFileHandle          open
+// -                  NSMutableSet          set
+// Any                -                     -
+// AnyClass           Class                 -
+// AnyObject          id                    -
+// Array              NSArray               list
+// Bool               BOOL                  bool
+// Character          -                     -
+// Dictionary         NSMutableDictionary   dict
+// Double             -                     -
+// Float              -                     float
+// Int                NSInteger             int
+// NilType/Optional   nil                   None
+// Range              NSRange               range/xrange
+// String             NSString              str
 
 // TODO: Move to one file per extended class.
 
@@ -364,3 +365,28 @@ typealias float = Swift.Float
 typealias int = Swift.Int
 typealias list = Swift.Array
 typealias str = Swift.String
+
+typealias set = NSMutableSet
+
+/*
+
+BUG: Array.pop(…) does not compile when extension being linked in from library.
+     Works when defined in same Swift file.
+
+Undefined symbols for architecture x86_64:
+  "__TFSa3popU__fRGSaQ__FSiGSqQ_", referenced from:
+      _top_level_code in Pythonic-test-5b09a1.o
+ld: symbol(s) not found for architecture x86_64
+
+extension Array {
+    mutating func pop(index: Int) -> Array.Element? {
+        if self.count <= 0 || index >= self.count {
+            return nil
+        }
+        var ret = self[index]
+        self.removeAtIndex(index)
+        return ret
+    }
+}
+
+*/
