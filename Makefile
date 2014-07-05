@@ -25,3 +25,4 @@ test: module
 	#  -Xlinker <value>           Specifies an option which should be passed to the linker
 	xcrun swift $(TEST_APPLICATION).swift -o $(TEST_APPLICATION) -I $(PWD) -L $(PWD) -Xlinker -rpath -Xlinker @executable_path/
 	./$(TEST_APPLICATION)
+	egrep ^assert Pythonic-test.swift | python && echo "All tests successfully passed when executing as Python code."
