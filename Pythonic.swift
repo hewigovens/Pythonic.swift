@@ -17,6 +17,17 @@ extension Array : LogicValue {
     func getLogicValue() -> Bool {
         return len(self) != 0
     }
+
+    func index<T where T : Equatable>(element: T) -> Int? {
+        for (idx, object) in enumerate(self) {
+            if let castedObject = object as? T {
+                if castedObject == element {
+                    return idx
+                }
+            }
+        }
+        return nil
+    }
 }
 
 extension Character : LogicValue {
@@ -235,7 +246,7 @@ func sum(iterable: Array<Int>, _ start: Int = 0) -> Int {
     return Swift.reduce(iterable, start, { $0 + $1 })
 }
 
-func zip<S1: Sequence, S2: Sequence>(s1: S1, s2: S2) -> Array<(S1.GeneratorType.Element, S2.GeneratorType.Element)> {
+func zip<S1 : Sequence, S2 : Sequence>(s1: S1, s2: S2) -> Array<(S1.GeneratorType.Element, S2.GeneratorType.Element)> {
     var retArray = Array<(S1.GeneratorType.Element, S2.GeneratorType.Element)>()
     for tuple in Swift.Zip2<S1, S2>(s1, s2) {
         retArray += tuple
@@ -250,7 +261,7 @@ func zip<S1: Sequence, S2: Sequence>(s1: S1, s2: S2) -> Array<(S1.GeneratorType.
 //
 // SWIFT        FOUNDATION     PYTHON
 // =====        ==========     ======
-// -            NSDate         datetime
+// -            NSDate         datetime/datetime.datetime
 // -            NSFileHandle   open
 // Array        NSArray        list
 // Bool         -              bool

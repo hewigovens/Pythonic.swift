@@ -67,9 +67,17 @@ assert(chr(97) == "a")
 assert(chr(ord("b")) == "b")
 assert(ord("a") == 97)
 assert(ord(chr(98)) == 98)
+println("foo:bar:baz".split(":"))
+assert(":".join(["foo", "bar", "baz"]) == "foo:bar:baz")
+assert(["foo", "bar", "zonk"].index("zonk") == 2)
+assert([1, 2, 3].index(3) == 2)
+assert(list(["a", "b", "c"]).index("b") == 1)
 
 let pythonIncompatibleTests = True
 if pythonIncompatibleTests {
+    assert(["foo", "bar", "zonk"].index(1) == None)
+    assert([1, 2, 3].index(4) == None)
+    assert([1, 2, 3].index("foo") == None)
     assert(len(list<str>()) == 0)
     assert(len(dict<str, str>()) == 0)
     assert(len(["foo": "bar"]) == 1)
@@ -99,6 +107,5 @@ if pythonIncompatibleTests {
     assert(equal(range(0, 10, 2), [0, 2, 4, 6, 8]))
     assert(equal(range(0, 50, 7), [0, 7, 14, 21, 28, 35, 42, 49]))
 }
-
 
 println("All tests successfully passed when executing as Swift code.")
