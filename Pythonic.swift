@@ -1,21 +1,43 @@
 @exported import Darwin
 import Foundation
 
+// TODO:
+// Candidates for extensions:
+// * Array
+// * Character
+// * Dictionary
+// * Double
+// * Float
+// * Int
+// * NilType
+// * NSDate
+// * Range
+// * String
+
+// TODO: Move to one file per extended class.
+
 func len<T>(x: Array<T>) -> Int {
-    return countElements(x)
+    return Swift.countElements(x)
 }
 
 func len<T1, T2>(x: Dictionary<T1, T2>) -> Int {
-    return countElements(x)
+    return Swift.countElements(x)
 }
 
 func len(x: String) -> Int {
-    return countElements(x)
+    return Swift.countElements(x)
 }
 
-let True: Bool = true
-let False: Bool = false
-let None: NilType = nil
+let False: Bool = Swift.false
+let None: NilType = Swift.nil
+let True: Bool = Swift.true
+
+typealias bool = Swift.Bool
+typealias dict = Swift.Dictionary
+typealias float = Swift.Float
+typealias int = Swift.Int
+typealias list = Swift.Array
+typealias str = Swift.String
 
 extension Array : LogicValue {
     func getLogicValue() -> Bool {
@@ -121,8 +143,8 @@ extension String {
     }
 
     subscript (range: Range<Int>) -> String {
-        let start = advance(startIndex, range.startIndex)
-        let end = advance(startIndex, range.endIndex)
+        let start = Swift.advance(self.startIndex, range.startIndex)
+        let end = Swift.advance(self.startIndex, range.endIndex)
         return self.substringWithRange(Range(start: start, end: end))
     }
 }
@@ -146,11 +168,11 @@ func any<R : Sequence where R.GeneratorType.Element : LogicValue>(iterable: R) -
 }
 
 func max<R : Sequence where R.GeneratorType.Element : Comparable>(range: R) -> R.GeneratorType.Element {
-    return maxElement(range)
+    return Swift.maxElement(range)
 }
 
 func min<R : Sequence where R.GeneratorType.Element : Comparable>(range: R) -> R.GeneratorType.Element {
-    return minElement(range)
+    return Swift.minElement(range)
 }
 
 func open(name: String, _ mode: String = "") -> NSFileHandle {
@@ -224,7 +246,7 @@ func raw_input() -> String {
 }
 
 func sum(iterable: Array<Int>, _ start: Int = 0) -> Int {
-    return reduce(iterable, start, { $0 + $1 })
+    return Swift.reduce(iterable, start, { $0 + $1 })
 }
 
 func zip<S1: Sequence, S2: Sequence>(s1: S1, s2: S2) -> Array<(S1.GeneratorType.Element, S2.GeneratorType.Element)> {
