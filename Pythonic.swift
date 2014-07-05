@@ -134,6 +134,13 @@ extension String {
     }
 }
 
+typealias datetime = NSDate
+extension datetime {
+    class func utcnow() -> NSDate {
+        return NSDate()
+    }
+}
+
 func all<R : Sequence where R.GeneratorType.Element : LogicValue>(iterable: R) -> Bool {
     for element in iterable {
         if !element {
@@ -259,20 +266,23 @@ func zip<S1 : Sequence, S2 : Sequence>(s1: S1, s2: S2) -> Array<(S1.GeneratorTyp
 
 // Candidates for extensions:
 //
-// SWIFT        FOUNDATION     PYTHON
-// =====        ==========     ======
-// -            NSDate         datetime/datetime.datetime
-// -            NSFileHandle   open
-// Array        NSArray        list
-// Bool         -              bool
-// Character    -              -
-// Dictionary   NSDictionary   dict
-// Double       -              -
-// Float        -              float
-// Int          NSInteger      int
-// NilType      -              None
-// Range        NSRange        range/xrange
-// String       NSString       str
+// SWIFT              FOUNDATION/OBJC   PYTHON
+// =====              ===============   ======
+// -                  NSDate            datetime/datetime.datetime
+// -                  NSFileHandle      open
+// Any                -                 -
+// AnyClass           Class             -
+// AnyObject          id                -
+// Array              NSArray           list
+// Bool               BOOL              bool
+// Character          -                 -
+// Dictionary         NSDictionary      dict
+// Double             -                 -
+// Float              -                 float
+// Int                NSInteger         int
+// NilType/Optional   nil               None
+// Range              NSRange           range/xrange
+// String             NSString          str
 
 // TODO: Move to one file per extended class.
 
