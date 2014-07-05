@@ -28,17 +28,6 @@ func len(x: String) -> Int {
     return Swift.countElements(x)
 }
 
-let False: Bool = Swift.false
-let None: NilType = Swift.nil
-let True: Bool = Swift.true
-
-typealias bool = Swift.Bool
-typealias dict = Swift.Dictionary
-typealias float = Swift.Float
-typealias int = Swift.Int
-typealias list = Swift.Array
-typealias str = Swift.String
-
 extension Array : LogicValue {
     func getLogicValue() -> Bool {
         return len(self) != 0
@@ -47,7 +36,7 @@ extension Array : LogicValue {
 
 extension Character : LogicValue {
     func getLogicValue() -> Bool {
-        return True
+        return true
     }
 }
 
@@ -77,7 +66,7 @@ extension Int : LogicValue {
 
 extension NilType : LogicValue {
     func getLogicValue() -> Bool {
-        return False
+        return false
     }
 }
 
@@ -152,19 +141,19 @@ extension String {
 func all<R : Sequence where R.GeneratorType.Element : LogicValue>(iterable: R) -> Bool {
     for element in iterable {
         if !element {
-            return False
+            return false
         }
     }
-    return True
+    return true
 }
 
 func any<R : Sequence where R.GeneratorType.Element : LogicValue>(iterable: R) -> Bool {
     for element in iterable {
         if element {
-            return True
+            return true
         }
     }
-    return False
+    return false
 }
 
 func max<R : Sequence where R.GeneratorType.Element : Comparable>(range: R) -> R.GeneratorType.Element {
@@ -328,3 +317,15 @@ func zip<S1: Sequence, S2: Sequence>(s1: S1, s2: S2) -> Array<(S1.GeneratorType.
 // xrange(start, stop[, step])
 // NOTE: Compare to range(...).
 // This function is very similar to range(), but returns an xrange object instead of a list.
+
+// NOTE: These aliases below should not be used in the implementation above. They may be used in the tests however.
+let False: Bool = Swift.false
+let None: NilType = Swift.nil
+let True: Bool = Swift.true
+
+typealias bool = Swift.Bool
+typealias dict = Swift.Dictionary
+typealias float = Swift.Float
+typealias int = Swift.Int
+typealias list = Swift.Array
+typealias str = Swift.String
