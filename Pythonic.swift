@@ -24,6 +24,12 @@ extension Array : LogicValue {
         return 0
     }
 
+    mutating func remove<T where T : Equatable>(element: T) {
+        if let i = index(element) {
+            self.removeAtIndex(i)
+        }
+    }
+
     func index<T where T : Equatable>(element: T) -> Int? {
         if element is Array.Element {
             if let idx = Swift.find(Swift.reinterpretCast(self) as Array<T>, element) {

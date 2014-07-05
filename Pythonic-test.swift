@@ -101,6 +101,18 @@ if pythonIncompatibleTests {
     assert(mutatingArr.pop(0) == 2)
     assert(mutatingArr.pop() == nil)
 
+    var anotherMutatingArr = [3, 2, 1, 3]
+    anotherMutatingArr.remove(0)
+    assert(equal(anotherMutatingArr, [3, 2, 1, 3]))
+    anotherMutatingArr.remove(2)
+    assert(equal(anotherMutatingArr, [3, 1, 3]))
+    anotherMutatingArr.remove(1)
+    assert(equal(anotherMutatingArr, [3, 3]))
+    anotherMutatingArr.remove(3)
+    assert(equal(anotherMutatingArr, [3]))
+    anotherMutatingArr.remove(3)
+    assert(equal(anotherMutatingArr, []))
+
     assert(["foo", "bar", "zonk"].index(1) == None)
     assert([1, 2, 3].index(4) == None)
     assert([1, 2, 3].index("foo") == None)
