@@ -19,7 +19,7 @@ extension Array : LogicValue {
     }
 
     func index<T where T : Equatable>(element: T) -> Int? {
-        for (idx, object) in enumerate(self) {
+        for (idx, object) in Swift.enumerate(self) {
             if let castedObject = object as? T {
                 if castedObject == element {
                     return idx
