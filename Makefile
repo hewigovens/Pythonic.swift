@@ -12,6 +12,6 @@ clean:
 	rm -f $(LIB_NAME) $(MODULE_NAME).swiftdoc $(MODULE_NAME).swiftmodule
 
 test: module
+	egrep ^assert Pythonic-test.swift | python && echo "All tests successfully passed when executing as Python code."
 	xcrun swift $(TEST_APPLICATION).swift -o $(TEST_APPLICATION) -I $(PWD) -L $(PWD) -Xlinker -rpath -Xlinker @executable_path/
 	./$(TEST_APPLICATION)
-	egrep ^assert Pythonic-test.swift | python && echo "All tests successfully passed when executing as Python code."
