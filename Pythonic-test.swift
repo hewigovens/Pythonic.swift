@@ -63,6 +63,10 @@ assert(min(1, 2) == 1)
 assert(min(1, 2, 3) == 1)
 assert(sum([1, 2, 3]) == 6)
 assert(sum([1, 2, 3], 1) == 7)
+assert(chr(97) == "a")
+assert(chr(ord("b")) == "b")
+assert(ord("a") == 97)
+assert(ord(chr(98)) == 98)
 
 let pythonIncompatibleTests = True
 if pythonIncompatibleTests {
@@ -70,18 +74,23 @@ if pythonIncompatibleTests {
     assert(len(dict<str, str>()) == 0)
     assert(len(["foo": "bar"]) == 1)
     assert(len(["foo": "bar", "baz": "foo"]) == 2)
-    assert(!list<Int>())
+    assert(!list<int>())
     assert("x" as Character)
     assert(["foo": "bar"])
     assert(!dict<str, str>())
+
+    // TODO: Implement array equality test (String[] == String[])
     assert(equal("foo:bar:baz".split(":"), ["foo", "bar", "baz"]))
     assert(equal(":".join(["foo", "bar", "baz"]), "foo:bar:baz"))
     assert(equal(("foobar").split(""), ["foobar"]))
     assert(equal(("foo bar").split(" "), ["foo", "bar"]))
+
     assert("foobar".startsWith("foo"))
     assert("foobar".endsWith("bar"))
     assert("foobar"[0..2] == "fo")
     assert("they're bill's friends from the UK".title() == "They're Bill's Friends From The Uk")
+
+    // TODO: Implement array equality test (Int[] == Int[])
     assert(equal(range(10), [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]))
     assert(equal(range(1, 11), [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
     assert(equal(range(0), []))

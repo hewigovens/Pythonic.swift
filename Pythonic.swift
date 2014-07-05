@@ -156,6 +156,10 @@ func any<R : Sequence where R.GeneratorType.Element : LogicValue>(iterable: R) -
     return false
 }
 
+func chr(i: Int) -> String {
+    return NSString(format: "%c", i)
+}
+
 func max<R : Sequence where R.GeneratorType.Element : Comparable>(range: R) -> R.GeneratorType.Element {
     return Swift.maxElement(range)
 }
@@ -176,6 +180,14 @@ func open(name: String, _ mode: String = "") -> NSFileHandle {
         default:
             return NSFileHandle(forReadingAtPath: name)
     }
+}
+
+func ord(s: String) -> Int {
+    return Int((s as NSString).characterAtIndex(0))
+}
+
+func ord(c: Character) -> Int {
+    return ord(String(c))
 }
 
 func range(start: Int, stop: Int, _ step: Int = 1) -> Array<Int> {
@@ -249,9 +261,6 @@ func zip<S1: Sequence, S2: Sequence>(s1: S1, s2: S2) -> Array<(S1.GeneratorType.
 // TODO: Python functions to implement
 // ===================================
 
-// chr(i)¶
-// Return a string of one character whose ASCII code is the integer i. For example, chr(97) returns the string 'a'.
-
 // cmp(x, y)¶
 // Compare the two objects x and y and return an integer according to the outcome. The return value is negative if x < y, zero if x == y and strictly positive if x > y.
 
@@ -286,9 +295,6 @@ func zip<S1: Sequence, S2: Sequence>(s1: S1, s2: S2) -> Array<(S1.GeneratorType.
 
 // oct(x)¶
 // Convert an integer number (of any size) to an octal string. The result is a valid Python expression.
-
-// ord(c)¶
-// Given a string of length one, return an integer representing the Unicode code point of the character when the argument is a unicode object, or the value of the byte when the argument is an 8-bit string.
 
 // reduce(function, iterable[, initializer])¶
 // NOTE: Already in Swift.
