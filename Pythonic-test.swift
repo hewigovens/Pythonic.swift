@@ -2,23 +2,6 @@
 
 import Pythonic
 
-// BUG: Due to a compiler bug (?) the following cannot be imported. Must be in same source file.
-extension Array {
-    mutating func pop(index: Int?) -> Array.Element? {
-        var i = index ? index! : self.count - 1
-        if count == 0 || i < 0 || i >= self.count {
-            return nil
-        }
-        var ret = self[i]
-        self.removeAtIndex(i)
-        return ret
-    }
-
-    mutating func pop() -> Array.Element? {
-        return self.pop(nil)
-    }
-}
-
 assert(bool([1]))
 assert(bool(1))
 assert(bool(0) == False)
@@ -91,6 +74,23 @@ assert(list(["a", "b", "c"]).index("b") == 1)
 assert([1, 2, 2, 3, 3, 3].count(1) == 1)
 assert([1, 2, 2, 3, 3, 3].count(2) == 2)
 assert([1, 2, 2, 3, 3, 3].count(3) == 3)
+
+// BUG: Due to a compiler bug (?) the following cannot be imported. Must be in same source file.
+extension Array {
+    mutating func pop(index: Int?) -> Array.Element? {
+        var i = index ? index! : self.count - 1
+        if count == 0 || i < 0 || i >= self.count {
+            return nil
+        }
+        var ret = self[i]
+        self.removeAtIndex(i)
+        return ret
+    }
+
+    mutating func pop() -> Array.Element? {
+        return self.pop(nil)
+    }
+}
 
 let pythonIncompatibleTests = True
 if pythonIncompatibleTests {
