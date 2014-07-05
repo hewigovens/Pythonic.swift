@@ -1,4 +1,4 @@
-import Foundation
+@exported import Foundation
 
 func len<T>(x: Array<T>) -> Int {
     return Swift.countElements(x)
@@ -368,25 +368,17 @@ typealias str = Swift.String
 
 typealias set = NSMutableSet
 
-/*
+extension NSFileHandle {
+    func read() -> String {
+        var data: NSData = self.readDataToEndOfFile()
+        return NSString(data: data, encoding: NSUTF8StringEncoding) as String
+    }
 
-BUG: Array.pop(…) does not compile when extension being linked in from library.
-     Works when defined in same Swift file.
+    func readLines() -> String[] {
+        return read().strip().split("\n")
+    }
 
-Undefined symbols for architecture x86_64:
-  "__TFSa3popU__fRGSaQ__FSiGSqQ_", referenced from:
-      _top_level_code in Pythonic-test-5b09a1.o
-ld: symbol(s) not found for architecture x86_64
-
-extension Array {
-    mutating func pop(index: Int) -> Array.Element? {
-        if self.count <= 0 || index >= self.count {
-            return nil
-        }
-        var ret = self[index]
-        self.removeAtIndex(index)
-        return ret
+    func readlines() -> String[] {
+        return readLines()
     }
 }
-
-*/
