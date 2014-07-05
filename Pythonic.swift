@@ -1,21 +1,6 @@
 @exported import Darwin
 import Foundation
 
-// TODO:
-// Candidates for extensions:
-// * Array
-// * Character
-// * Dictionary
-// * Double
-// * Float
-// * Int
-// * NilType
-// * NSDate
-// * Range
-// * String
-
-// TODO: Move to one file per extended class.
-
 func len<T>(x: Array<T>) -> Int {
     return Swift.countElements(x)
 }
@@ -252,7 +237,7 @@ func sum(iterable: Array<Int>, _ start: Int = 0) -> Int {
 
 func zip<S1: Sequence, S2: Sequence>(s1: S1, s2: S2) -> Array<(S1.GeneratorType.Element, S2.GeneratorType.Element)> {
     var retArray = Array<(S1.GeneratorType.Element, S2.GeneratorType.Element)>()
-    for tuple in Zip2<S1, S2>(s1, s2) {
+    for tuple in Swift.Zip2<S1, S2>(s1, s2) {
         retArray += tuple
     }
     return retArray
@@ -260,6 +245,25 @@ func zip<S1: Sequence, S2: Sequence>(s1: S1, s2: S2) -> Array<(S1.GeneratorType.
 
 // TODO: Python functions to implement
 // ===================================
+
+// Candidates for extensions:
+//
+// SWIFT        FOUNDATION     PYTHON
+// =====        ==========     ======
+// -            NSDate         datetime
+// -            NSFileHandle   open
+// Array        NSArray        list
+// Bool         -              bool
+// Character    -              -
+// Dictionary   NSDictionary   dict
+// Double       -              -
+// Float        -              float
+// Int          NSInteger      int
+// NilType      -              None
+// Range        NSRange        range/xrange
+// String       NSString       str
+
+// TODO: Move to one file per extended class.
 
 // cmp(x, y)¶
 // Compare the two objects x and y and return an integer according to the outcome. The return value is negative if x < y, zero if x == y and strictly positive if x > y.
