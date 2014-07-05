@@ -18,6 +18,18 @@ extension Array : LogicValue {
         return len(self) != 0
     }
 
+    func count<T where T : Equatable>(element: T) -> Int {
+        var count = 0
+        for (idx, object) in Swift.enumerate(self) {
+            if let castedObject = object as? T {
+                if castedObject == element {
+                    count += 1
+                }
+            }
+        }
+        return count
+    }
+
     func index<T where T : Equatable>(element: T) -> Int? {
         for (idx, object) in Swift.enumerate(self) {
             if let castedObject = object as? T {

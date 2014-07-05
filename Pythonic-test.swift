@@ -71,6 +71,9 @@ assert(":".join(["foo", "bar", "baz"]) == "foo:bar:baz")
 assert(["foo", "bar", "zonk"].index("zonk") == 2)
 assert([1, 2, 3].index(3) == 2)
 assert(list(["a", "b", "c"]).index("b") == 1)
+assert([1, 2, 2, 3, 3, 3].count(1) == 1)
+assert([1, 2, 2, 3, 3, 3].count(2) == 2)
+assert([1, 2, 2, 3, 3, 3].count(3) == 3)
 
 let pythonIncompatibleTests = True
 if pythonIncompatibleTests {
