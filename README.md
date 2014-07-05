@@ -11,11 +11,13 @@ Pythonic.swift is a Swift library implementating selected parts of Python's stan
 import Pythonic
 
 var strings = ["foo", "bar"]
+println(":".join(strings)) // foo:bar
 if strings {
   println(strings[0]) // foo
 }
 if len(strings) == 2 {
   println(strings[1].upper()) // BAR
+  println(strings[1].split("a")) // ["b", "r"]
 }
 
 var greeting = "   hello pythonista   "
