@@ -1,4 +1,3 @@
-@exported import Darwin
 import Foundation
 
 func len<T>(x: Array<T>) -> Int {
