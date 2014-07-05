@@ -94,24 +94,24 @@ extension Array {
 
 let pythonIncompatibleTests = True
 if pythonIncompatibleTests {
-    var mutatingArr = [1, 2, 3]
-    assert(mutatingArr.pop() == 3)
-    assert(mutatingArr.pop(0) == 1)
-    assert(mutatingArr.pop(1) == nil)
-    assert(mutatingArr.pop(0) == 2)
-    assert(mutatingArr.pop() == nil)
+    var mutableArray = [1, 2, 3]
+    assert(mutableArray.pop() == 3)
+    assert(mutableArray.pop(0) == 1)
+    assert(mutableArray.pop(1) == nil)
+    assert(mutableArray.pop(0) == 2)
+    assert(mutableArray.pop() == nil)
 
-    var anotherMutatingArr = [3, 2, 1, 3]
-    anotherMutatingArr.remove(0)
-    assert(equal(anotherMutatingArr, [3, 2, 1, 3]))
-    anotherMutatingArr.remove(2)
-    assert(equal(anotherMutatingArr, [3, 1, 3]))
-    anotherMutatingArr.remove(1)
-    assert(equal(anotherMutatingArr, [3, 3]))
-    anotherMutatingArr.remove(3)
-    assert(equal(anotherMutatingArr, [3]))
-    anotherMutatingArr.remove(3)
-    assert(equal(anotherMutatingArr, []))
+    var anotherMutableArray = [3, 2, 1, 3]
+    anotherMutableArray.remove(0)
+    assert(equal(anotherMutableArray, [3, 2, 1, 3]))
+    anotherMutableArray.remove(2)
+    assert(equal(anotherMutableArray, [3, 1, 3]))
+    anotherMutableArray.remove(1)
+    assert(equal(anotherMutableArray, [3, 3]))
+    anotherMutableArray.remove(3)
+    assert(equal(anotherMutableArray, [3]))
+    anotherMutableArray.remove(3)
+    assert(equal(anotherMutableArray, []))
 
     assert(["foo", "bar", "zonk"].index(1) == None)
     assert([1, 2, 3].index(4) == None)
