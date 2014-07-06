@@ -2,6 +2,15 @@
 
 import Pythonic
 
+assert(re.search("^foo", "foobarzonk"))
+assert(bool(re.search("^bar", "foobarzonk")) == False)
+// println(re.search("^foo", "foobarzonk").group(0))
+// println(re.search("^foo.*zonk$", "foobarzonk"))
+// println(re.search("foo", "foobarzonk"))
+// println(re.search("hej", "foobarzonk"))
+// println(re.search("o", "foobarzonk"))
+// println(re.search("", "foobarzonk"))
+
 assert(bool([1]))
 assert(bool(1))
 assert(bool(0) == False)
@@ -79,7 +88,7 @@ assert([1, 2, 2, 3, 3, 3].count(3) == 3)
 extension Array {
     mutating func pop(index: Int?) -> Array.Element? {
         var i = index ? index! : self.count - 1
-        if count == 0 || i < 0 || i >= self.count {
+        if self.count == 0 || i < 0 || i >= self.count {
             return nil
         }
         var ret = self[i]
