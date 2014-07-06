@@ -4,12 +4,10 @@ import Pythonic
 
 assert(re.search("^foo", "foobarzonk"))
 assert(bool(re.search("^bar", "foobarzonk")) == False)
-// println(re.search("^foo", "foobarzonk").group(0))
-// println(re.search("^foo.*zonk$", "foobarzonk"))
-// println(re.search("foo", "foobarzonk"))
-// println(re.search("hej", "foobarzonk"))
-// println(re.search("o", "foobarzonk"))
-// println(re.search("", "foobarzonk"))
+assert(re.search("^foo.*zonk$", "foobarzonk"))
+assert(re.search("foo", "foobarzonk"))
+assert(bool(re.search("hello", "foobarzonk")) == False)
+assert(re.search("o", "foobarzonk"))
 
 assert(bool([1]))
 assert(bool(1))
@@ -134,6 +132,7 @@ if pythonIncompatibleTests {
     anotherMutableArray.remove(3)
     assert(equal(anotherMutableArray, []))
 
+    assert(equal(re.search("", "foobarzonk"), []))
     assert(["foo", "bar", "zonk"].index(1) == None)
     assert([1, 2, 3].index(4) == None)
     assert([1, 2, 3].index("foo") == None)
