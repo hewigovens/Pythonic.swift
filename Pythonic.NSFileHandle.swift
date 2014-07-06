@@ -5,10 +5,10 @@ extension NSFileHandle {
     }
 
     func readLines() -> String[] {
-        return read().strip().split("\n")
+        return self.read().strip().split("\n")
     }
 
     func readlines() -> String[] {
-        return readLines()
+        return self.readLines()
     }
 }
