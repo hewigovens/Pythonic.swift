@@ -200,7 +200,7 @@ func min<R : Sequence where R.GeneratorType.Element : Comparable>(range: R) -> R
 }
 
 func oct(i: Int) -> String {
-    var o: String = NSString(format: "%o", i)
+    var o = NSString(format: "%o", i)
     if o == "0" {
         return o
     }
