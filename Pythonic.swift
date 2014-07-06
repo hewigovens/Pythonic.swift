@@ -76,6 +76,12 @@ extension NilType : LogicValue {
     }
 }
 
+extension NSObject : LogicValue {
+    func getLogicValue() -> Bool {
+        return true
+    }
+}
+
 extension String : LogicValue {
     func getLogicValue() -> Bool {
         return len(self) != 0
@@ -339,48 +345,54 @@ func zip<S1 : Sequence, S2 : Sequence>(s1: S1, s2: S2) -> Array<(S1.GeneratorTyp
 
 // TODO: Move to one file per extended class.
 
-// enumerate(sequence, start=0)¶
-// NOTE: Already in Swift.
-// Return an enumerate object. sequence must be a sequence, an iterator, or some other object which supports iteration.
-
-// filter(function, iterable)¶
-// NOTE: Already in Swift.
-// Construct a list from those elements of iterable for which function returns true. iterable may be either a sequence, a container which supports iteration, or an iterator.
-
-// hasattr(object, name)¶
-// The arguments are an object and a string.
-
-// map(function, iterable, ...)¶
-// NOTE: Already in Swift.
-// Apply function to every item of iterable and return a list of the results.
-
-// next(iterator[, default])¶
-// Retrieve the next item from the iterator by calling its next() method.
-
-// reduce(function, iterable[, initializer])¶
-// NOTE: Already in Swift.
-// Apply function of two arguments cumulatively to the items of iterable, from left to right, so as to reduce the iterable to a single value.
-
-// reversed(seq)¶
-// NOTE: Compare to reverse(...).
-// Return a reverse iterator. seq must be an object which has a __reversed__() method or supports the sequence protocol (the __len__() method and the __getitem__() method with integer arguments starting at 0).
-
-// slice(stop)¶
-// slice(start, stop[, step])
-// Return a slice object representing the set of indices specified by range(start, stop, step). The start and step arguments default to None.
-
-// sorted(iterable[, cmp[, key[, reverse]]])¶
-// NOTE: Compare to sort(...).
-// Return a new sorted list from the items in iterable.
-
-// tuple([iterable])¶
-// Return a tuple whose items are the same and in the same order as iterable‘s items. iterable may be a sequence, a container that supports iteration, or an iterator object.
-// If iterable is already a tuple, it is returned unchanged. For instance, tuple('abc') returns ('a', 'b', 'c') and tuple([1, 2, 3]) returns (1, 2, 3). If no argument is given, returns a new empty tuple, ().
-
-// xrange(stop)¶
-// xrange(start, stop[, step])
-// NOTE: Compare to range(...).
-// This function is very similar to range(), but returns an xrange object instead of a list.
+// Functions on https://docs.python.org/2/library/functions.html not yet implemented:
+// basestring()¶                            This abstract type is the superclass for str and unicode.
+// bin(x)¶                                  Convert an integer number to a binary string.
+// bytearray([source[, encoding[, err]]])¶  Return a new array of bytes. The bytearray type is a mutable sequence of integers in the range 0 <= x < 256.
+// callable(object)¶                        Return True if the object argument appears callable, False if not.
+// classmethod(function)¶                   Return a class method for function.
+// compile(source, filename, …)¶            Compile the source into a code or AST object.
+// complex([real[, imag]])¶                 Create a complex number with the value real + imag*j or convert a string or number to a complex number.
+// delattr(object, name)¶                   This is a relative of setattr(). The arguments are an object and a string.
+// dir([object])¶                           Without arguments, return the list of names in the current local scope. With an argument, attempt to return a list of valid attributes for that object.
+// divmod(a, b)¶                            Take two (non complex) numbers as arguments and return a pair of numbers consisting of their quotient and remainder when using long division.
+// enumerate(sequence, start=0)¶            Return an enumerate object. sequence must be a sequence, an iterator, or some other object which supports iteration.
+// eval(expression[, globals[, locals]])¶   The arguments are a Unicode or Latin-1 encoded string and optional globals and locals.
+// execfile(filename[, globals[, locals]])¶ This function is similar to the exec statement, but parses a file instead of a string.
+// file(name[, mode[, buffering]])¶         Constructor function for the file type, described further in section File Objects. The constructor’s arguments are the same as those of the open() built-in function described below.
+// filter(function, iterable)¶              Construct a list from those elements of iterable for which function returns true. iterable may be either a sequence, a container which supports iteration, or an iterator.
+// format(value[, format_spec])¶            Convert a value to a “formatted” representation, as controlled by format_spec.
+// frozenset([iterable])¶                   Return a new frozenset object, optionally with elements taken from iterable.
+// getattr(object, name[, default])¶        Return the value of the named attribute of object. name must be a string.
+// globals()¶                               Return a dictionary representing the current global symbol table.
+// hash(object)¶                            Return the hash value of the object (if it has one). Hash values are integers.
+// help([object])¶                          Invoke the built-in help system. (This function is intended for interactive use.)
+// id(object)¶                              Return the “identity” of an object. This is an integer (or long integer) which is guaranteed to be unique and constant for this object during its lifetime.
+// input([prompt])¶                         Equivalent to eval(raw_input(prompt)).
+// isinstance(object, classinfo)¶           Return true if the object argument is an instance of the classinfo argument, or of a (direct, indirect or virtual) subclass thereof.
+// issubclass(class, classinfo)¶            Return true if class is a subclass (direct, indirect or virtual) of classinfo.
+// iter(o[, sentinel])¶                     Return an iterator object. The first argument is interpreted very differently depending on the presence of the second argument.
+// map(function, iterable, ...)¶            Apply function to every item of iterable and return a list of the results.
+// memoryview(obj)¶                         Return a “memory view” object created from the given argument.
+// next(iterator[, default])¶               Retrieve the next item from the iterator by calling its next() method.
+// object()¶                                Return a new featureless object. object is a base for all new style classes.
+// property([fget[, fset[, fdel[, doc]]]])¶ Return a property attribute for new-style classes (classes that derive from object).
+// reduce(function, iterable[, init])¶      Apply function of two arguments cumulatively to the items of iterable, from left to right, so as to reduce the iterable to a single value.
+// reload(module)¶                          Reload a previously imported module. The argument must be a module object, so it must have been successfully imported before.
+// repr(object)¶                            Return a string containing a printable representation of an object.
+// reversed(seq)¶                           Return a reverse iterator. seq must be an object which has a __reversed__() method or supports the sequence protocol (the __len__() method and the __getitem__() method with integer arguments starting at 0).
+// set([iterable])¶                         Return a new set object, optionally with elements taken from iterable. set is a built-in class.
+// setattr(object, name, value)¶            This is the counterpart of getattr(). The arguments are an object, a string and an arbitrary value.
+// slice(stop)/slice(start, stop[, step])¶  Return a slice object representing the set of indices specified by range(start, stop, step). The start and step arguments default to None.
+// sorted(iterable[, cmp[, key[, rev]]])¶   Return a new sorted list from the items in iterable.
+// staticmethod(function)¶                  Return a static method for function.
+// super(type[, object-or-type])¶           Return a proxy object that delegates method calls to a parent or sibling class of type.
+// tuple([iterable])¶                       Return a tuple whose items are the same and in the same order as iterable‘s items. iterable may be a sequence, a container that supports iteration, or an iterator object.
+// type(object)/type(name, bases, dict)¶    With one argument, return the type of an object. The return value is a type object.
+// unichr(i)¶                               Return the Unicode string of one character whose Unicode code is the integer i.
+// unicode(o='')/unicode(o[, enc[, err]])¶  Return the Unicode string version of object using one of the following modes …
+// vars([object])¶                          Return the __dict__ attribute for a module, class, instance, or any other object with a __dict__ attribute.
+// xrange(stop)/xrange(start, stop[, st])¶  This function is very similar to range(), but returns an xrange object instead of a list.
 
 // NOTE: These aliases below should not be used in the implementation above. They may be used in the tests however.
 let False: Bool = Swift.false
@@ -392,8 +404,11 @@ typealias dict = Swift.Dictionary
 typealias float = Swift.Float
 typealias int = Swift.Int
 typealias list = Swift.Array
+typealias long = Swift.Int
 typealias str = Swift.String
 
+typealias file = NSFileHandle
+typealias object = NSObject
 typealias set = NSMutableSet
 
 extension NSFileHandle {
