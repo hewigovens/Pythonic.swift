@@ -1,6 +1,7 @@
-typealias datetime = NSDate
-extension datetime {
+extension NSDate {
     class func utcnow() -> NSDate {
         return NSDate()
     }
 }
+
+typealias datetime = NSDate
