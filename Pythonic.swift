@@ -191,6 +191,11 @@ func chr(i: Int) -> String {
     return NSString(format: "%c", i)
 }
 
+func hex(i: Int) -> String {
+    var o = NSString(format: "%x", i)
+    return "0x" + o
+}
+
 func max<R : Sequence where R.GeneratorType.Element : Comparable>(range: R) -> R.GeneratorType.Element {
     return Swift.maxElement(range)
 }
@@ -326,11 +331,6 @@ func zip<S1 : Sequence, S2 : Sequence>(s1: S1, s2: S2) -> Array<(S1.GeneratorTyp
 // cmp(x, y)¶
 // Compare the two objects x and y and return an integer according to the outcome. The return value is negative if x < y, zero if x == y and strictly positive if x > y.
 
-// dict(**kwarg)
-// dict(mapping, **kwarg)
-// dict(iterable, **kwarg)
-// Create a new dictionary. The dict object is the dictionary class.
-
 // enumerate(sequence, start=0)¶
 // NOTE: Already in Swift.
 // Return an enumerate object. sequence must be a sequence, an iterator, or some other object which supports iteration.
@@ -341,9 +341,6 @@ func zip<S1 : Sequence, S2 : Sequence>(s1: S1, s2: S2) -> Array<(S1.GeneratorTyp
 
 // hasattr(object, name)¶
 // The arguments are an object and a string.
-
-// hex(x)¶
-// Convert an integer number (of any size) to a lowercase hexadecimal string prefixed with “0x”, for example
 
 // map(function, iterable, ...)¶
 // NOTE: Already in Swift.
@@ -359,9 +356,6 @@ func zip<S1 : Sequence, S2 : Sequence>(s1: S1, s2: S2) -> Array<(S1.GeneratorTyp
 // reversed(seq)¶
 // NOTE: Compare to reverse(...).
 // Return a reverse iterator. seq must be an object which has a __reversed__() method or supports the sequence protocol (the __len__() method and the __getitem__() method with integer arguments starting at 0).
-
-// set([iterable])
-// Return a new set object, optionally with elements taken from iterable. set is a built-in class.
 
 // slice(stop)¶
 // slice(start, stop[, step])

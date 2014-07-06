@@ -79,6 +79,11 @@ assert(oct(1) == "01")
 assert(oct(10) == "012")
 assert(oct(100) == "0144")
 assert(oct(1000) == "01750")
+assert(hex(0) == "0x0")
+assert(hex(1) == "0x1")
+assert(hex(10) == "0xa")
+assert(hex(100) == "0x64")
+assert(hex(1000) == "0x3e8")
 assert(":".join(["foo", "bar", "baz"]) == "foo:bar:baz")
 assert(["foo", "bar", "zonk"].index("zonk") == 2)
 assert([1, 2, 3].index(3) == 2)
@@ -111,8 +116,6 @@ extension Array {
         return self.pop(nil)
     }
 }
-
-
 
 let pythonIncompatibleTests = True
 if pythonIncompatibleTests {
