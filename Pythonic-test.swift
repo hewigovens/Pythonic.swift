@@ -96,13 +96,25 @@ extension Array {
         return ret
     }
 
+    // NOTE: To allow for re.search(…).group(…)
+    func group(i: Int) -> Array.Element? {
+        if self.count == 0 || i < 0 || i >= self.count {
+            return nil
+        }
+        return self[i]
+    }
+
     mutating func pop() -> Array.Element? {
         return self.pop(nil)
     }
 }
 
+
+
 let pythonIncompatibleTests = True
 if pythonIncompatibleTests {
+    assert(re.search("^foo", "foobarzonk").group(0) == "foo")
+
     var mutableArray = [1, 2, 3]
     assert(mutableArray.pop() == 3)
     assert(mutableArray.pop(0) == 1)
