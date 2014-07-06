@@ -2,13 +2,18 @@
 
 import Pythonic
 
+assert(cmp(0, 0) == 0)
+assert(cmp(1, 0) == 1)
+assert(cmp(0, 1) == -1)
+assert(cmp("bar", "bar") == 0)
+assert(cmp("foo", "bar") == 1)
+assert(cmp("bar", "foo") == -1)
 assert(re.search("^foo", "foobarzonk"))
 assert(bool(re.search("^bar", "foobarzonk")) == False)
 assert(re.search("^foo.*zonk$", "foobarzonk"))
 assert(re.search("foo", "foobarzonk"))
 assert(bool(re.search("hello", "foobarzonk")) == False)
 assert(re.search("o", "foobarzonk"))
-
 assert(bool([1]))
 assert(bool(1))
 assert(bool(0) == False)

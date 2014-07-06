@@ -191,6 +191,16 @@ func chr(i: Int) -> String {
     return NSString(format: "%c", i)
 }
 
+func cmp<T : Comparable>(x: T, y: T) -> Int {
+    if x < y {
+        return -1
+    }
+    if x > y {
+        return 1
+    }
+    return 0
+}
+
 func hex(i: Int) -> String {
     var o = NSString(format: "%x", i)
     return "0x" + o
@@ -312,6 +322,7 @@ func zip<S1 : Sequence, S2 : Sequence>(s1: S1, s2: S2) -> Array<(S1.GeneratorTyp
 // -                  NSDate                datetime/datetime.datetime
 // -                  NSFileHandle          open
 // -                  NSMutableSet          set
+// -                  NSRegularExpression   re
 // Any                -                     -
 // AnyClass           Class                 -
 // AnyObject          id                    -
@@ -327,9 +338,6 @@ func zip<S1 : Sequence, S2 : Sequence>(s1: S1, s2: S2) -> Array<(S1.GeneratorTyp
 // String             NSString              str
 
 // TODO: Move to one file per extended class.
-
-// cmp(x, y)¶
-// Compare the two objects x and y and return an integer according to the outcome. The return value is negative if x < y, zero if x == y and strictly positive if x > y.
 
 // enumerate(sequence, start=0)¶
 // NOTE: Already in Swift.
