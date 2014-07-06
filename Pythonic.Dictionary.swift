@@ -3,4 +3,3 @@ extension Dictionary : LogicValue {
         return len(self) != 0
     }
 }
-
