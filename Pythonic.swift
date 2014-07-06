@@ -33,7 +33,7 @@ func cmp<T : Comparable>(x: T, y: T) -> Int {
 }
 
 func hex(i: Int) -> String {
-    var o = NSString(format: "%x", i)
+    let o = NSString(format: "%x", i)
     return "0x" + o
 }
 
@@ -58,7 +58,7 @@ func min<R : Sequence where R.GeneratorType.Element : Comparable>(range: R) -> R
 }
 
 func oct(i: Int) -> String {
-    var o = NSString(format: "%o", i)
+    let o = NSString(format: "%o", i)
     if o == "0" {
         return o
     }

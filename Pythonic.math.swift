@@ -1,6 +1,6 @@
 class math {
-    var e = 2.718281828459045
-    var pi = 3.141592653589793
+    let e = 2.718281828459045
+    let pi = 3.141592653589793
 
     class func acos(arg1: Double) -> Double {
         return Darwin.acos(arg1)

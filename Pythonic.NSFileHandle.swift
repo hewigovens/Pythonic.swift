@@ -1,6 +1,6 @@
 extension NSFileHandle {
     func read() -> String {
-        var data: NSData = self.readDataToEndOfFile()
+        let data: NSData = self.readDataToEndOfFile()
         return NSString(data: data, encoding: NSUTF8StringEncoding) as String
     }
 
