@@ -122,8 +122,32 @@ extension Array {
     }
 }
 
+// BUG: has_attr does not work due to the following compiler bug (?)
+// invalid linkage type for global declaration
+// %swift.full_heapmetadata* @_TMdC4mainL_3Baz
+// LLVM ERROR: Broken module found, compilation aborted!
+// func hasattr(object: Any, searchedPropertyName: String) -> Bool {
+//     var mirror = reflect(object)
+//     for var propertyNumber = 0; propertyNumber < mirror.count; propertyNumber++ {
+//         let (propertyName, propertyMirror) = mirror[propertyNumber]
+//         // println("\(propertyName) = \(propertyMirror.summary), \(propertyMirror.count) children")
+//         if propertyName == searchedPropertyName {
+//             return true
+//         }
+//     }
+//     return false
+// }
+
 let pythonIncompatibleTests = True
 if pythonIncompatibleTests {
+    // class Baz {
+    //     var foo = "foobar"
+    //     var bar = "foobar"
+    // }
+    // var baz = Baz()
+    // assert(hasattr(baz, "foo"))
+    // assert(hasattr(baz, "baz") == False)
+
     assert(re.search("^foo", "foobarzonk").group(0) == "foo")
 
     var mutableArray = [1, 2, 3]
