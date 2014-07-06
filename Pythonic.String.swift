@@ -2,9 +2,7 @@ extension String : LogicValue {
     func getLogicValue() -> Bool {
         return len(self) != 0
     }
-}
 
-extension String {
     func capitalize() -> String {
         if len(self) == 0 {
             return self
