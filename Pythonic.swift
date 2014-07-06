@@ -170,6 +170,10 @@ class math {
         return Darwin.asinh(arg1)
     }
 
+    class func atan(arg1: Double) -> Double {
+        return Darwin.atan(arg1)
+    }
+
     class func atan2(arg1: Double, arg2: Double) -> Double {
         return Darwin.atan2(arg1, arg2)
     }
@@ -226,12 +230,12 @@ class math {
         return Darwin.frexp(arg1, arg2)
     }
 
-    class func hypot(arg1: Double, arg2: Double) -> Double {
-        return Darwin.hypot(arg1, arg2)
-    }
-
     class func gamma(arg1: Double) -> Double {
         return Darwin.gamma(arg1)
+    }
+
+    class func hypot(arg1: Double, arg2: Double) -> Double {
+        return Darwin.hypot(arg1, arg2)
     }
 
     class func ldexp(arg1: Double, arg2: CInt) -> Double {
@@ -256,6 +260,10 @@ class math {
 
     class func modf(arg1: Double, arg2: CMutablePointer<CDouble>) -> Double {
         return Darwin.modf(arg1, arg2)
+    }
+
+    class func pow(arg1: Double, arg2: Double) -> Double {
+        return Darwin.pow(arg1, arg2)
     }
 
     class func sin(arg1: Double) -> Double {
@@ -563,7 +571,12 @@ extension NSFileHandle {
 // ...
 
 // Functions listed on https://docs.python.org/2/library/math.html not yet implemented:
-// ...
+// math.degrees(x)¶                         Converts angle x from radians to degrees.
+// math.factorial(x)¶                       Return x factorial.
+// math.fsum(iterable)¶                     Return an accurate floating point sum of values in the iterable.
+// math.isinf(x)¶                           Check if the float x is positive or negative infinity.
+// math.isnan(x)¶                           Check if the float x is a NaN (not a number).
+// math.radians(x)¶                         Converts angle x from degrees to radians.
 
 // Functions listed on https://docs.python.org/2/library/re.html not yet implemented:
 // ...
