@@ -199,6 +199,14 @@ func min<R : Sequence where R.GeneratorType.Element : Comparable>(range: R) -> R
     return Swift.minElement(range)
 }
 
+func oct(i: Int) -> String {
+    var o: String = NSString(format: "%o", i)
+    if o == "0" {
+        return o
+    }
+    return "0" + o
+}
+
 func open(name: String, _ mode: String = "") -> NSFileHandle {
     // TODO: Not all modes are implemented.
     switch mode {
@@ -337,18 +345,12 @@ func zip<S1 : Sequence, S2 : Sequence>(s1: S1, s2: S2) -> Array<(S1.GeneratorTyp
 // hex(x)¶
 // Convert an integer number (of any size) to a lowercase hexadecimal string prefixed with “0x”, for example
 
-// list([iterable])¶
-// Return a list whose items are the same and in the same order as iterable‘s items.
-
 // map(function, iterable, ...)¶
 // NOTE: Already in Swift.
 // Apply function to every item of iterable and return a list of the results.
 
 // next(iterator[, default])¶
 // Retrieve the next item from the iterator by calling its next() method.
-
-// oct(x)¶
-// Convert an integer number (of any size) to an octal string. The result is a valid Python expression.
 
 // reduce(function, iterable[, initializer])¶
 // NOTE: Already in Swift.
