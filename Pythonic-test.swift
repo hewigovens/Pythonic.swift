@@ -234,11 +234,13 @@ if pythonIncompatibleTests {
     // assert(hasattr(baz, "foo"))
     // assert(hasattr(baz, "baz") == False)
 
+    // list
+    assert(!list<int>())
+
     // list.index
     assert(["foo", "bar", "zonk"].index(1) == None)
-    assert([1, 2, 3].index(4) == None)
     assert([1, 2, 3].index("foo") == None)
-    assert(!list<int>())
+    assert([1, 2, 3].index(4) == None)
 
     // list.pop
     var mutableArray = [1, 2, 3]
