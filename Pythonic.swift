@@ -318,6 +318,38 @@ func zip<S1 : Sequence, S2 : Sequence>(s1: S1, s2: S2) -> Array<(S1.GeneratorTyp
     return retArray
 }
 
+// NOTE: These aliases below should not be used in the implementation above. They may be used in the tests however.
+let False: Bool = Swift.false
+let None: NilType = Swift.nil
+let True: Bool = Swift.true
+
+typealias bool = Swift.Bool
+typealias dict = Swift.Dictionary
+typealias float = Swift.Float
+typealias int = Swift.Int
+typealias list = Swift.Array
+typealias long = Swift.Int
+typealias str = Swift.String
+
+typealias file = NSFileHandle
+typealias object = NSObject
+typealias set = NSMutableSet
+
+extension NSFileHandle {
+    func read() -> String {
+        var data: NSData = self.readDataToEndOfFile()
+        return NSString(data: data, encoding: NSUTF8StringEncoding) as String
+    }
+
+    func readLines() -> String[] {
+        return read().strip().split("\n")
+    }
+
+    func readlines() -> String[] {
+        return readLines()
+    }
+}
+
 // TODO: Python functions to implement
 // ===================================
 
@@ -345,7 +377,7 @@ func zip<S1 : Sequence, S2 : Sequence>(s1: S1, s2: S2) -> Array<(S1.GeneratorTyp
 
 // TODO: Move to one file per extended class.
 
-// Functions on https://docs.python.org/2/library/functions.html not yet implemented:
+// Functions listed on https://docs.python.org/2/library/functions.html not yet implemented:
 // basestring()¶                            This abstract type is the superclass for str and unicode.
 // bin(x)¶                                  Convert an integer number to a binary string.
 // bytearray([source[, encoding[, err]]])¶  Return a new array of bytes. The bytearray type is a mutable sequence of integers in the range 0 <= x < 256.
@@ -394,34 +426,23 @@ func zip<S1 : Sequence, S2 : Sequence>(s1: S1, s2: S2) -> Array<(S1.GeneratorTyp
 // vars([object])¶                          Return the __dict__ attribute for a module, class, instance, or any other object with a __dict__ attribute.
 // xrange(stop)/xrange(start, stop[, st])¶  This function is very similar to range(), but returns an xrange object instead of a list.
 
-// NOTE: These aliases below should not be used in the implementation above. They may be used in the tests however.
-let False: Bool = Swift.false
-let None: NilType = Swift.nil
-let True: Bool = Swift.true
+// Functions listed on https://docs.python.org/2/library/string.html not yet implemented:
+// ...
 
-typealias bool = Swift.Bool
-typealias dict = Swift.Dictionary
-typealias float = Swift.Float
-typealias int = Swift.Int
-typealias list = Swift.Array
-typealias long = Swift.Int
-typealias str = Swift.String
+// Functions listed on https://docs.python.org/2/library/math.html not yet implemented:
+// ...
 
-typealias file = NSFileHandle
-typealias object = NSObject
-typealias set = NSMutableSet
+// Functions listed on https://docs.python.org/2/library/re.html not yet implemented:
+// ...
 
-extension NSFileHandle {
-    func read() -> String {
-        var data: NSData = self.readDataToEndOfFile()
-        return NSString(data: data, encoding: NSUTF8StringEncoding) as String
-    }
+// Functions listed on https://docs.python.org/2/library/datetime.html not yet implemented:
+// ...
 
-    func readLines() -> String[] {
-        return read().strip().split("\n")
-    }
+// Functions listed on https://docs.python.org/2/library/random.html not yet implemented:
+// ...
 
-    func readlines() -> String[] {
-        return readLines()
-    }
-}
+// Functions listed on https://docs.python.org/2/library/os.html not yet implemented:
+// ...
+
+// Functions listed on https://docs.python.org/2/library/sys.html not yet implemented:
+// ...
