@@ -79,6 +79,9 @@ assert(list(["a", "b", "c"]).index("b") == 1)
 // long
 assert(long(1.1) == 1)
 
+// math.sqrt
+assert(math.sqrt(9) == 3)
+
 // max
 assert(max(1, 2) == 2)
 assert(max(1, 2, 3) == 3)
