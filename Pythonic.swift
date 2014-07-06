@@ -143,6 +143,10 @@ func rawInput() -> String {
     return rawInput("")
 }
 
+func sum(iterable: Array<Double>, _ start: Double = 0) -> Double {
+    return Swift.reduce(iterable, start, { $0 + $1 })
+}
+
 func sum(iterable: Array<Int>, _ start: Int = 0) -> Int {
     return Swift.reduce(iterable, start, { $0 + $1 })
 }

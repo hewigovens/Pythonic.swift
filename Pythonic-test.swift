@@ -162,6 +162,7 @@ assert("FooBar".upper() == "FOOBAR")
 // sum
 assert(sum([1, 2, 3]) == 6)
 assert(sum([1, 2, 3], 1) == 7)
+assert(sum([1.1, 1.2]) == 2.3)
 
 // Others:
 assert(" ")
