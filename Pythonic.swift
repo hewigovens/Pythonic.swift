@@ -1,321 +1,5 @@
 @exported import Foundation
 
-func len<T>(x: Array<T>) -> Int {
-    return Swift.countElements(x)
-}
-
-func len<T1, T2>(x: Dictionary<T1, T2>) -> Int {
-    return Swift.countElements(x)
-}
-
-func len(x: String) -> Int {
-    return Swift.countElements(x)
-}
-
-extension Array : LogicValue {
-    func getLogicValue() -> Bool {
-        return len(self) != 0
-    }
-
-    func count<T where T : Equatable>(element: T) -> Int {
-        if element is Array.Element {
-            return Swift.countElements(Swift.filter(Swift.reinterpretCast(self) as Array<T>, { $0 == element }))
-        }
-        return 0
-    }
-
-    mutating func remove<T where T : Equatable>(element: T) {
-        if let i = index(element) {
-            self.removeAtIndex(i)
-        }
-    }
-
-    func index<T where T : Equatable>(element: T) -> Int? {
-        if element is Array.Element {
-            if let idx = Swift.find(Swift.reinterpretCast(self) as Array<T>, element) {
-                return idx
-            }
-        }
-        return nil
-    }
-}
-
-extension Character : LogicValue {
-    func getLogicValue() -> Bool {
-        return true
-    }
-}
-
-extension Dictionary : LogicValue {
-    func getLogicValue() -> Bool {
-        return len(self) != 0
-    }
-}
-
-extension Double : LogicValue {
-    func getLogicValue() -> Bool {
-        return self != 0
-    }
-}
-
-extension Float : LogicValue {
-    func getLogicValue() -> Bool {
-        return self != 0
-    }
-}
-
-extension Int : LogicValue {
-    func getLogicValue() -> Bool {
-        return self != 0
-    }
-}
-
-extension NilType : LogicValue {
-    func getLogicValue() -> Bool {
-        return false
-    }
-}
-
-extension NSObject : LogicValue {
-    func getLogicValue() -> Bool {
-        return true
-    }
-}
-
-extension String : LogicValue {
-    func getLogicValue() -> Bool {
-        return len(self) != 0
-    }
-}
-
-extension String {
-    func capitalize() -> String {
-        if len(self) == 0 {
-            return self
-        }
-        return self[0].upper() + self[1..len(self)].lower()
-    }
-
-    func endsWith(suffix: String) -> Bool {
-        return self.hasSuffix(suffix)
-    }
-
-    func endswith(suffix: String) -> Bool {
-        return self.endsWith(suffix)
-    }
-
-    func lower() -> String {
-        return self.lowercaseString
-    }
-
-    func replace(replaceOldString: String, _ withString: String) -> String {
-        return self.stringByReplacingOccurrencesOfString(replaceOldString, withString: withString)
-    }
-
-    func split(sep: String) -> String[] {
-        return self.componentsSeparatedByString(sep)
-    }
-
-    func startsWith(prefix: String) -> Bool {
-        return self.hasPrefix(prefix)
-    }
-
-    func startswith(prefix: String) -> Bool {
-        return self.startsWith(prefix)
-    }
-
-    // TODO: Handle character set to trim.
-    // TODO: lstrip(...), rstrip(...)
-    func strip() -> String {
-        return self.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-    }
-
-    // NOTE: Not equivalent to Python, but better.
-    func title() -> String {
-        return self.capitalizedString
-    }
-
-    func upper() -> String {
-        return self.uppercaseString
-    }
-
-    subscript (index: Int) -> String {
-        return String(Array(self)[index])
-    }
-
-    subscript (range: Range<Int>) -> String {
-        let start = Swift.advance(self.startIndex, range.startIndex)
-        let end = Swift.advance(self.startIndex, range.endIndex)
-        return self.substringWithRange(Range(start: start, end: end))
-    }
-}
-
-class math {
-    var e = 2.718281828459045
-    var pi = 3.141592653589793
-
-    class func acos(arg1: Double) -> Double {
-        return Darwin.acos(arg1)
-    }
-
-    class func acosh(arg1: Double) -> Double {
-        return Darwin.acosh(arg1)
-    }
-
-    class func asin(arg1: Double) -> Double {
-        return Darwin.asin(arg1)
-    }
-
-    class func asinh(arg1: Double) -> Double {
-        return Darwin.asinh(arg1)
-    }
-
-    class func atan(arg1: Double) -> Double {
-        return Darwin.atan(arg1)
-    }
-
-    class func atan2(arg1: Double, arg2: Double) -> Double {
-        return Darwin.atan2(arg1, arg2)
-    }
-
-    class func atanh(arg1: Double) -> Double {
-        return Darwin.atanh(arg1)
-    }
-
-    class func ceil(arg1: Double) -> Double {
-        return Darwin.ceil(arg1)
-    }
-
-    class func copysign(arg1: Double, arg2: Double) -> Double {
-        return Darwin.copysign(arg1, arg2)
-    }
-
-    class func cos(arg1: Double) -> Double {
-        return Darwin.cos(arg1)
-    }
-
-    class func cosh(arg1: Double) -> Double {
-        return Darwin.cosh(arg1)
-    }
-
-    class func erf(arg1: Double) -> Double {
-        return Darwin.erf(arg1)
-    }
-
-    class func erfc(arg1: Double) -> Double {
-        return Darwin.erfc(arg1)
-    }
-
-    class func exp(arg1: Double) -> Double {
-        return Darwin.exp(arg1)
-    }
-
-    class func expm1(arg1: Double) -> Double {
-        return Darwin.expm1(arg1)
-    }
-
-    class func fabs(arg1: Double) -> Double {
-        return Darwin.fabs(arg1)
-    }
-
-    class func floor(arg1: Double) -> Double {
-        return Darwin.floor(arg1)
-    }
-
-    class func fmod(arg1: Double, arg2: Double) -> Double {
-        return Darwin.fmod(arg1, arg2)
-    }
-
-    class func frexp(arg1: Double, arg2: CMutablePointer<CInt>) -> Double {
-        return Darwin.frexp(arg1, arg2)
-    }
-
-    class func gamma(arg1: Double) -> Double {
-        return Darwin.gamma(arg1)
-    }
-
-    class func hypot(arg1: Double, arg2: Double) -> Double {
-        return Darwin.hypot(arg1, arg2)
-    }
-
-    class func ldexp(arg1: Double, arg2: CInt) -> Double {
-        return Darwin.ldexp(arg1, arg2)
-    }
-
-    class func lgamma(arg1: Double) -> Double {
-        return Darwin.lgamma(arg1)
-    }
-
-    class func log(arg1: Double) -> Double {
-        return Darwin.log(arg1)
-    }
-
-    class func log10(arg1: Double) -> Double {
-        return Darwin.log10(arg1)
-    }
-
-    class func log1p(arg1: Double) -> Double {
-        return Darwin.log1p(arg1)
-    }
-
-    class func modf(arg1: Double, arg2: CMutablePointer<CDouble>) -> Double {
-        return Darwin.modf(arg1, arg2)
-    }
-
-    class func pow(arg1: Double, arg2: Double) -> Double {
-        return Darwin.pow(arg1, arg2)
-    }
-
-    class func sin(arg1: Double) -> Double {
-        return Darwin.sin(arg1)
-    }
-
-    class func sinh(arg1: Double) -> Double {
-        return Darwin.sinh(arg1)
-    }
-
-    class func sqrt(arg1: Double) -> Double {
-        return Darwin.sqrt(arg1)
-    }
-
-    class func tan(arg1: Double) -> Double {
-        return Darwin.tan(arg1)
-    }
-
-    class func tanh(arg1: Double) -> Double {
-        return Darwin.tanh(arg1)
-    }
-
-    class func trunc(arg1: Double) -> Double {
-        return Darwin.trunc(arg1)
-    }
-}
-
-class re {
-    class func search(pattern: String, _ string: String) -> String[] {
-        var returnedMatches: String[] = []
-        if pattern == "" {
-            return returnedMatches
-        }
-        if let regex = NSRegularExpression.regularExpressionWithPattern(pattern, options: nil, error: nil) {
-            if let matches: AnyObject[] = regex.matchesInString(string, options: nil, range: NSMakeRange(0, countElements(string))) {
-                let regexpMatches = Swift.reinterpretCast(matches) as NSTextCheckingResult[]
-                for match: NSTextCheckingResult in regexpMatches {
-                    returnedMatches += string[match.range]
-                }
-            }
-        }
-        return returnedMatches
-    }
-}
-
-typealias datetime = NSDate
-extension datetime {
-    class func utcnow() -> NSDate {
-        return NSDate()
-    }
-}
-
 func all<R : Sequence where R.GeneratorType.Element : LogicValue>(iterable: R) -> Bool {
     for element in iterable {
         if !element {
@@ -353,6 +37,18 @@ func hex(i: Int) -> String {
     return "0x" + o
 }
 
+func len<T>(x: Array<T>) -> Int {
+    return Swift.countElements(x)
+}
+
+func len<T1, T2>(x: Dictionary<T1, T2>) -> Int {
+    return Swift.countElements(x)
+}
+
+func len(x: String) -> Int {
+    return Swift.countElements(x)
+}
+
 func max<R : Sequence where R.GeneratorType.Element : Comparable>(range: R) -> R.GeneratorType.Element {
     return Swift.maxElement(range)
 }
@@ -383,12 +79,16 @@ func open(name: String, _ mode: String = "") -> NSFileHandle {
     }
 }
 
+func ord(c: Character) -> Int {
+    return ord(String(c))
+}
+
 func ord(s: String) -> Int {
     return Int((s as NSString).characterAtIndex(0))
 }
 
-func ord(c: Character) -> Int {
-    return ord(String(c))
+func range(stop: Int) -> Array<Int> {
+    return range(0, stop)
 }
 
 func range(start: Int, stop: Int, _ step: Int = 1) -> Array<Int> {
@@ -405,8 +105,8 @@ func range(start: Int, stop: Int, _ step: Int = 1) -> Array<Int> {
     return intArray
 }
 
-func range(stop: Int) -> Array<Int> {
-    return range(0, stop)
+func raw_input(prompt: String) -> String {
+    return rawInput(prompt)
 }
 
 func rawInput(prompt: String) -> String {
@@ -435,16 +135,12 @@ func rawInput(prompt: String) -> String {
     return ""
 }
 
-func raw_input(prompt: String) -> String {
-    return rawInput(prompt)
+func raw_input() -> String {
+    return rawInput()
 }
 
 func rawInput() -> String {
     return rawInput("")
-}
-
-func raw_input() -> String {
-    return rawInput()
 }
 
 func sum(iterable: Array<Int>, _ start: Int = 0) -> Int {
@@ -459,41 +155,25 @@ func zip<S1 : Sequence, S2 : Sequence>(s1: S1, s2: S2) -> Array<(S1.GeneratorTyp
     return retArray
 }
 
-// NOTE: These aliases below should not be used in the implementation above. They may be used in the tests however.
+// NOTE: The aliases below should not be used in the implementation above. 
 let False: Bool = Swift.false
 let None: NilType = Swift.nil
 let True: Bool = Swift.true
 
 typealias bool = Swift.Bool
 typealias dict = Swift.Dictionary
+typealias file = NSFileHandle
 typealias float = Swift.Float
 typealias int = Swift.Int
 typealias list = Swift.Array
 typealias long = Swift.Int
-typealias str = Swift.String
-
-typealias file = NSFileHandle
 typealias object = NSObject
 typealias set = NSMutableSet
-
-extension NSFileHandle {
-    func read() -> String {
-        var data: NSData = self.readDataToEndOfFile()
-        return NSString(data: data, encoding: NSUTF8StringEncoding) as String
-    }
-
-    func readLines() -> String[] {
-        return read().strip().split("\n")
-    }
-
-    func readlines() -> String[] {
-        return readLines()
-    }
-}
+typealias str = Swift.String
 
 // TODO: Python functions to implement
 // ===================================
-
+//
 // Candidates for extensions:
 //
 // SWIFT              FOUNDATION/OBJC       PYTHON
@@ -515,9 +195,7 @@ extension NSFileHandle {
 // NilType/Optional   nil                   None
 // Range              NSRange               range/xrange
 // String             NSString              str
-
-// TODO: Move to one file per extended class.
-
+//
 // Functions listed on https://docs.python.org/2/library/functions.html not yet implemented:
 // basestring()¶                            This abstract type is the superclass for str and unicode.
 // bin(x)¶                                  Convert an integer number to a binary string.
@@ -566,10 +244,10 @@ extension NSFileHandle {
 // unicode(o='')/unicode(o[, enc[, err]])¶  Return the Unicode string version of object using one of the following modes …
 // vars([object])¶                          Return the __dict__ attribute for a module, class, instance, or any other object with a __dict__ attribute.
 // xrange(stop)/xrange(start, stop[, st])¶  This function is very similar to range(), but returns an xrange object instead of a list.
-
+//
 // Functions listed on https://docs.python.org/2/library/string.html not yet implemented:
 // ...
-
+//
 // Functions listed on https://docs.python.org/2/library/math.html not yet implemented:
 // math.degrees(x)¶                         Converts angle x from radians to degrees.
 // math.factorial(x)¶                       Return x factorial.
@@ -577,18 +255,18 @@ extension NSFileHandle {
 // math.isinf(x)¶                           Check if the float x is positive or negative infinity.
 // math.isnan(x)¶                           Check if the float x is a NaN (not a number).
 // math.radians(x)¶                         Converts angle x from degrees to radians.
-
+//
 // Functions listed on https://docs.python.org/2/library/re.html not yet implemented:
 // ...
-
+//
 // Functions listed on https://docs.python.org/2/library/datetime.html not yet implemented:
 // ...
-
+//
 // Functions listed on https://docs.python.org/2/library/random.html not yet implemented:
 // ...
-
+//
 // Functions listed on https://docs.python.org/2/library/os.html not yet implemented:
 // ...
-
+//
 // Functions listed on https://docs.python.org/2/library/sys.html not yet implemented:
 // ...
