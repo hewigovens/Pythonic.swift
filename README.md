@@ -16,7 +16,7 @@ if re.search("^foo", "foobar") {
 }
 
 if any(["foo", "bar", "zonk"]) {
-  println(chr(ord("a"))) # a
+  println(chr(ord("a"))) // a
 }
 
 var strings = ["foo", "bar"]
