@@ -10,13 +10,15 @@ Pythonic.swift is a Swift library implementating selected parts of Python's stan
 import Pythonic
 
 if re.search("^foo", "foobar") {
-  println(["foo", "bar", "zonk"].index("foo")) # 0
-  println(["foo", "bar", "zonk"].count("bar")) # 1
-  println(["foo", "bar", "zonk"].count("zoo")) # 0
+  println(["foo", "bar", "zonk"].index("foo")) // 0
+  println(["foo", "bar", "zonk"].count("bar")) // 1
+  println(["foo", "bar", "zonk"].count("zoo")) // 0
 }
+
 if any(["foo", "bar", "zonk"]) {
   println(chr(ord("a"))) # a
 }
+
 var strings = ["foo", "bar"]
 println(":".join(strings)) // foo:bar
 if strings {
