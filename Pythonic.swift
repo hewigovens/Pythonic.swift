@@ -99,7 +99,7 @@ func range(start: Int, stop: Int, _ step: Int = 1) -> Array<Int> {
     if start > stop {
         return intArray
     }
-    for i in (start..stop).by(step) {
+    for i in (start..<stop).by(step) {
         intArray += i
     }
     return intArray
@@ -127,7 +127,7 @@ func rawInput(prompt: String) -> String {
         // TODO: Should use .rstrip("\n") here instead.
         let lastChar = inputString[len(inputString) - 1]
         if lastChar == "\n" {
-            return inputString[0..len(inputString) - 1]
+            return inputString[0..<len(inputString) - 1]
         } else {
             return inputString
         }
@@ -160,10 +160,6 @@ func zip<S1 : Sequence, S2 : Sequence>(s1: S1, s2: S2) -> Array<(S1.GeneratorTyp
 }
 
 // NOTE: The aliases below should not be used in the implementation above. 
-let False: Bool = Swift.false
-let None: NilType = Swift.nil
-let True: Bool = Swift.true
-
 typealias bool = Swift.Bool
 typealias dict = Swift.Dictionary
 typealias file = NSFileHandle
@@ -250,7 +246,44 @@ typealias str = Swift.String
 // xrange(stop)/xrange(start, stop[, st])¶  This function is very similar to range(), but returns an xrange object instead of a list.
 //
 // Functions listed on https://docs.python.org/2/library/string.html not yet implemented:
-// ...
+// capitalize
+// center
+// count
+// decode
+// encode
+// endswith
+// expandtabs
+// find
+// format
+// index
+// isalnum
+// isalpha
+// isdigit
+// islower
+// isspace
+// istitle
+// isupper
+// join
+// ljust
+// lower
+// lstrip
+// partition
+// replace
+// rfind
+// rindex
+// rjust
+// rpartition
+// rsplit
+// rstrip
+// split
+// splitlines
+// startswith
+// strip
+// swapcase
+// title
+// translate
+// upper
+// zfill
 //
 // Functions listed on https://docs.python.org/2/library/math.html not yet implemented:
 // math.degrees(x)¶                         Converts angle x from radians to degrees.
@@ -259,6 +292,89 @@ typealias str = Swift.String
 // math.isinf(x)¶                           Check if the float x is positive or negative infinity.
 // math.isnan(x)¶                           Check if the float x is a NaN (not a number).
 // math.radians(x)¶                         Converts angle x from degrees to radians.
+//
+// https://docs.python.org/2/library/stdtypes.html
+// float.as_integer_ratio()¶
+// float.is_integer()¶
+// float.hex()¶
+// float.fromhex(s)¶
+//
+// https://docs.python.org/2/library/stdtypes.html
+// seq [str, unicode, list, tuple, bytearray, buffer, xrange]
+// x in s
+// x not in s
+// s + t
+// s * n
+// s[i]
+// s[i:j]
+// s[i:j:k]
+// len(s)
+// min(s)
+// max(s)
+// s.index(x)
+// s.count(x)
+// Sequence types also support comparisons. In particular, tuples and lists are compared lexicographically by comparing corresponding elements.
+// This means that to compare equal, every element must compare equal and the two sequences must be of the same type and have the same length.
+//
+// Mutable sequence types:
+// s[i] = x
+// s[i:j] = t
+// del s[i:j]
+// s[i:j:k] = t
+// del s[i:j:k]
+// s.append(x)
+// s.extend(x)
+// s.count(x)
+// s.index(x[, i[, j]])
+// s.insert(i, x)
+// s.pop([i])
+// s.remove(x)
+// s.reverse()
+// s.sort([cmp[, key[, reverse]]])
+//
+// https://docs.python.org/2/library/stdtypes.html
+// Dictionary methods
+// len(d)
+// d[key]
+// d[key] = value
+// del d[key]
+// key in d
+// key not in d
+// iter(d)
+// clear()
+// copy()
+// fromkeys(seq[, value])
+// get(key[, default])
+// has_key(key)
+// items()
+// iteritems()
+// iterkeys()
+// itervalues()
+// keys()
+// pop(key[, default])
+// popitem()
+// setdefault(key[, default])
+// update([other])
+// values()
+// viewitems()
+// viewkeys()
+// viewvalues()
+//
+// https://docs.python.org/2/library/stdtypes.html
+// file operations
+// file.close()
+// file.flush()
+// file.fileno()
+// file.isatty()
+// file.next()
+// file.read([size])
+// file.readline([size])
+// file.readlines([sizehint])
+// file.seek(offset[, whence])
+// file.tell()
+// file.truncate([size])
+// file.write(str)
+// file.writelines(sequence)
 //
 // Functions listed on https://docs.python.org/2/library/re.html not yet implemented:
 // ...

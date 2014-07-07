@@ -4,11 +4,11 @@ extension NSFileHandle {
         return NSString(data: data, encoding: NSUTF8StringEncoding) as String
     }
 
-    func readLines() -> String[] {
+    func readLines() -> [String] {
         return self.read().strip().split("\n")
     }
 
-    func readlines() -> String[] {
+    func readlines() -> [String] {
         return self.readLines()
     }
 }

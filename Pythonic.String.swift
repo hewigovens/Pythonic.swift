@@ -7,7 +7,7 @@ extension String : LogicValue {
         if len(self) == 0 {
             return self
         }
-        return self[0].upper() + self[1..len(self)].lower()
+        return self[0].upper() + self[1..<len(self)].lower()
     }
 
     func endsWith(suffix: String) -> Bool {
@@ -26,7 +26,8 @@ extension String : LogicValue {
         return self.stringByReplacingOccurrencesOfString(replaceOldString, withString: withString)
     }
 
-    func split(sep: String) -> String[] {
+    // TODO: More arguments. string.split(s[, sep[, maxsplit]])¶
+    func split(sep: String) -> [String] {
         return self.componentsSeparatedByString(sep)
     }
 

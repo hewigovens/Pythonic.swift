@@ -74,14 +74,6 @@ class math {
         return Darwin.fmod(arg1, arg2)
     }
 
-    class func frexp(arg1: Double, arg2: CMutablePointer<CInt>) -> Double {
-        return Darwin.frexp(arg1, arg2)
-    }
-
-    class func gamma(arg1: Double) -> Double {
-        return Darwin.gamma(arg1)
-    }
-
     class func hypot(arg1: Double, arg2: Double) -> Double {
         return Darwin.hypot(arg1, arg2)
     }
@@ -104,14 +96,6 @@ class math {
 
     class func log1p(arg1: Double) -> Double {
         return Darwin.log1p(arg1)
-    }
-
-    class func modf(arg1: Double, arg2: CMutablePointer<CDouble>) -> Double {
-        return Darwin.modf(arg1, arg2)
-    }
-
-    class func pow(arg1: Double, arg2: Double) -> Double {
-        return Darwin.pow(arg1, arg2)
     }
 
     class func sin(arg1: Double) -> Double {

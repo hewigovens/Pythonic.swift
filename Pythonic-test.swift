@@ -7,23 +7,21 @@ assert(abs(-1) == 1)
 
 // all
 assert(all(["foo", "bar", "zonk"]))
-assert(all([True, True, True]))
-assert(bool(all(["", "bar", "zonk"])) == False)
-assert(bool(all([False, False, False])) == False)
-assert(bool(all([False, False, True])) == False)
+assert(all([true, true, true]))
+assert(bool(all(["", "bar", "zonk"])) == false)
+assert(bool(all([false, false, false])) == false)
+assert(bool(all([false, false, true])) == false)
 
 // any
 assert(any(["", "foo", "bar", "zonk"]))
-assert(any([False, False, True]))
-assert(bool(any([False, False, False])) == False)
+assert(any([false, false, true]))
+assert(bool(any([false, false, false])) == false)
 
 // bool
-assert(bool("") == False)
+assert(bool("") == false)
 assert(bool("foo"))
-assert(bool(0) == False)
+assert(bool(0) == false)
 assert(bool(1))
-assert(bool(None) == False)
-assert(bool(None) == False)
 assert(bool([1]))
 
 // chr
@@ -42,7 +40,7 @@ assert(cmp(1, 0) == 1)
 // TODO: Missing test.
 
 // float
-assert(bool(float(0.0)) == False)
+assert(bool(float(0.0)) == false)
 assert(float(0.00000001))
 assert(float(1.0))
 
@@ -108,12 +106,9 @@ assert(oct(1000) == "01750")
 assert(ord("a") == 97)
 assert(ord(chr(98)) == 98)
 
-// pow
-assert(pow(2, 2) == 4)
-
 // re.search
-assert(bool(re.search("^bar", "foobarzonk")) == False)
-assert(bool(re.search("hello", "foobarzonk")) == False)
+assert(bool(re.search("^bar", "foobarzonk")) == false)
+assert(bool(re.search("hello", "foobarzonk")) == false)
 assert(re.search("^foo", "foobarzonk"))
 assert(re.search("^foo.*zonk$", "foobarzonk"))
 assert(re.search("foo", "foobarzonk"))
@@ -170,13 +165,12 @@ assert("foobar"[0] == "f")
 assert(0.00000001)
 assert(1)
 assert(1.0)
-assert(True)
 assert([1, 2, 3])
 assert([1, 2])
 assert([1])
-assert(bool("") == False)
-assert(bool(0) == False)
-assert(bool(0.0) == False)
+assert(bool("") == false)
+assert(bool(0) == false)
+assert(bool(0.0) == false)
 
 // BUG: Due to a compiler bug (?) the following cannot be imported. Must be in same source file.
 extension Array {
@@ -219,7 +213,7 @@ extension Array {
 //     return false
 // }
 
-let pythonIncompatibleTests = True
+let pythonIncompatibleTests = true
 if pythonIncompatibleTests {
     // dict
     assert(!dict<str, str>())
@@ -233,15 +227,15 @@ if pythonIncompatibleTests {
     // }
     // var baz = Baz()
     // assert(hasattr(baz, "foo"))
-    // assert(hasattr(baz, "baz") == False)
+    // assert(hasattr(baz, "baz") == false)
 
     // list
     assert(!list<int>())
 
     // list.index
-    assert(["foo", "bar", "zonk"].index(1) == None)
-    assert([1, 2, 3].index("foo") == None)
-    assert([1, 2, 3].index(4) == None)
+    assert(["foo", "bar", "zonk"].index(1) == nil)
+    assert([1, 2, 3].index("foo") == nil)
+    assert([1, 2, 3].index(4) == nil)
 
     // list.pop
     var mutableArray = [1, 2, 3]
@@ -290,6 +284,7 @@ if pythonIncompatibleTests {
 
     // str.join
     assert(equal(":".join(["foo", "bar", "baz"]), "foo:bar:baz"))
+    assert(equal(":".join(["foo", "bar", "baz"]), "foo:bar:baz"))
 
     // str.split
     // TODO: Implement array equality test (String[] == String[])
@@ -304,7 +299,7 @@ if pythonIncompatibleTests {
     assert("they're bill's friends from the UK".title() == "They're Bill's Friends From The Uk")
 
     // Others:
-    assert("foobar"[0..2] == "fo")
+    assert("foobar"[0..<2] == "fo")
     assert("x" as Character)
 }
 
