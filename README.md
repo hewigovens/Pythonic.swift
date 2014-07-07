@@ -39,7 +39,7 @@ println(sum(numbers)) // 15
 println(max(numbers)) // 5
 ```
 
-See the test suite <a href="https://github.com/practicalswift/pythonic-swift/blob/master/Pythonic-test.swift">Pythonic-test.swift</a> for more examples. Questions? Get in touch on Twitter <a href="https://twitter.com/practicalswift">@practicalswift</a>.
+See the test suite <a href="https://github.com/practicalswift/pythonic-swift/blob/master/src/Pythonic-test.swift">Pythonic-test.swift</a> for more examples. Questions? Get in touch on Twitter <a href="https://twitter.com/practicalswift">@practicalswift</a>.
 
 ### Getting started
 
