@@ -42,8 +42,8 @@ See the test suite <a href="https://github.com/practicalswift/pythonic-swift/blo
 ### Getting started
 
 ```
-git clone https://github.com/practicalswift/pythonic-swift.git
-cd pythonic-swift/
+git clone https://github.com/practicalswift/Pythonic.swift.git
+cd Pythonic.swift/src/
 make
 make test
 mkdir my-pythonic-app/
