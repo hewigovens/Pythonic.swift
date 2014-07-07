@@ -12,6 +12,6 @@ clean:
 	rm -f $(LIB_NAME) $(MODULE_NAME).swiftdoc $(MODULE_NAME).swiftmodule $(TEST_APPLICATION)
 
 test: module
-	(printf "import math\nimport re\n"; egrep ^assert Pythonic-test.swift | sed 's/nil/None/g' | sed 's/true/True/g' | sed 's/false/False/g') | python && echo "All tests successfully passed when executing as Python code."
+	(printf "import math\nimport re\n"; egrep ^assert Pythonic-test.swift | sed 's/nil/None/g' | sed 's/true/True/g' | sed 's/false/False/g') | python2.7 && echo "All tests successfully passed when executing as Python code."
 	xcrun swift $(TEST_APPLICATION).swift -o $(TEST_APPLICATION) -I $(PWD) -L $(PWD) -Xlinker -rpath -Xlinker @executable_path/
 	./$(TEST_APPLICATION)
