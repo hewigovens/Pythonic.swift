@@ -1,5 +1,4 @@
-Pythonic.swift
-==============
+### Pythonic.swift
 
 Pythonic.swift is a Swift library implementating selected parts of Python's standard library and making them available to your Swift code.
 
@@ -40,8 +39,7 @@ println(max(numbers)) // 5
 
 See the test suite <a href="https://github.com/practicalswift/pythonic-swift/blob/master/Pythonic-test.swift">Pythonic-test.swift</a> for more examples.
 
-Getting started
----------------
+### Getting started
 
 ```
 git clone https://github.com/practicalswift/pythonic-swift.git
@@ -62,3 +60,14 @@ EOF
 chmod +x my_pythonic_app.swift
 ./my_pythonic_app.swift
 ```
+
+### Contributing
+
+Code contributions are more than welcome! This is the quick guide to contributing:
+
+1. Fork the project
+2. Implement function `foo` from the Python standard library
+3. Add a test case for `foo` in `Pythonic-test.swift`
+4. Make sure the test case passes in both Python and Swift by running `make test`
+5. Submit a pull request
+6. Repeat until we're done :-)
