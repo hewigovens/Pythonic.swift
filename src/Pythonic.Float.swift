@@ -8,4 +8,8 @@ extension Float : LogicValue {
     func isInteger() -> Bool {
         return floor(self) == self
     }
+
+    func is_integer() -> Bool {
+        return self.isInteger()
+    }
 }

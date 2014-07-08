@@ -44,6 +44,10 @@ assert(bool(float(0.0)) == false)
 assert(float(0.00000001))
 assert(float(1.0))
 
+// float.is_integer
+assert(float(1.0).is_integer() == true)
+assert(float(1.1).is_integer() == false)
+
 // hex
 assert(hex(0) == "0x0")
 assert(hex(1) == "0x1")
@@ -228,6 +232,10 @@ if pythonIncompatibleTests {
     // var baz = Baz()
     // assert(hasattr(baz, "foo"))
     // assert(hasattr(baz, "baz") == false)
+
+    // float.isInteger
+    assert(float(1.0).isInteger() == true)
+    assert(float(1.1).isInteger() == false)
 
     // list
     assert(!list<int>())
