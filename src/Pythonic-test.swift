@@ -8,19 +8,19 @@ assert(abs(-1) == 1)
 // all
 assert(all(["foo", "bar", "zonk"]))
 assert(all([true, true, true]))
-assert(bool(all(["", "bar", "zonk"])) == false)
-assert(bool(all([false, false, false])) == false)
-assert(bool(all([false, false, true])) == false)
+assert(!all(["", "bar", "zonk"]))
+assert(!all([false, false, false]))
+assert(!all([false, false, true]))
 
 // any
 assert(any(["", "foo", "bar", "zonk"]))
 assert(any([false, false, true]))
-assert(bool(any([false, false, false])) == false)
+assert(!any([false, false, false]))
 
 // bool
-assert(bool("") == false)
+assert(!bool(""))
 assert(bool("foo"))
-assert(bool(0) == false)
+assert(!bool(0))
 assert(bool(1))
 assert(bool([1]))
 
@@ -40,13 +40,13 @@ assert(cmp(1, 0) == 1)
 // TODO: Missing test.
 
 // float
-assert(bool(float(0.0)) == false)
+assert(!float(0.0))
 assert(float(0.00000001))
 assert(float(1.0))
 
 // float.is_integer
-assert(float(1.0).is_integer() == true)
-assert(float(1.1).is_integer() == false)
+assert(float(1.0).is_integer())
+assert(!float(1.1).is_integer())
 
 // hex
 assert(hex(0) == "0x0")
@@ -111,8 +111,8 @@ assert(ord("a") == 97)
 assert(ord(chr(98)) == 98)
 
 // re.search
-assert(bool(re.search("^bar", "foobarzonk")) == false)
-assert(bool(re.search("hello", "foobarzonk")) == false)
+assert(!re.search("^bar", "foobarzonk"))
+assert(!re.search("hello", "foobarzonk"))
 assert(re.search("^foo", "foobarzonk"))
 assert(re.search("^foo.*zonk$", "foobarzonk"))
 assert(re.search("foo", "foobarzonk"))
@@ -172,9 +172,9 @@ assert(1.0)
 assert([1, 2, 3])
 assert([1, 2])
 assert([1])
-assert(bool("") == false)
-assert(bool(0) == false)
-assert(bool(0.0) == false)
+assert(!bool(""))
+assert(!bool(0))
+assert(!bool(0.0))
 
 // BUG: Due to a compiler bug (?) the following cannot be imported. Must be in same source file.
 extension Array {
@@ -234,8 +234,8 @@ if pythonIncompatibleTests {
     // assert(hasattr(baz, "baz") == false)
 
     // float.isInteger
-    assert(float(1.0).isInteger() == true)
-    assert(float(1.1).isInteger() == false)
+    assert(float(1.0).isInteger())
+    assert(!float(1.1).isInteger())
 
     // list
     assert(!list<int>())
