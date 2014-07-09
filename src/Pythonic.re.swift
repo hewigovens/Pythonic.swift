@@ -5,11 +5,8 @@ class re {
             return returnedMatches
         }
         if let regex = NSRegularExpression.regularExpressionWithPattern(pattern, options: nil, error: nil) {
-            if let matches: [AnyObject] = regex.matchesInString(string, options: nil, range: NSMakeRange(0, countElements(string))) {
-                let regexpMatches = Swift.reinterpretCast(matches) as [NSTextCheckingResult]
-                for match: NSTextCheckingResult in regexpMatches {
-                    returnedMatches += string[match.range]
-                }
+            if let matches = regex.matchesInString(string, options: nil, range: NSMakeRange(0, countElements(string))) as? [NSTextCheckingResult] {
+                returnedMatches = matches.map {string[$0.range]}
             }
         }
         return returnedMatches
