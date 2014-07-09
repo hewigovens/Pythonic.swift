@@ -5,7 +5,8 @@ class re {
             return returnedMatches
         }
         if let regex = NSRegularExpression.regularExpressionWithPattern(pattern, options: nil, error: nil) {
-            if let matches = regex.matchesInString(string, options: nil, range: NSMakeRange(0, countElements(string))) as? [NSTextCheckingResult] {
+            let range = NSRange(location: 0, length: countElements(string))
+            if let matches = regex.matchesInString(string, options: nil, range: range) as? [NSTextCheckingResult] {
                 returnedMatches = matches.map {string[$0.range]}
             }
         }
