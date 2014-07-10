@@ -13,7 +13,7 @@ clean:
 	rm -f $(LIB_NAME) $(MODULE_NAME).swiftdoc $(MODULE_NAME).swiftmodule $(TEST_APPLICATION_SWIFT) $(TEST_APPLICATION_PYTHON)
 
 test: module
-	(printf "#!/usr/bin/env python2.7\nimport math\nimport re\nimport sys\n"; egrep ^assert Pythonic-test.swift | sed 's/nil/None/g' | sed 's/true/True/g' | sed 's/false/False/g' | sed 's/!/not /g') > $(TEST_APPLICATION_PYTHON)
+	(printf "#!/usr/bin/env python2.7\nimport math\nimport re\nimport sys\nimport time\n"; egrep ^assert Pythonic-test.swift | sed 's/nil/None/g' | sed 's/true/True/g' | sed 's/false/False/g' | sed 's/!/not /g') > $(TEST_APPLICATION_PYTHON)
 	chmod +x $(TEST_APPLICATION_PYTHON)
 	./$(TEST_APPLICATION_PYTHON) arg1 arg2 < Makefile && echo "All tests successfully passed when executing as Python code."
 	xcrun -sdk macosx swift $(TEST_APPLICATION_SWIFT).swift -o $(TEST_APPLICATION_SWIFT) -I $(PWD) -L $(PWD) -Xlinker -rpath -Xlinker @executable_path/

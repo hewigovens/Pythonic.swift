@@ -176,6 +176,9 @@ assert(sys.argv[1] == "arg1")
 assert(sys.argv[2] == "arg2")
 assert(len(sys.argv) == 3)
 
+// time.time
+assert(time.time() > 1405028001.224846)
+
 // Others:
 assert(" ")
 assert("foobar"[0] == "f")
