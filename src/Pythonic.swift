@@ -4,10 +4,6 @@ operator infix ** {
     associativity right precedence 160
 }
 
-@infix func **(lhs: Int, rhs: Int) -> Double {
-    return pow(Double(lhs), Double(rhs))
-}
-
 @infix func **(lhs: Double, rhs: Double) -> Double {
     return pow(lhs, rhs)
 }
