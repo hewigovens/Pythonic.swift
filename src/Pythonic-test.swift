@@ -2,6 +2,13 @@
 
 import Pythonic
 
+// ** (power operator)
+assert(2**2 == 4)
+assert(2.0**2.0 == 4)
+assert(1 + 2**2 + 2 == 7)
+assert(1 + 2.0**2.0 + 2 == 7)
+assert(1**1 + 2.0**2.0 + 2 == 7)
+
 // abs
 assert(abs(-1) == 1)
 
