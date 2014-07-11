@@ -43,6 +43,10 @@ assert(cmp(0, 0) == 0)
 assert(cmp(0, 1) == -1)
 assert(cmp(1, 0) == 1)
 
+// double.is_integer/isInteger
+assert(1.0.is_integer())
+assert(!1.1.is_integer())
+
 // file
 // TODO: Missing test.
 
@@ -240,6 +244,12 @@ if pythonIncompatibleTests {
     assert(!dict<str, str>())
     assert(["foo": "bar"])
     assert(len(dict<str, str>()) == 0)
+
+    // double.isInteger
+    var d1 = 1.0
+    var d2 = 1.1
+    assert(d1.isInteger())
+    assert(!d2.isInteger())
 
     // hasattr (commented out due to compiler bug)
     // class Baz {

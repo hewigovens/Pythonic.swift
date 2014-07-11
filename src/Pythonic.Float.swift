@@ -6,7 +6,7 @@ import Darwin
 //   fromhex
 //   hex
 //   imag
-//   is_integer
+//   is_integer: Added.
 //   real
 
 extension Float : LogicValue {
