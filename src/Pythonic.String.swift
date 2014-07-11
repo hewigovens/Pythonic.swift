@@ -5,38 +5,38 @@
 //   decode: TODO.
 //   encode: TODO.
 //   endswith: Added.
-//   expandtabs
-//   find
-//   format
-//   index
-//   isalnum
-//   isalpha
-//   isdigit
+//   expandtabs: TODO.
+//   find: TODO.
+//   format: TODO.
+//   index: TODO.
+//   isalnum: TODO.
+//   isalpha: TODO.
+//   isdigit: TODO.
 //   islower: Added.
-//   isspace
-//   istitle
-//   isupper
-//   join
-//   ljust
-//   lower
-//   lstrip
-//   partition
+//   isspace: TODO.
+//   istitle: TODO.
+//   isupper: TODO.
+//   join: Already in Swift.
+//   ljust: TODO.
+//   lower: TODO.
+//   lstrip: TODO.
+//   partition: TODO.
 //   replace: Added.
-//   rfind
-//   rindex
-//   rjust
-//   rpartition
-//   rsplit
-//   rstrip
+//   rfind: TODO.
+//   rindex: TODO.
+//   rjust: TODO.
+//   rpartition: TODO.
+//   rsplit: TODO.
+//   rstrip: TODO.
 //   split: Added.
-//   splitlines
+//   splitlines: TODO.
 //   startswith: Added.
 //   strip: Added.
-//   swapcase
+//   swapcase: TODO.
 //   title: Added.
-//   translate
+//   translate: TODO.
 //   upper: Added.
-//   zfill
+//   zfill: TODO.
 
 extension String : LogicValue {
     func getLogicValue() -> Bool {
