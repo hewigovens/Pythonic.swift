@@ -1,3 +1,28 @@
+// >>> filter(lambda s: re.match("^[a-z]", s), dir(random))
+//   betavariate: TODO.
+//   choice: Added.
+//   division: TODO.
+//   expovariate: TODO.
+//   gammavariate: TODO.
+//   gauss: TODO.
+//   getrandbits: TODO.
+//   getstate: TODO.
+//   jumpahead: TODO.
+//   lognormvariate: TODO.
+//   normalvariate: TODO.
+//   paretovariate: TODO.
+//   randint: Added.
+//   random: Added.
+//   randrange: Added.
+//   sample: TODO.
+//   seed: TODO.
+//   setstate: TODO.
+//   shuffle: TODO.
+//   triangular: TODO.
+//   uniform: TODO.
+//   vonmisesvariate: TODO.
+//   weibullvariate: TODO.
+
 class random {
     class func random() -> Double {
         return Double(arc4random_uniform(UInt32.max)) / Double(UInt32.max)
