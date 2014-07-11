@@ -1,3 +1,27 @@
+// >>> filter(lambda s: not s.startswith("_"), dir(open("/tmp/foo")))
+//   close
+//   closed
+//   encoding
+//   errors
+//   fileno
+//   flush
+//   isatty
+//   mode
+//   name
+//   newlines
+//   next
+//   read
+//   readinto
+//   readline
+//   readlines
+//   seek
+//   softspace
+//   tell
+//   truncate
+//   write
+//   writelines
+//   xreadlines
+
 extension NSFileHandle : Sequence {
     func read() -> String {
         let data: NSData = self.readDataToEndOfFile()
