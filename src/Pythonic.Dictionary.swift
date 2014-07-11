@@ -20,4 +20,17 @@ extension Dictionary : LogicValue {
         }
         return nil
     }
+
+    mutating func popitem() -> (KeyType, ValueType)? {
+        if self.count == 0 {
+            return nil
+        }
+
+        let randomIndex = Int(arc4random_uniform(UInt32(self.count)))
+        var key: KeyType! = Array(self.keys)[randomIndex]
+        var value: ValueType! = self.get(key)
+
+        self.pop(key)
+        return (key, value)
+    }
 }
