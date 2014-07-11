@@ -1,10 +1,10 @@
 // >>> filter(lambda s: not s.startswith("_"), dir(""))
 //   capitalize: Added.
-//   center
+//   center: TODO.
 //   count: Added.
-//   decode
-//   encode
-//   endswith
+//   decode: TODO.
+//   encode: TODO.
+//   endswith: Added.
 //   expandtabs
 //   find
 //   format
@@ -12,7 +12,7 @@
 //   isalnum
 //   isalpha
 //   isdigit
-//   islower
+//   islower: Added.
 //   isspace
 //   istitle
 //   isupper
@@ -21,21 +21,21 @@
 //   lower
 //   lstrip
 //   partition
-//   replace
+//   replace: Added.
 //   rfind
 //   rindex
 //   rjust
 //   rpartition
 //   rsplit
 //   rstrip
-//   split
+//   split: Added.
 //   splitlines
-//   startswith
-//   strip
+//   startswith: Added.
+//   strip: Added.
 //   swapcase
-//   title
+//   title: Added.
 //   translate
-//   upper
+//   upper: Added.
 //   zfill
 
 extension String : LogicValue {
