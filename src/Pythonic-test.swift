@@ -155,6 +155,11 @@ assert("fo".capitalize() == "Fo")
 assert("foo baR".capitalize() == "Foo bar")
 assert("foo".capitalize() == "Foo")
 
+// str.count
+assert("foo".count("f") == 1)
+assert("foo".count("o") == 2)
+assert("foo".count("b") == 0)
+
 // str.endswith
 assert("foobar".endswith("bar"))
 

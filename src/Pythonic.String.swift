@@ -1,7 +1,7 @@
 // >>> filter(lambda s: not s.startswith("_"), dir(""))
-//   capitalize
+//   capitalize: Added.
 //   center
-//   count
+//   count: Added.
 //   decode
 //   encode
 //   endswith
@@ -41,6 +41,16 @@
 extension String : LogicValue {
     func getLogicValue() -> Bool {
         return len(self) != 0
+    }
+
+    func count(c: Character) -> Int {
+        var counter = 0
+        for ch in self {
+            if ch == c {
+                counter += 1
+            }
+        }
+        return counter
     }
 
     func capitalize() -> String {
