@@ -287,6 +287,16 @@ if pythonIncompatibleTests {
     assert(len(["foo": "bar"]) == 1)
     assert(len(["foo": "bar", "baz": "foo"]) == 2)
 
+    // map
+    var mapObj = ["foo": "foobar"]
+    assert(len(mapObj) == 1)
+    assert(mapObj["foo"])
+
+    // map.clear()
+    mapObj.clear()
+    assert(len(mapObj) == 0)
+    assert(!mapObj["foobar"])
+
     // re.search
     assert(equal(re.search("", "foobarzonk"), []))
 
