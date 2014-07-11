@@ -1,3 +1,43 @@
+// >>> filter(lambda s: not s.startswith("_"), dir(""))
+//   capitalize
+//   center
+//   count
+//   decode
+//   encode
+//   endswith
+//   expandtabs
+//   find
+//   format
+//   index
+//   isalnum
+//   isalpha
+//   isdigit
+//   islower
+//   isspace
+//   istitle
+//   isupper
+//   join
+//   ljust
+//   lower
+//   lstrip
+//   partition
+//   replace
+//   rfind
+//   rindex
+//   rjust
+//   rpartition
+//   rsplit
+//   rstrip
+//   split
+//   splitlines
+//   startswith
+//   strip
+//   swapcase
+//   title
+//   translate
+//   upper
+//   zfill
+
 extension String : LogicValue {
     func getLogicValue() -> Bool {
         return len(self) != 0
