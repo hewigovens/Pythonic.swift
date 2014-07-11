@@ -6,4 +6,8 @@ extension Dictionary : LogicValue {
     func get(key: KeyType) -> ValueType? {
         return self[key]
     }
+
+    func has_key(key: KeyType) -> Bool {
+        return self.get(key).getLogicValue()
+    }
 }
