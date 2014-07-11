@@ -122,6 +122,15 @@ assert(oct(1000) == "01750")
 assert(ord("a") == 97)
 assert(ord(chr(98)) == 98)
 
+// random.random
+assert(random.random() < 1)
+
+// random.randint
+assert(random.randint(0, 10) <= 10)
+
+// random.randrange
+assert(random.randrange(0, 10) <= 9)
+
 // re.search
 assert(!re.search("^bar", "foobarzonk"))
 assert(!re.search("hello", "foobarzonk"))
@@ -328,6 +337,11 @@ if pythonIncompatibleTests {
 
     // re.search.group
     assert(re.search("^foo", "foobarzonk").group(0) == "foo")
+
+    // random.choice
+    var array = ["foo", "bar"]
+    var randomChoice = random.choice(array)
+    assert(randomChoice == "foo" || randomChoice == "bar")
 
     // range
     // TODO: Implement array equality test (Int[] == Int[])
