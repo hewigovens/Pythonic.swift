@@ -26,8 +26,7 @@ extension Dictionary : LogicValue {
             return nil
         }
 
-        let randomIndex = Int(arc4random_uniform(UInt32(self.count)))
-        var key: KeyType! = Array(self.keys)[randomIndex]
+        var key: KeyType! = Array(self.keys)[0]
         var value: ValueType! = self.get(key)
 
         self.pop(key)
