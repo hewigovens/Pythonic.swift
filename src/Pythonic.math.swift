@@ -1,3 +1,47 @@
+// >>> filter(lambda s: not s.startswith("_"), dir(math))
+//   acos
+//   acosh
+//   asin
+//   asinh
+//   atan
+//   atan2
+//   atanh
+//   ceil
+//   copysign
+//   cos
+//   cosh
+//   degrees
+//   e
+//   erf
+//   erfc
+//   exp
+//   expm1
+//   fabs
+//   factorial
+//   floor
+//   fmod
+//   frexp
+//   fsum
+//   gamma
+//   hypot
+//   isinf
+//   isnan
+//   ldexp
+//   lgamma
+//   log
+//   log10
+//   log1p
+//   modf
+//   pi
+//   pow
+//   radians
+//   sin
+//   sinh
+//   sqrt
+//   tan
+//   tanh
+//   trunc
+
 class math {
     let e = 2.718281828459045
     let pi = 3.141592653589793
