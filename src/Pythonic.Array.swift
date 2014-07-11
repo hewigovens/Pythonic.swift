@@ -1,6 +1,34 @@
+// >>> filter(lambda s: not s.startswith("_"), dir([]))
+//   append
+//   count
+//   extend
+//   index
+//   insert
+//   pop
+//   remove
+//   reverse
+//   sort
+
 extension Array : LogicValue {
     func getLogicValue() -> Bool {
         return len(self) != 0
+    }
+
+    // TODO:
+    // arr.extend()
+    // arr.pop()
+    // arr.sort()
+
+    mutating func clear() {
+        self.removeAll()
+    }
+
+    mutating func reverseInPlace() {
+        var newArrayElements = Array(self.reverse())
+        self.clear()
+        for element in newArrayElements {
+            self.append(element)
+        }
     }
 
     func count<T where T : Equatable>(element: T) -> Int {
