@@ -90,6 +90,7 @@ assert(long(1.1) == 1)
 
 // math.sqrt
 assert(math.sqrt(9) == 3)
+assert(math.pow(2, 2) == 4)
 
 // max
 assert(max(1, 2) == 2)

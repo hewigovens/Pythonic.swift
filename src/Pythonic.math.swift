@@ -1,46 +1,46 @@
 // >>> filter(lambda s: not s.startswith("_"), dir(math))
-//   acos
-//   acosh
-//   asin
-//   asinh
-//   atan
-//   atan2
-//   atanh
-//   ceil
-//   copysign
-//   cos
-//   cosh
-//   degrees
-//   e
-//   erf
-//   erfc
-//   exp
-//   expm1
-//   fabs
-//   factorial
-//   floor
-//   fmod
-//   frexp
-//   fsum
-//   gamma
-//   hypot
-//   isinf
-//   isnan
-//   ldexp
-//   lgamma
-//   log
-//   log10
-//   log1p
-//   modf
-//   pi
-//   pow
-//   radians
-//   sin
-//   sinh
-//   sqrt
-//   tan
-//   tanh
-//   trunc
+//   acos: Added.
+//   acosh: Added.
+//   asin: Added.
+//   asinh: Added.
+//   atan: Added.
+//   atan2: Added.
+//   atanh: Added.
+//   ceil: Added.
+//   copysign: Added.
+//   cos: Added.
+//   cosh: Added.
+//   degrees: TODO.
+//   e: Added.
+//   erf: Added.
+//   erfc: Added.
+//   exp: Added.
+//   expm1: Added.
+//   fabs: Added.
+//   factorial: TODO.
+//   floor: Added.
+//   fmod: Added.
+//   frexp: TODO.
+//   fsum: TODO.
+//   gamma: TODO.
+//   hypot: Added.
+//   isinf: TODO.
+//   isnan: TODO.
+//   ldexp: Added.
+//   lgamma: Added.
+//   log: Added.
+//   log10: Added.
+//   log1p: Added.
+//   modf: TODO.
+//   pi: Added.
+//   pow: Added.
+//   radians: TODO.
+//   sin: Added.
+//   sinh: Added.
+//   sqrt: Added.
+//   tan: Added.
+//   tanh: Added.
+//   trunc: Added.
 
 class math {
     let e = 2.718281828459045
@@ -66,7 +66,7 @@ class math {
         return Darwin.atan(arg1)
     }
 
-    class func atan2(arg1: Double, arg2: Double) -> Double {
+    class func atan2(arg1: Double, _ arg2: Double) -> Double {
         return Darwin.atan2(arg1, arg2)
     }
 
@@ -78,7 +78,7 @@ class math {
         return Darwin.ceil(arg1)
     }
 
-    class func copysign(arg1: Double, arg2: Double) -> Double {
+    class func copysign(arg1: Double, _ arg2: Double) -> Double {
         return Darwin.copysign(arg1, arg2)
     }
 
@@ -114,11 +114,11 @@ class math {
         return Darwin.floor(arg1)
     }
 
-    class func fmod(arg1: Double, arg2: Double) -> Double {
+    class func fmod(arg1: Double, _ arg2: Double) -> Double {
         return Darwin.fmod(arg1, arg2)
     }
 
-    class func hypot(arg1: Double, arg2: Double) -> Double {
+    class func hypot(arg1: Double, _ arg2: Double) -> Double {
         return Darwin.hypot(arg1, arg2)
     }
 
@@ -140,6 +140,10 @@ class math {
 
     class func log1p(arg1: Double) -> Double {
         return Darwin.log1p(arg1)
+    }
+
+    class func pow(arg1: Double, _ arg2: Double) -> Double {
+        return arg1 ** arg2
     }
 
     class func sin(arg1: Double) -> Double {
