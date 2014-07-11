@@ -1,5 +1,13 @@
 @exported import Foundation
 
+operator infix ** {
+    associativity right precedence 160
+}
+
+@infix func **(lhs: Double, rhs: Double) -> Double {
+    return pow(lhs, rhs)
+}
+
 func all<R : Sequence where R.GeneratorType.Element : LogicValue>(iterable: R) -> Bool {
     for element in iterable {
         if !element {

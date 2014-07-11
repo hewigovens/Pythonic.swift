@@ -2,6 +2,13 @@
 
 import Pythonic
 
+// ** (power operator)
+assert(2**2 == 4)
+assert(2.0**2.0 == 4)
+assert(1 + 2**2 + 2 == 7)
+assert(1 + 2.0**2.0 + 2 == 7)
+assert(1**1 + 2.0**2.0 + 2 == 7)
+
 // abs
 assert(abs(-1) == 1)
 
@@ -163,6 +170,15 @@ assert(sum([1, 2, 3]) == 6)
 assert(sum([1, 2, 3], 1) == 7)
 assert(sum([1.1, 1.2]) == 2.3)
 
+// sys.argv
+assert(sys.argv[0].startswith("./Pythonic-test"))
+assert(sys.argv[1] == "arg1")
+assert(sys.argv[2] == "arg2")
+assert(len(sys.argv) == 3)
+
+// time.time
+assert(time.time() > 1405028001.224846)
+
 // Others:
 assert(" ")
 assert("foobar"[0] == "f")
@@ -310,5 +326,3 @@ if pythonIncompatibleTests {
     assert("foobar"[0..<2] == "fo")
     assert("x" as Character)
 }
-
-println("All tests successfully passed when executing as Swift code.")
