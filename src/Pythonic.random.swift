@@ -16,7 +16,7 @@ class random {
     }
 
     class func randrange(start: Int, _ stop: Int) -> Int {
-        return randRange(start, stop)
+        return Pythonic.random.randRange(start, stop)
     }
 
     class func choice<R : Sequence where R.GeneratorType.Element : Comparable>(sequence: R) -> R.GeneratorType.Element {
