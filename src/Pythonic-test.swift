@@ -256,6 +256,16 @@ if pythonIncompatibleTests {
     // list
     assert(!list<int>())
 
+    var arr: [String] = ["foo", "bar", "zonk", "foo"]
+    assert(arr.count("foo") == 2)
+    arr.remove("foo")
+    assert(arr.count("foo") == 1)
+    assert(arr.index("bar") == 0)
+    arr.append("hello")
+    assert(arr.index("hello") == 3)
+    arr.reverseInPlace()
+    assert(arr.index("hello") == 0)
+
     // list.index
     assert(["foo", "bar", "zonk"].index(1) == nil)
     assert([1, 2, 3].index("foo") == nil)
