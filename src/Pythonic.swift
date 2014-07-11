@@ -114,7 +114,7 @@ func any<R : Sequence where R.GeneratorType.Element : LogicValue>(iterable: R) -
 }
 
 func chr(i: Int) -> String {
-    return NSString(format: "%c", i)
+    return String(UnicodeScalar(i))
 }
 
 func cmp<T : Comparable>(x: T, y: T) -> Int {
