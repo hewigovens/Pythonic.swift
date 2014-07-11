@@ -72,4 +72,8 @@ class sys {
             return NSFileHandle.fileHandleWithStandardInput()
         }
     }
+
+    class func exit(exitCode: Int) {
+        Darwin.exit(Int32(exitCode))
+    }
 }

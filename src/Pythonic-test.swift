@@ -376,3 +376,5 @@ if pythonIncompatibleTests {
     assert("foobar"[0..<2] == "fo")
     assert("x" as Character)
 }
+
+sys.exit(0)
