@@ -6,8 +6,8 @@
 //   insert: Failed to add. (TODO)
 //   pop: Added, but due to a compiler bug it must be defined in test file for tests to pass.
 //   remove: Added.
-//   reverse: Added as "reverseInPlace" to avoid name collission with built-in Array.reverse.
-//   sort: Failed to add. Name collission with built-in Array.sort. (TODO)
+//   reverse: Added as "reverseInPlace" to avoid name collision with built-in Array.reverse.
+//   sort: Failed to add. Name collision with built-in Array.sort. (TODO)
 
 extension Array : LogicValue {
     func getLogicValue() -> Bool {
