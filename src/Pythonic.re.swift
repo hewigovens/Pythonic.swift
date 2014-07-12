@@ -41,7 +41,7 @@ class re {
         if let regex = NSRegularExpression.regularExpressionWithPattern(pattern, options: nil, error: nil) {
             let range = NSRange(location: 0, length: countElements(string))
             if let matches = regex.matchesInString(string, options: nil, range: range) as? [NSTextCheckingResult] {
-                returnedMatches = matches.map {string[$0.range]}
+                returnedMatches = matches.map { string[$0.range] }
             }
         }
         return returnedMatches
