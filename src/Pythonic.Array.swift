@@ -47,4 +47,7 @@ extension Array : LogicValue {
         }
         return nil
     }
+
+    // NOTE: group(…) implemented directly in Pythonic-test.swift to work around compiler bug.
+    // NOTE: pop(…) implemented directly in Pythonic-test.swift to work around compiler bug.
 }
