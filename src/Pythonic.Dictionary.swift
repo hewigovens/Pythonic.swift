@@ -1,16 +1,16 @@
 // >>> filter(lambda s: not s.startswith("_"), dir({}))
-//   clear
+//   clear: Implemented.
 //   copy
 //   fromkeys
-//   get
-//   has_key
+//   get: Implemented (in Pythonic-test.swift to avoid compiler bug).
+//   has_key: Implemented as hasKey (in Pythonic-test.swift to avoid compiler bug).
 //   items
 //   iteritems
 //   iterkeys
 //   itervalues
 //   keys
-//   pop
-//   popitem
+//   pop: Implemented (in Pythonic-test.swift to avoid compiler bug).
+//   popitem: Implemented (in Pythonic-test.swift to avoid compiler bug).
 //   setdefault
 //   update
 //   values

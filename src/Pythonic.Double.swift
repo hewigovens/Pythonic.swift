@@ -4,7 +4,7 @@
 //   fromhex
 //   hex
 //   imag
-//   is_integer
+//   is_integer: Implemented.
 //   real
 
 extension Double : LogicValue {
