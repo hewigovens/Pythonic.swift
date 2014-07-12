@@ -211,7 +211,7 @@ assert(!bool(""))
 assert(!bool(0))
 assert(!bool(0.0))
 
-// BUG: Due to a compiler bug (?) the following cannot be imported. Must be in same source file.
+// BUG: Due to a strange compiler bug (?) the following cannot be imported. Must be in same source file.
 extension Array {
     mutating func pop(index: Int?) -> Array.Element? {
         var i = index ? index! : self.count - 1
@@ -235,6 +235,46 @@ extension Array {
         return self.pop(nil)
     }
 }
+
+// BUG: Due to a strange compiler bug (?) the following cannot be imported. Must be in same source file.
+extension Dictionary {
+    func get(key: KeyType) -> ValueType? {
+        return self[key]
+    }
+
+    func hasKey(key: KeyType) -> Bool {
+        if let _ = self.get(key) {
+            return true
+        }
+        return false
+    }
+
+    func has_key(key: KeyType) -> Bool {
+        return hasKey(key)
+    }
+
+    mutating func pop(key: KeyType) -> ValueType? {
+        if let val = self.get(key) {
+            self.removeValueForKey(key)
+            return val
+        }
+        return nil
+    }
+
+    mutating func popItem() -> (KeyType, ValueType)? {
+        if self.count == 0 {
+            return nil
+        }
+        var key = Array(self.keys)[0]
+        var value = self.pop(key)!
+        return (key, value)
+    }
+
+    mutating func popitem() -> (KeyType, ValueType)? {
+        return popItem()
+    }
+}
+
 
 // BUG: has_attr does not work due to the following compiler bug (?)
 // invalid linkage type for global declaration
@@ -327,7 +367,23 @@ if pythonIncompatibleTests {
     assert(len(mapObj) == 1)
     assert(mapObj["foo"])
 
-    // map.clear()
+    // map.get
+    assert(mapObj.get("foo") == "foobar")
+
+    // map.has_key/hasKey
+    assert(mapObj.has_key("foo"))
+    assert(mapObj.hasKey("foo"))
+
+    // map.pop
+    assert(mapObj.pop("foo") == "foobar")
+    assert(len(mapObj) == 0)
+
+    // map.popItem
+    mapObj["foo"] = "bar"
+    let t = mapObj.popItem()
+    assert(len(mapObj) == 0)
+
+    // map.clear
     mapObj.clear()
     assert(len(mapObj) == 0)
     assert(!mapObj["foobar"])
