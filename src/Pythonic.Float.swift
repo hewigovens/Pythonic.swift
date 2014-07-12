@@ -15,7 +15,7 @@ extension Float : LogicValue {
     }
 
     func isInteger() -> Bool {
-        return floor(self) == self
+        return Darwin.floor(self) == self
     }
 
     func is_integer() -> Bool {
