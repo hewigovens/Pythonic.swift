@@ -424,6 +424,13 @@ if pythonIncompatibleTests {
     // str.title
     assert("they're bill's friends from the UK".title() == "They're Bill's Friends From The Uk")
 
+    // zip
+    var zipped = zip([3, 4], [9, 16])
+    var (l1, r1) = zipped[0]
+    assert(l1 == 3 && r1 == 9)
+    var (l2, r2) = zipped[1]
+    assert(l2 == 4 && r2 == 16)
+
     // Others:
     assert("foobar"[0..<2] == "fo")
     assert("x" as Character)
