@@ -1,3 +1,5 @@
+// Python docs: https://docs.python.org/2/library/string.html
+//
 // >>> filter(lambda s: not s.startswith("_"), dir(""))
 //   capitalize: Added.
 //   center: TODO.

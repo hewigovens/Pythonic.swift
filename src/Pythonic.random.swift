@@ -1,3 +1,5 @@
+// Python docs: https://docs.python.org/2/library/random.html
+//
 // >>> filter(lambda s: re.match("^[a-z]", s), dir(random))
 //   betavariate: TODO.
 //   choice: Added.

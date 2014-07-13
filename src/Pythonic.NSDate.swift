@@ -1,3 +1,5 @@
+// Python docs: https://docs.python.org/2/library/datetime.html
+//
 // >>> filter(lambda s: not s.startswith("_"), dir(datetime.datetime))
 //   astimezone
 //   combine

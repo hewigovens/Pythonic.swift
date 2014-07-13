@@ -1,3 +1,5 @@
+// Python docs: https://docs.python.org/2/library/math.html
+//
 // >>> filter(lambda s: not s.startswith("_"), dir(math))
 //   acos: Added.
 //   acosh: Added.

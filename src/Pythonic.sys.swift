@@ -1,3 +1,5 @@
+// Python docs: https://docs.python.org/2/library/sys.html
+//
 // >>> filter(lambda s: not s.startswith("_"), dir(sys))
 //   api_version
 //   argv
