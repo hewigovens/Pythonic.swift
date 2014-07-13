@@ -340,60 +340,6 @@ typealias str = Swift.String
 // vars([object])¶                          Return the __dict__ attribute for a module, class, instance, or any other object with a __dict__ attribute.
 // xrange(stop)/xrange(start, stop[, st])¶  This function is very similar to range(), but returns an xrange object instead of a list.
 //
-// Functions listed on https://docs.python.org/2/library/string.html not yet implemented:
-// capitalize
-// center
-// count
-// decode
-// encode
-// endswith
-// expandtabs
-// find
-// format
-// index
-// isalnum
-// isalpha
-// isdigit
-// islower
-// isspace
-// istitle
-// isupper
-// join
-// ljust
-// lower
-// lstrip
-// partition
-// replace
-// rfind
-// rindex
-// rjust
-// rpartition
-// rsplit
-// rstrip
-// split
-// splitlines
-// startswith
-// strip
-// swapcase
-// title
-// translate
-// upper
-// zfill
-//
-// Functions listed on https://docs.python.org/2/library/math.html not yet implemented:
-// math.degrees(x)¶                         Converts angle x from radians to degrees.
-// math.factorial(x)¶                       Return x factorial.
-// math.fsum(iterable)¶                     Return an accurate floating point sum of values in the iterable.
-// math.isinf(x)¶                           Check if the float x is positive or negative infinity.
-// math.isnan(x)¶                           Check if the float x is a NaN (not a number).
-// math.radians(x)¶                         Converts angle x from degrees to radians.
-//
-// https://docs.python.org/2/library/stdtypes.html
-// float.as_integer_ratio()¶
-// float.is_integer()¶
-// float.hex()¶
-// float.fromhex(s)¶
-//
 // https://docs.python.org/2/library/stdtypes.html
 // seq [str, unicode, list, tuple, bytearray, buffer, xrange]
 // x in s
@@ -454,34 +400,3 @@ typealias str = Swift.String
 // viewitems()
 // viewkeys()
 // viewvalues()
-//
-// https://docs.python.org/2/library/stdtypes.html
-// file operations
-// file.close()
-// file.flush()
-// file.fileno()
-// file.isatty()
-// file.next()
-// file.read([size])
-// file.readline([size])
-// file.readlines([sizehint])
-// file.seek(offset[, whence])
-// file.tell()
-// file.truncate([size])
-// file.write(str)
-// file.writelines(sequence)
-//
-// Functions listed on https://docs.python.org/2/library/re.html not yet implemented:
-// ...
-//
-// Functions listed on https://docs.python.org/2/library/datetime.html not yet implemented:
-// ...
-//
-// Functions listed on https://docs.python.org/2/library/random.html not yet implemented:
-// ...
-//
-// Functions listed on https://docs.python.org/2/library/os.html not yet implemented:
-// ...
-//
-// Functions listed on https://docs.python.org/2/library/sys.html not yet implemented:
-// ...
