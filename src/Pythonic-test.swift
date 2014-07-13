@@ -131,6 +131,15 @@ assert(random.randint(0, 10) <= 10)
 // random.randrange
 assert(random.randrange(0, 10) <= 9)
 
+// range
+assert(range(10) == [0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+assert(range(1, 11) == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+assert(range(0) == [])
+assert(range(1, 0) == [])
+assert(range(0, 5, -1) == [])
+assert(range(0, 10, 2) == [0, 2, 4, 6, 8])
+assert(range(0, 50, 7) == [0, 7, 14, 21, 28, 35, 42, 49])
+
 // re.search
 assert(!re.search("^bar", "foobarzonk"))
 assert(!re.search("hello", "foobarzonk"))
@@ -174,6 +183,10 @@ assert("foobar".endswith("bar"))
 
 // str.join
 assert(":".join(["foo", "bar", "baz"]) == "foo:bar:baz")
+
+// str.split
+assert("foo:bar:baz".split(":") == ["foo", "bar", "baz"])
+assert("foo bar".split(" ") == ["foo", "bar"])
 
 // str.startswith
 assert("foobar".startswith("foo"))
@@ -347,15 +360,15 @@ if pythonIncompatibleTests {
     // list.remove
     var anotherMutableArray = [3, 2, 1, 3]
     anotherMutableArray.remove(0)
-    assert(equal(anotherMutableArray, [3, 2, 1, 3]))
+    assert(anotherMutableArray == [3, 2, 1, 3])
     anotherMutableArray.remove(2)
-    assert(equal(anotherMutableArray, [3, 1, 3]))
+    assert(anotherMutableArray == [3, 1, 3])
     anotherMutableArray.remove(1)
-    assert(equal(anotherMutableArray, [3, 3]))
+    assert(anotherMutableArray == [3, 3])
     anotherMutableArray.remove(3)
-    assert(equal(anotherMutableArray, [3]))
+    assert(anotherMutableArray == [3])
     anotherMutableArray.remove(3)
-    assert(equal(anotherMutableArray, []))
+    assert(anotherMutableArray == [])
 
     // len
     assert(len(list<str>()) == 0)
@@ -388,39 +401,22 @@ if pythonIncompatibleTests {
     assert(len(mapObj) == 0)
     assert(!mapObj["foobar"])
 
-    // re.search
-    assert(equal(re.search("", "foobarzonk"), []))
-
-    // re.search.group
-    assert(re.search("^foo", "foobarzonk").group(0) == "foo")
-
     // random.choice
     var array = ["foo", "bar"]
     var randomChoice = random.choice(array)
     assert(randomChoice == "foo" || randomChoice == "bar")
 
-    // range
-    // TODO: Implement array equality test (Int[] == Int[])
-    assert(equal(range(10), [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]))
-    assert(equal(range(1, 11), [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
-    assert(equal(range(0), []))
-    assert(equal(range(1, 0), []))
-    assert(equal(range(0, 5, -1), []))
-    assert(equal(range(0, 10, 2), [0, 2, 4, 6, 8]))
-    assert(equal(range(0, 50, 7), [0, 7, 14, 21, 28, 35, 42, 49]))
+    // re.search
+    assert(re.search("", "foobarzonk") == [])
+
+    // re.search.group
+    assert(re.search("^foo", "foobarzonk").group(0) == "foo")
 
     // str.endsWith
     assert("foobar".endsWith("bar"))
 
-    // str.join
-    assert(equal(":".join(["foo", "bar", "baz"]), "foo:bar:baz"))
-    assert(equal(":".join(["foo", "bar", "baz"]), "foo:bar:baz"))
-
     // str.split
-    // TODO: Implement array equality test (String[] == String[])
-    assert(equal("foo:bar:baz".split(":"), ["foo", "bar", "baz"]))
-    assert(equal(("foobar").split(""), ["foobar"]))
-    assert(equal(("foo bar").split(" "), ["foo", "bar"]))
+    assert("foobar".split("") == ["foobar"])
 
     // str.startsWith
     assert("foobar".startsWith("foo"))
