@@ -22,4 +22,8 @@ class time {
         let now = NSDate()
         return now.timeIntervalSince1970
     }
+
+    class func sleep(seconds: Double) {
+        NSThread.sleepForTimeInterval(seconds)
+    }
 }
