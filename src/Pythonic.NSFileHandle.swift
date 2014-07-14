@@ -1,12 +1,12 @@
 // Python docs: https://docs.python.org/2/library/stdtypes.html
 //
 // >>> filter(lambda s: not s.startswith("_"), dir(open("/tmp/foo")))
-//   close
+//   close: TODO.
 //   closed
 //   encoding
 //   errors
 //   fileno
-//   flush
+//   flush: TODO.
 //   isatty
 //   mode
 //   name
@@ -20,7 +20,7 @@
 //   softspace
 //   tell
 //   truncate
-//   write
+//   write: TODO.
 //   writelines
 //   xreadlines
 
