@@ -2,7 +2,7 @@
 //
 // >>> filter(lambda s: not s.startswith("_"), dir(sys))
 //   api_version
-//   argv
+//   argv: Implemented.
 //   builtin_module_names
 //   byteorder
 //   call_tracing
@@ -16,7 +16,7 @@
 //   excepthook
 //   exec_prefix
 //   executable
-//   exit
+//   exit: Implemented.
 //   exitfunc
 //   flags
 //   float_info
@@ -40,10 +40,10 @@
 //   maxunicode
 //   meta_path
 //   modules
-//   path
+//   path: TODO.
 //   path_hooks
 //   path_importer_cache
-//   platform
+//   platform: TODO.
 //   prefix
 //   ps1
 //   ps2
@@ -54,11 +54,11 @@
 //   setprofile
 //   setrecursionlimit
 //   settrace
-//   stderr
-//   stdin
-//   stdout
+//   stderr: Implemented.
+//   stdin: Implemented.
+//   stdout: Implemented.
 //   subversion
-//   version
+//   version: TODO.
 //   version_info
 //   warnoptions
 
@@ -72,6 +72,18 @@ class sys {
     class var stdin: NSFileHandle {
         get {
             return NSFileHandle.fileHandleWithStandardInput()
+        }
+    }
+
+    class var stdout: NSFileHandle {
+        get {
+            return NSFileHandle.fileHandleWithStandardOutput()
+        }
+    }
+
+    class var stderr: NSFileHandle {
+        get {
+            return NSFileHandle.fileHandleWithStandardError()
         }
     }
 
