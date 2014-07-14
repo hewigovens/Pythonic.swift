@@ -428,6 +428,9 @@ if pythonIncompatibleTests {
     // str.title
     assert("they're bill's friends from the UK".title() == "They're Bill's Friends From The Uk")
 
+    // time.sleep
+    time.sleep(0.001)
+
     // zip
     var zipped = zip([3, 4], [9, 16])
     var (l1, r1) = zipped[0]
