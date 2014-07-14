@@ -1,5 +1,27 @@
 // Python docs: https://docs.python.org/2/library/os.html
 //
+// Most frequently used:
+// 3040 os.path
+//      1362 os.path.join
+//       431 os.path.exists
+//       343 os.path.dirname
+//       215 os.path.abspath
+//       145 os.path.basename
+//       106 os.path.isdir
+//        66 os.path.isfile
+//        62 os.path.realpath
+//        27 os.path.splitext
+//        27 os.path.split
+//  235 os.environ
+//   94 os.unlink
+//   87 os.mkdir
+//   77 os.makedirs
+//   68 os.remove
+//   64 os.listdir
+//   35 os.rename
+//   32 os.sep
+//   32 os.close
+//
 // >>> filter(lambda s: re.match("[a-z]", s), dir(os))
 //   abort
 //   access

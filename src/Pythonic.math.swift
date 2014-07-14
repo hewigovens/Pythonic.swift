@@ -1,5 +1,17 @@
 // Python docs: https://docs.python.org/2/library/math.html
 //
+// Most frequently used:
+//   24 math.ceil
+//   13 math.log
+//   11 math.floor
+//    9 math.sqrt
+//    9 math.cos
+//    6 math.sin
+//    4 math.pi
+//    3 math.radians
+//    2 math.exp
+//    1 math.pow
+//
 // >>> filter(lambda s: not s.startswith("_"), dir(math))
 //   acos: Added.
 //   acosh: Added.

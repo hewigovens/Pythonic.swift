@@ -1,5 +1,17 @@
 // Python docs: https://docs.python.org/2/library/sys.html
 //
+// Most frequently used:
+//  339 sys.path
+//  331 sys.argv
+//  273 sys.exit
+//  144 sys.stdout
+//  121 sys.stderr
+//  116 sys.exc_info
+//   98 sys.platform
+//   93 sys.prefix
+//   83 sys.version_info
+//   64 sys.modules
+//
 // >>> filter(lambda s: not s.startswith("_"), dir(sys))
 //   api_version
 //   argv: Implemented.

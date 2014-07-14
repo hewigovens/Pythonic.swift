@@ -1,5 +1,17 @@
 // Python docs: https://docs.python.org/2/library/re.html
 //
+// Most frequently used:
+//  346 re.search
+//  252 re.match
+//  218 re.compile
+//  217 re.sub
+//   28 re.split
+//   26 re.findall
+//   26 re.IGNORECASE
+//   17 re.escape
+//   16 re.VERBOSE
+//    9 re.finditer
+//
 // >>> filter(lambda s: not s.startswith("_"), dir(re))
 //   DEBUG
 //   DOTALL

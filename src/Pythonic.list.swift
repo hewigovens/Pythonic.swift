@@ -1,3 +1,13 @@
+// Python docs: https://docs.python.org/2/library/stdtypes.html#sequence-types-str-unicode-list-tuple-bytearray-buffer-xrange
+//
+// Most frequently used:
+//    2 list.sort
+//    2 list.pop
+//    2 list.append
+//    1 list.reverse
+//    1 list.remove
+//    1 list.insert
+//
 // >>> filter(lambda s: not s.startswith("_"), dir([]))
 //   append: Already in Swift.
 //   count: Added.

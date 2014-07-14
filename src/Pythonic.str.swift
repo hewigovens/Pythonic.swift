@@ -1,5 +1,15 @@
 // Python docs: https://docs.python.org/2/library/string.html
 //
+// Most frequently used:
+//   19 str.replace
+//    9 str.split
+//    4 str.join
+//    2 str.startswith
+//    2 str.lower
+//    1 str.upper
+//    1 str.strip
+//    1 str.decode
+//
 // >>> filter(lambda s: not s.startswith("_"), dir(""))
 //   capitalize: Added.
 //   center: TODO.

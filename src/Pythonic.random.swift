@@ -1,5 +1,16 @@
 // Python docs: https://docs.python.org/2/library/random.html
 //
+// Most frequently used:
+//   94 random.randint
+//   73 random.choice
+//   32 random.shuffle
+//   28 random.random
+//    9 random.randrange
+//    4 random.seed
+//    4 random.sample
+//    2 random.expovariate
+//    1 random.uniform
+//
 // >>> filter(lambda s: re.match("^[a-z]", s), dir(random))
 //   betavariate: TODO.
 //   choice: Added.

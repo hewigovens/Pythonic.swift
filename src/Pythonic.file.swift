@@ -1,5 +1,15 @@
 // Python docs: https://docs.python.org/2/library/stdtypes.html
 //
+// Most frequently used:
+//   15 file.close
+//    9 file.name
+//    8 file.readline
+//    7 file.write
+//    2 file.read
+//    1 file.writelines
+//    1 file.readlines
+//    1 file.fileno
+//
 // >>> filter(lambda s: not s.startswith("_"), dir(open("/tmp/foo")))
 //   close: TODO.
 //   closed
