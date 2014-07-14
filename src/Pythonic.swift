@@ -254,11 +254,22 @@ func zip<S1 : Sequence, S2 : Sequence>(s1: S1, s2: S2) -> Array<(S1.GeneratorTyp
     return retArray
 }
 
-// NOTE: The aliases below should not be used in the implementation above. 
 typealias bool = Swift.Bool
 typealias long = Swift.Int
 typealias object = NSObject
 typealias set = NSMutableSet
+
+extension Character : LogicValue {
+    func getLogicValue() -> Bool {
+        return true
+    }
+}
+
+extension NSObject : LogicValue {
+    func getLogicValue() -> Bool {
+        return true
+    }
+}
 
 // TODO: Python functions to implement
 // ===================================
@@ -394,13 +405,3 @@ typealias set = NSMutableSet
 // viewitems()
 // viewkeys()
 // viewvalues()
-extension Character : LogicValue {
-    func getLogicValue() -> Bool {
-        return true
-    }
-}
-extension NSObject : LogicValue {
-    func getLogicValue() -> Bool {
-        return true
-    }
-}
