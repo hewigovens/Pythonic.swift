@@ -18,6 +18,8 @@
 //   viewkeys
 //   viewvalues
 
+typealias dict = Swift.Dictionary
+
 extension Dictionary : LogicValue {
     func getLogicValue() -> Bool {
         return len(self) != 0

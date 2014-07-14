@@ -40,6 +40,8 @@
 //   upper: Added.
 //   zfill: TODO.
 
+typealias str = Swift.String
+
 extension String : LogicValue {
     func getLogicValue() -> Bool {
         return len(self) != 0

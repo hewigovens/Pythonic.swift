@@ -11,6 +11,8 @@
 
 import Darwin
 
+typealias float = Swift.Double
+
 extension Double : LogicValue {
     func getLogicValue() -> Bool {
         return self != 0

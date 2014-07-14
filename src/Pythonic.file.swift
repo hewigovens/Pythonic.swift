@@ -24,6 +24,8 @@
 //   writelines
 //   xreadlines
 
+typealias file = NSFileHandle
+
 extension NSFileHandle : Sequence {
     func read() -> String {
         let data: NSData = self.readDataToEndOfFile()
