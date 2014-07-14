@@ -19,6 +19,8 @@
 //   reverse: Added as "reverseInPlace" to avoid name collision with built-in Array.reverse.
 //   sort: Failed to add. Name collision with built-in Array.sort. (TODO)
 
+import Foundation
+
 typealias list = Swift.Array
 
 extension Array : LogicValue {

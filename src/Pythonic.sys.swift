@@ -74,6 +74,8 @@
 //   version_info
 //   warnoptions
 
+import Foundation
+
 class sys {
     class var argv: [String] {
         get {

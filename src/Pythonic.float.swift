@@ -9,7 +9,7 @@
 //   is_integer: Implemented.
 //   real
 
-import Darwin
+import Foundation
 
 typealias float = Swift.Double
 

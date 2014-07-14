@@ -85,14 +85,14 @@
 //   xrange
 //   zip
 
-@exported import Foundation
+import Foundation
 
 operator infix ** {
     associativity right precedence 160
 }
 
 @infix func **(lhs: Double, rhs: Double) -> Double {
-    return pow(lhs, rhs)
+    return Darwin.pow(lhs, rhs)
 }
 
 func all<R : Sequence where R.GeneratorType.Element : LogicValue>(iterable: R) -> Bool {
@@ -236,6 +236,10 @@ func raw_input() -> String {
 
 func rawInput() -> String {
     return rawInput("")
+}
+
+func round(d: Float) -> Float {
+    return Darwin.round(d)
 }
 
 func sum(iterable: Array<Double>, _ start: Double = 0) -> Double {

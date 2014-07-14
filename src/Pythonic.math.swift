@@ -56,6 +56,8 @@
 //   tanh: Added.
 //   trunc: Added.
 
+import Foundation
+
 class math {
     let e = 2.718281828459045
     let pi = 3.141592653589793

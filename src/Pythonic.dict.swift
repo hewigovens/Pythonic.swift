@@ -27,6 +27,8 @@
 //   viewkeys
 //   viewvalues
 
+import Foundation
+
 typealias dict = Swift.Dictionary
 
 extension Dictionary : LogicValue {

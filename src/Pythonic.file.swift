@@ -34,6 +34,8 @@
 //   writelines
 //   xreadlines
 
+import Foundation
+
 typealias file = NSFileHandle
 
 extension NSFileHandle : Sequence {

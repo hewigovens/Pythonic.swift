@@ -36,6 +36,8 @@
 //   vonmisesvariate: TODO.
 //   weibullvariate: TODO.
 
+import Foundation
+
 class random {
     class func random() -> Double {
         return Double(arc4random_uniform(UInt32.max)) / Double(UInt32.max)

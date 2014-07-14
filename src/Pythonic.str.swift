@@ -50,6 +50,8 @@
 //   upper: Added.
 //   zfill: TODO.
 
+import Foundation
+
 typealias str = Swift.String
 
 extension String : LogicValue {

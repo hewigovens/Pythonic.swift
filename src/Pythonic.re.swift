@@ -46,6 +46,8 @@
 //   sys
 //   template
 
+import Foundation
+
 class re {
     class func search(pattern: String, _ string: String) -> [String] {
         var returnedMatches: [String] = []

@@ -170,6 +170,8 @@
 //   walk
 //   write
 
+import Foundation
+
 class os {
     class path {
         class func exists(path: String) -> Bool {
@@ -177,30 +179,3 @@ class os {
         }
     }
 }
-
-// 1362 os.path.join
-//  431 os.path.exists
-//  343 os.path.dirname
-//  215 os.path.abspath
-//  145 os.path.basename
-//  106 os.path.isdir
-//   66 os.path.isfile
-//   62 os.path.realpath
-//   27 os.path.splitext
-//   27 os.path.split
-//   24 os.path.expanduser
-//   21 os.path.getmtime
-//   19 os.path.normpath
-//   17 os.path.getsize
-//   12 os.path.curdir
-//    6 os.path.relpath
-//    5 os.path.isabs
-//    4 os.path.sep
-//    3 os.path.splitdrive
-//    2 os.path.walk
-//    2 os.path.ismount
-//    2 os.path.getctime
-//    2 os.path.devnull
-//    1 os.path.islink
-//    1 os.path.expandvars
-//    1 os.path.commonprefix

@@ -31,6 +31,8 @@
 //   tzname
 //   tzset
 
+import Foundation
+
 class time {
     class func time() -> Double {
         let now = NSDate()

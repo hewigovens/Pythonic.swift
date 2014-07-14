@@ -6,6 +6,8 @@
 //   numerator
 //   real
 
+import Foundation
+
 typealias int = Swift.Int
 
 extension Int : LogicValue {
