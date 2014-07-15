@@ -155,6 +155,11 @@ assert(re.search("o", "foobarzonk"))
 // round
 assert(round(1.1) == 1)
 
+// set
+assert(set([1, 2, 3]) - set([3, 4, 5]) == set([1, 2]))
+assert(set([1, 2, 3]) & set([3, 4, 5]) == set([3]))
+assert(set([1, 2, 3]) | set([3, 4, 5]) == set([1, 2, 3, 4, 5]))
+
 // str
 assert(str(123) == "123")
 
@@ -415,6 +420,51 @@ if pythonIncompatibleTests {
 
     // re.search.group
     assert(re.search("^foo", "foobarzonk").group(0) == "foo")
+
+    // set
+    assert(set([1, 2, 3]) + set([3, 4, 5]) == set([1, 2, 3, 4, 5]))
+    var set1 = Set<Int>()
+    assert(countElements(set1) == 0)
+    set1 += 1
+    assert(countElements(set1) == 1)
+    assert(set1 == Set([1]))
+    set1.add(2)
+    assert(set1 == Set([1, 2]))
+    set1.add(3)
+    assert(set1 == Set([1, 2, 3]))
+    set1.add(1)
+    assert(set1 == Set([1, 2, 3]))
+    set1.add(2)
+    assert(set1 == Set([1, 2, 3]))
+    set1.add(3)
+    assert(set1 == Set([1, 2, 3]))
+    set1.remove(2)
+    assert(set1 == Set([1, 3]))
+    set1.remove(2)
+    assert(set1 == Set([1, 3]))
+    set1 -= 2
+    assert(set1 == Set([1, 3]))
+    var set2 = Set([1, 8, 16, 32, 64, 128])
+    assert(set2 == Set([128, 64, 32, 16, 8, 1]))
+    var set3 = set1 + set2
+    assert(set3 == Set([128, 64, 32, 16, 8, 1, 3]))
+    var set4 = set1 - set2
+    assert(set4 == Set([3]))
+    set4 += set2
+    assert(set4 == Set([128, 64, 32, 16, 8, 1, 3]))
+    set4 -= set2
+    assert(set4 == Set([3]))
+    var set5 = Set(set4)
+    assert(set5 == Set([3]))
+    assert(set5 == set4)
+    var set6 = Set([1, 2, 3]) & Set([1, 3])
+    assert(set6 == Set([1, 3]))
+    set6 &= set6
+    assert(set6 == Set([1, 3]))
+    var set7 = Set([1, 2, 3]) | Set([1, 3])
+    assert(set7 == Set([1, 2, 3]))
+    set7 |= set7
+    assert(set7 == Set([1, 2, 3]))
 
     // str.endsWith
     assert("foobar".endsWith("bar"))

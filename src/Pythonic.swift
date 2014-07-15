@@ -261,7 +261,6 @@ func zip<S1 : Sequence, S2 : Sequence>(s1: S1, s2: S2) -> Array<(S1.GeneratorTyp
 typealias bool = Swift.Bool
 typealias long = Swift.Int
 typealias object = NSObject
-typealias set = NSMutableSet
 
 extension Character : LogicValue {
     func getLogicValue() -> Bool {
