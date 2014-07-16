@@ -1,4 +1,4 @@
-class Set<T: Hashable> : Collection, Printable, Sequence {
+class Set<T: Hashable> : ArrayLiteralConvertible, Collection, Printable, Sequence {
     var _internalDict = Dictionary<T, T>()
 
     init() {
@@ -44,27 +44,27 @@ class Set<T: Hashable> : Collection, Printable, Sequence {
         return isDisjoint(other)
     }
 
-    // Implement Collection (enables "countElements(set)")
+    // Implement Collection (allows for "countElements(set)", etc.)
     var startIndex: Int {
         return 0
     }
 
-    // Implement Collection (enables "countElements(set)")
+    // Implement Collection (allows for "countElements(set)", etc.)
     var endIndex: Int {
         return countElements(self._internalDict)
     }
 
-    // Implement Collection (enables "countElements(set)")
+    // Implement Collection (allows for "countElements(set)", etc.)
     subscript (i: Int) -> T {
         return Array(_internalDict.values)[i]
     }
 
-    // Implement Sequence (enables "for x in set")
+    // Implement Sequence (allows for "for x in set")
     func generate() -> IndexingGenerator<[T]> {
         return Array(_internalDict.values).generate()
     }
 
-    // Implement Printable (enables "println(set)")
+    // Implement Printable (allows for "println(set)")
     var description: String {
         var s = "Set(["
         for (i, value) in enumerate(_internalDict.values) {
@@ -75,6 +75,11 @@ class Set<T: Hashable> : Collection, Printable, Sequence {
         }
         s += "])"
         return s
+    }
+
+    // Implement ArrayLiteralConvertible (allows for "var set: Set<Int> = [2, 4, 8]")
+    class func convertFromArrayLiteral(elements: T...) -> Set<T> {
+        return Set(elements)
     }
 }
 

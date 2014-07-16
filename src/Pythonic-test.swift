@@ -465,6 +465,8 @@ if pythonIncompatibleTests {
     assert(set7 == Set([1, 2, 3]))
     set7 |= set7
     assert(set7 == Set([1, 2, 3]))
+    var set8: Set<Int> = [1, 2, 3]
+    assert(len(set8) == 3)
 
     // str.endsWith
     assert("foobar".endsWith("bar"))
