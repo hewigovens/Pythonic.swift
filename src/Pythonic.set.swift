@@ -28,6 +28,22 @@ class Set<T: Hashable> : Collection, Printable, Sequence {
         self._internalDict[element] = nil
     }
 
+    func discard(element: T) {
+        self.remove(element)
+    }
+
+    func clear() {
+        self._internalDict = Dictionary<T, T>()
+    }
+
+    func isDisjoint(other: Set<T>) -> Bool {
+        return (self & other) == Set([])
+    }
+
+    func isdisjoint(other: Set<T>) -> Bool {
+        return isDisjoint(other)
+    }
+
     // Implement Collection (enables "countElements(set)")
     var startIndex: Int {
         return 0
