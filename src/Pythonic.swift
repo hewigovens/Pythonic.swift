@@ -132,16 +132,8 @@ func hex(i: Int) -> String {
     return "0x" + o
 }
 
-func len<T>(x: Array<T>) -> Int {
-    return Swift.countElements(x)
-}
-
-func len<T1, T2>(x: Dictionary<T1, T2>) -> Int {
-    return Swift.countElements(x)
-}
-
-func len(x: String) -> Int {
-    return Swift.countElements(x)
+func len<C: _Collection>(x: C) -> Int {
+    return Swift.countElements(x) as Int
 }
 
 func max<R : Sequence where R.GeneratorType.Element : Comparable>(range: R) -> R.GeneratorType.Element {
