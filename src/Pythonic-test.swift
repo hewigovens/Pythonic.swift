@@ -159,6 +159,9 @@ assert(round(1.1) == 1)
 assert(set([1, 2, 3]) - set([3, 4, 5]) == set([1, 2]))
 assert(set([1, 2, 3]) & set([3, 4, 5]) == set([3]))
 assert(set([1, 2, 3]) | set([3, 4, 5]) == set([1, 2, 3, 4, 5]))
+assert(set([1, 2, 3]))
+assert(set([1, 2]))
+assert(set([1]))
 
 // str
 assert(str(123) == "123")
@@ -422,6 +425,8 @@ if pythonIncompatibleTests {
     assert(re.search("^foo", "foobarzonk").group(0) == "foo")
 
     // set
+    assert(set<int>([1, 2, 3]))
+    assert(!set<int>())
     assert(set([1, 2, 3]) + set([3, 4, 5]) == set([1, 2, 3, 4, 5]))
     var set1 = Set<Int>()
     assert(countElements(set1) == 0)

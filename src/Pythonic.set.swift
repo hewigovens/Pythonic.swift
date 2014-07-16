@@ -1,4 +1,4 @@
-class Set<T: Hashable> : ArrayLiteralConvertible, Collection, Printable, Sequence {
+class Set<T: Hashable> : ArrayLiteralConvertible, Collection, LogicValue, Printable, Sequence {
     var _internalDict = Dictionary<T, T>()
 
     init() {
@@ -80,6 +80,11 @@ class Set<T: Hashable> : ArrayLiteralConvertible, Collection, Printable, Sequenc
     // Implement ArrayLiteralConvertible (allows for "var set: Set<Int> = [2, 4, 8]")
     class func convertFromArrayLiteral(elements: T...) -> Set<T> {
         return Set(elements)
+    }
+
+    // Implement LogicValue (allows for "if set { … }")
+    func getLogicValue() -> Bool {
+        return countElements(_internalDict.values) != 0
     }
 }
 
