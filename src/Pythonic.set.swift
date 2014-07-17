@@ -1,5 +1,4 @@
-// TODO: Hashable (var hashValue: Int)
-class Set<T: Hashable> : ArrayLiteralConvertible, Collection, ExtensibleCollection, LogicValue, Printable, Sequence {
+class Set<T: Hashable> : ArrayLiteralConvertible, Collection, ExtensibleCollection, Hashable, LogicValue, Printable, Sequence {
     var _internalDict = Dictionary<T, T>()
 
     init() {
@@ -94,6 +93,19 @@ class Set<T: Hashable> : ArrayLiteralConvertible, Collection, ExtensibleCollecti
         for element in elements {
             self.add(element)
         }
+    }
+
+    // Implement Hashable
+    var hashValue: Int {
+        var totalHash = 0
+        for entry in _internalDict.values {
+            if (entry == nil) {
+                totalHash += 0
+            } else {
+                totalHash += entry.hashValue
+            }
+        }
+        return totalHash
     }
 }
 
