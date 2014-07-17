@@ -99,11 +99,7 @@ class Set<T: Hashable> : ArrayLiteralConvertible, Collection, ExtensibleCollecti
     var hashValue: Int {
         var totalHash = 0
         for entry in _internalDict.values {
-            if (entry == nil) {
-                totalHash += 0
-            } else {
-                totalHash += entry.hashValue
-            }
+            totalHash += entry != nil ? entry.hashValue : 0
         }
         return totalHash
     }
