@@ -425,9 +425,11 @@ if pythonIncompatibleTests {
     assert(re.search("^foo", "foobarzonk").group(0) == "foo")
 
     // set
-    assert(set<int>([1, 2, 3]))
     assert(!set<int>())
     assert(set([1, 2, 3]) + set([3, 4, 5]) == set([1, 2, 3, 4, 5]))
+    assert(set([set([1, 2, 3]), set([1, 2, 3]), set([2, 4, 8])]) != set([set([1, 2, 3]), set([2, 4, 9])]))
+    assert(set([set([1, 2, 3]), set([1, 2, 3]), set([2, 4, 8])]) == set([set([1, 2, 3]), set([2, 4, 8])]))
+    assert(set<int>([1, 2, 3]))
     var set1 = Set<Int>()
     assert(countElements(set1) == 0)
     set1 += 1
