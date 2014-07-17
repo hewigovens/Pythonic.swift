@@ -1,19 +1,16 @@
-class Set<T: Hashable> : ArrayLiteralConvertible, Collection, LogicValue, Printable, Sequence {
+// TODO: Hashable (var hashValue: Int)
+class Set<T: Hashable> : ArrayLiteralConvertible, Collection, ExtensibleCollection, LogicValue, Printable, Sequence {
     var _internalDict = Dictionary<T, T>()
 
     init() {
     }
 
     init(_ initialArray: [T]) {
-        for entry in initialArray {
-            self.add(entry)
-        }
+        self.extend(initialArray)
     }
 
     init(_ initialSet: Set<T>) {
-        for entry in initialSet {
-            self.add(entry)
-        }
+        self.extend(initialSet)
     }
 
     func contains(element: T) -> Bool {
@@ -86,6 +83,18 @@ class Set<T: Hashable> : ArrayLiteralConvertible, Collection, LogicValue, Printa
     func getLogicValue() -> Bool {
         return countElements(_internalDict.values) != 0
     }
+
+    // Implement ExtensibleCollection
+    func reserveCapacity(n: Int) {
+    }
+
+    // Implement ExtensibleCollection
+    func extend<R : Sequence where R.GeneratorType.Element == T>(sequence: R) {
+        var elements = Array<T>(sequence)
+        for element in elements {
+            self.add(element)
+        }
+    }
 }
 
 class set<T: Hashable> : Set<T> {
@@ -119,21 +128,13 @@ func ==<T: Hashable>(lhs: Set<T>, rhs: Set<T>) -> Bool {
 }
 
 func +<T: Hashable>(lhs: Set<T>, rhs: Set<T>) -> Set<T> {
-    var newSet = Set<T>()
-    for entry in lhs {
-        newSet.add(entry)
-    }
-    for entry in rhs {
-        newSet.add(entry)
-    }
+    var newSet = Set<T>(lhs)
+    newSet.extend(rhs)
     return newSet
 }
 
 func -<T: Hashable>(lhs: Set<T>, rhs: Set<T>) -> Set<T> {
-    var newSet = Set<T>()
-    for entry in lhs {
-        newSet.add(entry)
-    }
+    var newSet = Set<T>(lhs)
     for entry in rhs {
         newSet.remove(entry)
     }
@@ -151,26 +152,15 @@ func &<T: Hashable>(lhs: Set<T>, rhs: Set<T>) -> Set<T> {
 }
 
 func |<T: Hashable>(lhs: Set<T>, rhs: Set<T>) -> Set<T> {
-    var newSet = Set<T>()
-    for entry in lhs {
-        newSet.add(entry)
-    }
-    for entry in rhs {
-        newSet.add(entry)
-    }
-    return newSet
+    return lhs + rhs
 }
 
 @assignment func +=<T: Hashable>(inout lhs: Set<T>, rhs: Set<T>) {
-    for entry in rhs {
-        lhs.add(entry)
-    }
+    lhs.extend(rhs)
 }
 
 @assignment func |=<T: Hashable>(inout lhs: Set<T>, rhs: Set<T>) {
-    for entry in rhs {
-        lhs.add(entry)
-    }
+    lhs.extend(rhs)
 }
 
 @assignment func &=<T: Hashable>(inout lhs: Set<T>, rhs: Set<T>) {
