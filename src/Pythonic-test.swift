@@ -162,6 +162,10 @@ assert(set([1, 2, 3]) | set([3, 4, 5]) == set([1, 2, 3, 4, 5]))
 assert(set([1, 2, 3]))
 assert(set([1, 2]))
 assert(set([1]))
+assert(!(set([4]) < set([1, 2, 3])))
+assert(!(set([1, 2, 3]) < set([1, 2, 3])))
+assert(set([1, 2]) < set([1, 2, 3]))
+assert(set([1]) < set([1, 2, 3]))
 
 // set.isdisjoint
 assert(set([1, 2, 3]).isdisjoint(set([4, 8, 16])))

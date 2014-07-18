@@ -1,4 +1,4 @@
-class Set<T: Hashable> : ArrayLiteralConvertible, Collection, ExtensibleCollection, Hashable, LogicValue, Printable, Sequence {
+class Set<T: Hashable> : ArrayLiteralConvertible, Collection, Comparable, Equatable, ExtensibleCollection, Hashable, LogicValue, Printable, Sequence {
     var _internalDict = Dictionary<T, T>()
 
     init() {
@@ -122,6 +122,18 @@ class set<T: Hashable> : Set<T> {
     init(_ initialSet: set<T>) {
         super.init(initialSet)
     }
+}
+
+func <<T: Hashable>(lhs: Set<T>, rhs: Set<T>) -> Bool {
+    if lhs == rhs {
+        return false
+    }
+    for element in lhs {
+        if !rhs.contains(element) {
+            return false
+        }
+    }
+    return true
 }
 
 func ==<T: Hashable>(lhs: Set<T>, rhs: Set<T>) -> Bool {
