@@ -163,6 +163,10 @@ assert(set([1, 2, 3]))
 assert(set([1, 2]))
 assert(set([1]))
 
+// set.isdisjoint
+assert(set([1, 2, 3]).isdisjoint(set([4, 8, 16])))
+assert(!set([1, 2, 3]).isdisjoint(set([3, 4, 5])))
+
 // str
 assert(str(123) == "123")
 
