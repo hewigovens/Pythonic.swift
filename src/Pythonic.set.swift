@@ -43,7 +43,7 @@ class Set<T: Hashable> : ArrayLiteralConvertible, Collection, Comparable, Equata
     }
 
     func isDisjoint(other: Set<T>) -> Bool {
-        return self.intersection(other) == Set([])
+        return self.intersection(other) == Set()
     }
 
     func isdisjoint(other: Set<T>) -> Bool {
