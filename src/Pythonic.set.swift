@@ -125,15 +125,7 @@ class set<T: Hashable> : Set<T> {
 }
 
 func ==<T: Hashable>(lhs: Set<T>, rhs: Set<T>) -> Bool {
-    if countElements(lhs) != countElements(rhs) {
-        return false
-    }
-    for element in lhs {
-        if !rhs.contains(element) {
-            return false
-        }
-    }
-    return true
+    return lhs.hashValue == rhs.hashValue
 }
 
 func +<T: Hashable>(lhs: Set<T>, rhs: Set<T>) -> Set<T> {
