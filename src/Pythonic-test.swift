@@ -99,14 +99,14 @@ assert(math.pow(2, 2) == 4)
 // max
 assert(max(1, 2) == 2)
 assert(max(1, 2, 3) == 3)
-// assert(max([1, 2, 3]) == 3) // Swift compiler bug: Enabling this test increases compilation time by roughly 5 seconds.
-// assert(max([1, 2]) == 2) // Swift compiler bug: Enabling this test increases compilation time by roughly 5 seconds.
+assert(max([1, 2, 3]) == 3)
+assert(max([1, 2]) == 2)
 
 // min
 assert(min(1, 2) == 1)
 assert(min(1, 2, 3) == 1)
-// assert(min([1, 2, 3]) == 1) // Swift compiler bug: Enabling this test increases compilation time by roughly 5 seconds.
-// assert(min([1, 2]) == 1) // Swift compiler bug: Enabling this test increases compilation time by roughly 5 seconds.
+assert(min([1, 2, 3]) == 1)
+assert(min([1, 2]) == 1)
 
 // object
 assert(object())

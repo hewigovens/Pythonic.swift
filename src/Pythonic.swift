@@ -136,8 +136,22 @@ func len<C: _Collection>(x: C) -> Int {
     return Swift.countElements(x) as Int
 }
 
+// NOTE: This max(…) function is totally redundant since [Int] fulfills requirements of the generics
+//       based max(…) function below. However, this version is needed to work around a compiler bug
+//       which caused the compilation time to increase +5 seconds per call.
+func max(range: [Int]) -> Int {
+    return Swift.maxElement(range)
+}
+
 func max<R : Sequence where R.GeneratorType.Element : Comparable>(range: R) -> R.GeneratorType.Element {
     return Swift.maxElement(range)
+}
+
+// NOTE: This min(…) function is totally redundant since [Int] fulfills requirements of the generics
+//       based min(…) function below. However, this version is needed to work around a compiler bug
+//       which caused the compilation time to increase +5 seconds per call.
+func min(range: [Int]) -> Int {
+    return Swift.minElement(range)
 }
 
 func min<R : Sequence where R.GeneratorType.Element : Comparable>(range: R) -> R.GeneratorType.Element {
