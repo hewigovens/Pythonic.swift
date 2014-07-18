@@ -77,7 +77,7 @@ class Set<T: Hashable> : ArrayLiteralConvertible, Collection, Comparable, Equata
 
     // Implement ExtensibleCollection
     func extend<R : Sequence where R.GeneratorType.Element == T>(sequence: R) {
-        var elements = Array<T>(sequence)
+        let elements = Array<T>(sequence)
         for element in elements {
             self.add(element)
         }
