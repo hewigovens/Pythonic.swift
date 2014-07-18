@@ -52,20 +52,20 @@ class Set<T: Hashable> : ArrayLiteralConvertible, Collection, ExtensibleCollecti
 
     // Implement Collection (allows for "countElements(set)", etc.)
     subscript (i: Int) -> T {
-        return Array(_internalDict.values)[i]
+        return Array(self._internalDict.values)[i]
     }
 
     // Implement Sequence (allows for "for x in set")
     func generate() -> IndexingGenerator<[T]> {
-        return Array(_internalDict.values).generate()
+        return Array(self._internalDict.values).generate()
     }
 
     // Implement Printable (allows for "println(set)")
     var description: String {
         var s = "Set(["
-        for (i, value) in enumerate(_internalDict.values) {
+        for (i, value) in enumerate(self) {
             s += "\(value)"
-            if i != countElements(_internalDict.values) - 1 {
+            if i != countElements(self) - 1 {
                 s += ", "
             }
         }
@@ -80,11 +80,12 @@ class Set<T: Hashable> : ArrayLiteralConvertible, Collection, ExtensibleCollecti
 
     // Implement LogicValue (allows for "if set { … }")
     func getLogicValue() -> Bool {
-        return countElements(_internalDict.values) != 0
+        return countElements(self) != 0
     }
 
     // Implement ExtensibleCollection
     func reserveCapacity(n: Int) {
+        // NOOP.
     }
 
     // Implement ExtensibleCollection
@@ -98,7 +99,7 @@ class Set<T: Hashable> : ArrayLiteralConvertible, Collection, ExtensibleCollecti
     // Implement Hashable
     var hashValue: Int {
         var totalHash = 0
-        for entry in _internalDict.values {
+        for entry in self {
             totalHash += entry != nil ? entry.hashValue : 0
         }
         return totalHash
