@@ -32,12 +32,32 @@ class Set<T: Hashable> : ArrayLiteralConvertible, Collection, Comparable, Equata
         self._internalDict = Dictionary<T, T>()
     }
 
+    func intersection(other: Set<T>) -> Set<T> {
+        var newSet = Set<T>()
+        for entry in self {
+            if other.contains(entry) {
+                newSet.add(entry)
+            }
+        }
+        return newSet
+    }
+
     func isDisjoint(other: Set<T>) -> Bool {
-        return (self & other) == Set([])
+        return self.intersection(other) == Set([])
     }
 
     func isdisjoint(other: Set<T>) -> Bool {
         return isDisjoint(other)
+    }
+
+    // Implement ArrayLiteralConvertible (allows for "var set: Set<Int> = [2, 4, 8]")
+    class func convertFromArrayLiteral(elements: T...) -> Set<T> {
+        return Set(elements)
+    }
+
+    // Implement Collection (allows for "countElements(set)", etc.)
+    subscript (i: Int) -> T {
+        return Array(self._internalDict.values)[i]
     }
 
     // Implement Collection (allows for "countElements(set)", etc.)
@@ -48,39 +68,6 @@ class Set<T: Hashable> : ArrayLiteralConvertible, Collection, Comparable, Equata
     // Implement Collection (allows for "countElements(set)", etc.)
     var endIndex: Int {
         return countElements(self._internalDict)
-    }
-
-    // Implement Collection (allows for "countElements(set)", etc.)
-    subscript (i: Int) -> T {
-        return Array(self._internalDict.values)[i]
-    }
-
-    // Implement Sequence (allows for "for x in set")
-    func generate() -> IndexingGenerator<[T]> {
-        return Array(self._internalDict.values).generate()
-    }
-
-    // Implement Printable (allows for "println(set)")
-    var description: String {
-        var s = "Set(["
-        for (i, value) in enumerate(self) {
-            s += "\(value)"
-            if i != countElements(self) - 1 {
-                s += ", "
-            }
-        }
-        s += "])"
-        return s
-    }
-
-    // Implement ArrayLiteralConvertible (allows for "var set: Set<Int> = [2, 4, 8]")
-    class func convertFromArrayLiteral(elements: T...) -> Set<T> {
-        return Set(elements)
-    }
-
-    // Implement LogicValue (allows for "if set { … }")
-    func getLogicValue() -> Bool {
-        return countElements(self) != 0
     }
 
     // Implement ExtensibleCollection
@@ -104,26 +91,33 @@ class Set<T: Hashable> : ArrayLiteralConvertible, Collection, Comparable, Equata
         }
         return totalHash
     }
+
+    // Implement LogicValue (allows for "if set { … }")
+    func getLogicValue() -> Bool {
+        return countElements(self) != 0
+    }
+
+    // Implement Printable (allows for "println(set)")
+    var description: String {
+        var s = "Set(["
+        for (i, value) in enumerate(self) {
+            s += "\(value)"
+            if i != countElements(self) - 1 {
+                s += ", "
+            }
+        }
+        s += "])"
+        return s
+    }
+
+    // Implement Sequence (allows for "for x in set")
+    func generate() -> IndexingGenerator<[T]> {
+        return Array(self._internalDict.values).generate()
+    }
+
 }
 
-class set<T: Hashable> : Set<T> {
-    init() {
-        super.init()
-    }
-
-    init(_ initialArray: [T]) {
-        super.init(initialArray)
-    }
-
-    init(_ initialSet: Set<T>) {
-        super.init(initialSet)
-    }
-
-    init(_ initialSet: set<T>) {
-        super.init(initialSet)
-    }
-}
-
+// Implement Comparable (allows for "if set1 < set2 { … }")
 func <<T: Hashable>(lhs: Set<T>, rhs: Set<T>) -> Bool {
     if lhs == rhs {
         return false
@@ -136,6 +130,7 @@ func <<T: Hashable>(lhs: Set<T>, rhs: Set<T>) -> Bool {
     return true
 }
 
+// Implement Equatable (allows for "if set1 == set2 { … }")
 func ==<T: Hashable>(lhs: Set<T>, rhs: Set<T>) -> Bool {
     return lhs.hashValue == rhs.hashValue
 }
@@ -155,13 +150,7 @@ func -<T: Hashable>(lhs: Set<T>, rhs: Set<T>) -> Set<T> {
 }
 
 func &<T: Hashable>(lhs: Set<T>, rhs: Set<T>) -> Set<T> {
-    var newSet = Set<T>()
-    for entry in lhs {
-        if rhs.contains(entry) {
-            newSet.add(entry)
-        }
-    }
-    return newSet
+    return lhs.intersection(rhs)
 }
 
 func |<T: Hashable>(lhs: Set<T>, rhs: Set<T>) -> Set<T> {
@@ -198,4 +187,23 @@ func |<T: Hashable>(lhs: Set<T>, rhs: Set<T>) -> Set<T> {
 
 @assignment func -=<T: Hashable>(inout lhs: Set<T>, rhs: T) {
     lhs.remove(rhs)
+}
+
+// set(…) for Python compatibility.
+class set<T: Hashable> : Set<T> {
+    init() {
+        super.init()
+    }
+
+    init(_ initialArray: [T]) {
+        super.init(initialArray)
+    }
+
+    init(_ initialSet: Set<T>) {
+        super.init(initialSet)
+    }
+
+    init(_ initialSet: set<T>) {
+        super.init(initialSet)
+    }
 }
