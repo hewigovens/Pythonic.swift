@@ -99,14 +99,14 @@ assert(math.pow(2, 2) == 4)
 // max
 assert(max(1, 2) == 2)
 assert(max(1, 2, 3) == 3)
-assert(max([1, 2, 3]) == 3)
-assert(max([1, 2]) == 2)
+// assert(max([1, 2, 3]) == 3) // Swift compiler bug: Enabling this test increases compilation time by roughly 5 seconds.
+// assert(max([1, 2]) == 2) // Swift compiler bug: Enabling this test increases compilation time by roughly 5 seconds.
 
 // min
 assert(min(1, 2) == 1)
 assert(min(1, 2, 3) == 1)
-assert(min([1, 2, 3]) == 1)
-assert(min([1, 2]) == 1)
+// assert(min([1, 2, 3]) == 1) // Swift compiler bug: Enabling this test increases compilation time by roughly 5 seconds.
+// assert(min([1, 2]) == 1) // Swift compiler bug: Enabling this test increases compilation time by roughly 5 seconds.
 
 // object
 assert(object())
@@ -304,7 +304,6 @@ extension Dictionary {
     }
 }
 
-
 // BUG: has_attr does not work due to the following compiler bug (?)
 // invalid linkage type for global declaration
 // %swift.full_heapmetadata* @_TMdC4mainL_3Baz
@@ -430,9 +429,9 @@ if pythonIncompatibleTests {
 
     // set
     assert(!set<int>())
-    assert(set([1, 2, 3]) + set([3, 4, 5]) == set([1, 2, 3, 4, 5]))
-    assert(set([set([1, 2, 3]), set([1, 2, 3]), set([2, 4, 8])]) != set([set([1, 2, 3]), set([2, 4, 9])]))
-    assert(set([set([1, 2, 3]), set([1, 2, 3]), set([2, 4, 8])]) == set([set([1, 2, 3]), set([2, 4, 8])]))
+    // assert(set([1, 2, 3]) + set([3, 4, 5]) == set([1, 2, 3, 4, 5])) // Swift compiler bug: Enabling this test increases compilation time by roughly 1.5 seconds.
+    // assert(set([set([1, 2, 3]), set([1, 2, 3]), set([2, 4, 8])]) != set([set([1, 2, 3]), set([2, 4, 9])])) // Swift compiler bug: Enabling this test increases compilation time by >60 seconds.
+    // assert(set([set([1, 2, 3]), set([1, 2, 3]), set([2, 4, 8])]) == set([set([1, 2, 3]), set([2, 4, 8])])) // Swift compiler bug: Enabling this test increases compilation time by >60 seconds.
     assert(set<int>([1, 2, 3]))
     var set1 = Set<Int>()
     assert(countElements(set1) == 0)
