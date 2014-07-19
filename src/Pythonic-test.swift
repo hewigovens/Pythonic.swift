@@ -481,6 +481,13 @@ if pythonIncompatibleTests {
     assert(set7 == Set([1, 2, 3]))
     var set8: Set<Int> = [1, 2, 3]
     assert(len(set8) == 3)
+    var set9 = Set([0, 1, 2])
+    set9.add(3)
+    set9.add(3)
+    assert(set9 == Set([0, 1, 2, 3]))
+    var set10 = Set([2, 4, 8, 16])
+    assert(set9 + set10 == Set([0, 1, 2, 3, 4, 8, 16]))
+    assert(set9 & set10 == Set([2]))
 
     // str.endsWith
     assert("foobar".endsWith("bar"))
