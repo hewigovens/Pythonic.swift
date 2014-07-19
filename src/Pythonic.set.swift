@@ -1,3 +1,17 @@
+// Usage:
+//
+//   import Pythonic
+//
+//   var set1 = Set([0, 1, 2])
+//   set1.add(3)
+//   set1.add(3)
+//   assert(set1 == Set([0, 1, 2, 3]))
+//
+//   var set2 = Set([2, 4, 8, 16])
+//   assert(set1 + set2 == Set([0, 1, 2, 3, 4, 8, 16]))
+//   assert(set1 - set2 == Set([0, 1, 3]))
+//   assert(set1 & set2 == Set([2]))
+
 class Set<T: Hashable> : ArrayLiteralConvertible, Collection, Comparable, Equatable, ExtensibleCollection, Hashable, LogicValue, Printable, Sequence {
     var _internalDict = Dictionary<T, T>()
 
