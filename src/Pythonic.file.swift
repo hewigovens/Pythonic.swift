@@ -64,4 +64,8 @@ extension NSFileHandle : Sequence {
     func readlines() -> [String] {
         return self.readLines()
     }
+
+    func close() {
+        self.closeFile()
+    }
 }
