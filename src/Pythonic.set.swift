@@ -66,10 +66,6 @@ class Set<T: Hashable> : ArrayLiteralConvertible, Collection, Comparable, Equata
         return self.intersection(other) == Set()
     }
 
-    func isdisjoint(other: Set<T>) -> Bool {
-        return isDisjoint(other)
-    }
-
     // Implement ArrayLiteralConvertible (allows for "var set: Set<Int> = [2, 4, 8]")
     class func convertFromArrayLiteral(elements: T...) -> Set<T> {
         return Set(elements)
@@ -225,5 +221,9 @@ class set<T: Hashable> : Set<T> {
 
     init(_ initialSet: set<T>) {
         super.init(initialSet)
+    }
+
+    func isdisjoint(other: set<T>) -> Bool {
+        return self.intersection(other) == set()
     }
 }
