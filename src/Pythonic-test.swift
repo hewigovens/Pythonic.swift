@@ -487,6 +487,7 @@ if pythonIncompatibleTests {
     assert(set9 == Set([0, 1, 2, 3]))
     var set10 = Set([2, 4, 8, 16])
     assert(set9 + set10 == Set([0, 1, 2, 3, 4, 8, 16]))
+    assert(set9 - set10 == Set([0, 1, 3]))
     assert(set9 & set10 == Set([2]))
 
     // str.endsWith
