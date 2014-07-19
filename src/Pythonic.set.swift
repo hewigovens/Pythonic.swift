@@ -1,7 +1,5 @@
 // Usage:
 //
-//   import Pythonic
-//
 //   var set1 = Set([0, 1, 2])
 //   set1.add(3)
 //   set1.add(3)
