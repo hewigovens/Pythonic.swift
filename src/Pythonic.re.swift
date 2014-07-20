@@ -48,11 +48,37 @@
 
 import Foundation
 
+class RegularExpressionMatch: LogicValue {
+    var matchedGroups: [String] = []
+
+    init(_ matchedGroups: [String]) {
+        if matchedGroups {
+            self.matchedGroups.extend(matchedGroups)
+        }
+    }
+
+    func group(i: Int) -> String? {
+        return self.matchedGroups[0]
+    }
+
+    func getLogicValue() -> Bool {
+        return countElements(self.matchedGroups) != 0
+    }
+
+    func __conversion() -> [String] {
+        return self.matchedGroups
+    }
+
+    subscript (index: Int) -> String? {
+        return self.group(index)
+    }
+}
+
 class re {
-    class func search(pattern: String, _ string: String) -> [String] {
+    class func search(pattern: String, _ string: String) -> RegularExpressionMatch {
         var returnedMatches: [String] = []
         if pattern == "" {
-            return returnedMatches
+            return RegularExpressionMatch(returnedMatches)
         }
         if let regex = NSRegularExpression.regularExpressionWithPattern(pattern, options: nil, error: nil) {
             let range = NSRange(location: 0, length: countElements(string))
@@ -60,6 +86,6 @@ class re {
                 returnedMatches = matches.map { string[$0.range] }
             }
         }
-        return returnedMatches
+        return RegularExpressionMatch(returnedMatches)
     }
 }

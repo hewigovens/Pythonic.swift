@@ -257,14 +257,6 @@ extension Array {
         return ret
     }
 
-    // NOTE: To allow for re.search(…).group(…)
-    func group(i: Int) -> Array.Element? {
-        if self.count == 0 || i < 0 || i >= self.count {
-            return nil
-        }
-        return self[i]
-    }
-
     mutating func pop() -> Array.Element? {
         return self.pop(nil)
     }
@@ -427,10 +419,11 @@ if pythonIncompatibleTests {
     assert(randomChoice == "foo" || randomChoice == "bar")
 
     // re.search
-    assert(re.search("", "foobarzonk") == [])
+    assert(re.search("", "foobarzonk") == Array<String>())
 
     // re.search.group
     assert(re.search("^foo", "foobarzonk").group(0) == "foo")
+    assert(re.search("^foo", "foobarzonk")[0] == "foo")
 
     // set
     assert(!set<int>())
