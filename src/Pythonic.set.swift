@@ -18,7 +18,7 @@
 //
 //   assert(Set([1, 1, 1, 2, 2, 3, 3, 4]) == Set([1, 2, 3, 4]))
 
-class Set<T: Hashable> : ArrayLiteralConvertible, Collection, Comparable, Equatable, ExtensibleCollection, Hashable, LogicValue, Printable, Sequence {
+class Set<T: Hashable> : ArrayLiteralConvertible, Swift.Collection, Comparable, Equatable, ExtensibleCollection, Hashable, LogicValue, Printable, Sequence {
     var _internalDict = Dictionary<T, T>()
 
     init() {
