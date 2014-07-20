@@ -32,7 +32,7 @@
 //   ljust: TODO.
 //   lower: TODO.
 //   lstrip: TODO.
-//   partition: TODO.
+//   partition: Added.
 //   replace: Added.
 //   rfind: TODO.
 //   rindex: TODO.
@@ -128,5 +128,17 @@ extension String : LogicValue {
         let start = Swift.advance(self.startIndex, range.startIndex)
         let end = Swift.advance(self.startIndex, range.endIndex)
         return self.substringWithRange(Range(start: start, end: end))
+    }
+    
+    /// Split the string at the first occurrence of sep, and return a 3-tuple containing the part before the separator, the separator itself, and the part after the separator. If the separator is not found, return a 3-tuple containing the string itself, followed by two empty strings.
+    func partition(separator: String) -> (String, String, String) {
+        let separatorrange = self.rangeOfString(separator)
+        if separatorrange.isEmpty {
+            return (self,"","")
+        } 
+        let firstpart = self[self.startIndex ..< separatorrange.startIndex]
+        let secondpart = self[separatorrange.endIndex ..< self.endIndex]
+        
+        return (firstpart, separator, secondpart)
     }
 }

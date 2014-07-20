@@ -218,6 +218,12 @@ assert("foo bar".title() == "Foo Bar")
 // str.upper
 assert("FooBar".upper() == "FOOBAR")
 
+// str.partition
+assert("the first part\nthe second part".partition("\n") == ("the first part","\n","the second part"))
+assert("the first part".partition("\n") == ("the first part", "", ""))
+assert("the first part\n".partition("\n") == ("the first part","\n",""))
+assert("\nthe second part".partition("\n") == ("","\n","the second part"))
+
 // sum
 assert(sum([1, 2, 3]) == 6)
 assert(sum([1, 2, 3], 1) == 7)
