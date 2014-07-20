@@ -232,6 +232,14 @@ assert(len(sys.argv) == 3)
 // time.time
 assert(time.time() > 1405028001.224846)
 
+// Comparison of 2-part tuples
+assert((1, 1) == (1, 1))
+assert(!((1, 1) == (1, 214)))
+
+// Comparison of 3-part tuples
+assert((1, 1, 1) == (1, 1, 1))
+assert(!((1, 1, 1) == (1, 1, 214)))
+
 // Others:
 assert(" ")
 assert("foobar"[0] == "f")

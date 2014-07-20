@@ -280,6 +280,18 @@ extension NSObject : LogicValue {
     }
 }
 
+// Comparison of 2-part tuples
+func == <T:Equatable> (tuple1:(T,T),tuple2:(T,T)) -> Bool
+{
+    return (tuple1.0 == tuple2.0) && (tuple1.1 == tuple2.1)
+}
+
+// Comparison of 3-part tuples
+func == <T:Equatable> (tuple1:(T,T,T),tuple2:(T,T,T)) -> Bool
+{
+    return (tuple1.0 == tuple2.0) && (tuple1.1 == tuple2.1) && (tuple1.2 == tuple2.2)
+}
+
 // TODO: Python functions to implement
 // ===================================
 //
