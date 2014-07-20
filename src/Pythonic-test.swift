@@ -218,6 +218,12 @@ assert("foo bar".title() == "Foo Bar")
 // str.upper
 assert("FooBar".upper() == "FOOBAR")
 
+// str.partition
+assert("the first part\nthe second part".partition("\n") == ("the first part","\n","the second part"))
+assert("the first part".partition("\n") == ("the first part", "", ""))
+assert("the first part\n".partition("\n") == ("the first part","\n",""))
+assert("\nthe second part".partition("\n") == ("","\n","the second part"))
+
 // sum
 assert(sum([1, 2, 3]) == 6)
 assert(sum([1, 2, 3], 1) == 7)
@@ -231,6 +237,14 @@ assert(len(sys.argv) == 3)
 
 // time.time
 assert(time.time() > 1405028001.224846)
+
+// Comparison of 2-part tuples
+assert((1, 1) == (1, 1))
+assert(!((1, 1) == (1, 214)))
+
+// Comparison of 3-part tuples
+assert((1, 1, 1) == (1, 1, 1))
+assert(!((1, 1, 1) == (1, 1, 214)))
 
 // Others:
 assert(" ")

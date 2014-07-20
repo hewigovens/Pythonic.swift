@@ -38,12 +38,27 @@ import Foundation
 
 typealias file = NSFileHandle
 
-extension NSFileHandle : Sequence {
+extension NSFileHandle {
     func read() -> String {
         let data: NSData = self.readDataToEndOfFile()
         return NSString(data: data, encoding: NSUTF8StringEncoding) as String
     }
 
+    func readLines() -> [String] {
+        return self.read().strip().split("\n")
+    }
+
+    func readlines() -> [String] {
+        return self.readLines()
+    }
+
+    func close() {
+        self.closeFile()
+    }
+}
+
+extension NSFileHandle : Sequence {
+    
     // TODO: Make this function read line-by-line instead of reading entire file at once.
     func generate() -> GeneratorOf<String> {
         var i = 0
@@ -55,13 +70,5 @@ extension NSFileHandle : Sequence {
                 return lines[i++]
             }
         }
-    }
-
-    func readLines() -> [String] {
-        return self.read().strip().split("\n")
-    }
-
-    func readlines() -> [String] {
-        return self.readLines()
-    }
+    }    
 }
