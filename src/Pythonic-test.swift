@@ -166,6 +166,7 @@ assert(!(set([4]) < set([1, 2, 3])))
 assert(!(set([1, 2, 3]) < set([1, 2, 3])))
 assert(set([1, 2]) < set([1, 2, 3]))
 assert(set([1]) < set([1, 2, 3]))
+assert(set([1, 1, 1, 2, 2, 3, 3, 4]) == set([1, 2, 3, 4]))
 
 // set.isdisjoint
 assert(set([1, 2, 3]).isdisjoint(set([4, 8, 16])))
@@ -481,6 +482,14 @@ if pythonIncompatibleTests {
     assert(set7 == Set([1, 2, 3]))
     var set8: Set<Int> = [1, 2, 3]
     assert(len(set8) == 3)
+    var set9 = Set([0, 1, 2])
+    set9.add(3)
+    set9.add(3)
+    assert(set9 == Set([0, 1, 2, 3]))
+    var set10 = Set([2, 4, 8, 16])
+    assert(set9 + set10 == Set([0, 1, 2, 3, 4, 8, 16]))
+    assert(set9 - set10 == Set([0, 1, 3]))
+    assert(set9 & set10 == Set([2]))
 
     // str.endsWith
     assert("foobar".endsWith("bar"))

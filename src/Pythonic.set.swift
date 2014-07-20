@@ -1,3 +1,23 @@
+// The Swift standard library currently lacks a Set class. This is an attempt to fix that :-)
+//
+//  "A set object is an unordered collection of distinct hashable objects. Common uses include membership 
+//   testing, removing duplicates from a sequence, and computing mathematical operations such as intersection, 
+//   union, difference, and symmetric difference."
+//
+// Usage:
+//
+//   var set1 = Set([0, 1, 2])
+//   set1.add(3)
+//   set1.add(3)
+//   assert(set1 == Set([0, 1, 2, 3]))
+//
+//   var set2 = Set([2, 4, 8, 16])
+//   assert(set1 + set2 == Set([0, 1, 2, 3, 4, 8, 16]))
+//   assert(set1 - set2 == Set([0, 1, 3]))
+//   assert(set1 & set2 == Set([2]))
+//
+//   assert(Set([1, 1, 1, 2, 2, 3, 3, 4]) == Set([1, 2, 3, 4]))
+
 class Set<T: Hashable> : ArrayLiteralConvertible, Collection, Comparable, Equatable, ExtensibleCollection, Hashable, LogicValue, Printable, Sequence {
     var _internalDict = Dictionary<T, T>()
 
@@ -43,11 +63,7 @@ class Set<T: Hashable> : ArrayLiteralConvertible, Collection, Comparable, Equata
     }
 
     func isDisjoint(other: Set<T>) -> Bool {
-        return self.intersection(other) == Set([])
-    }
-
-    func isdisjoint(other: Set<T>) -> Bool {
-        return isDisjoint(other)
+        return self.intersection(other) == Set()
     }
 
     // Implement ArrayLiteralConvertible (allows for "var set: Set<Int> = [2, 4, 8]")
@@ -77,7 +93,7 @@ class Set<T: Hashable> : ArrayLiteralConvertible, Collection, Comparable, Equata
 
     // Implement ExtensibleCollection
     func extend<R : Sequence where R.GeneratorType.Element == T>(sequence: R) {
-        var elements = Array<T>(sequence)
+        let elements = Array<T>(sequence)
         for element in elements {
             self.add(element)
         }
@@ -205,5 +221,9 @@ class set<T: Hashable> : Set<T> {
 
     init(_ initialSet: set<T>) {
         super.init(initialSet)
+    }
+
+    func isdisjoint(other: set<T>) -> Bool {
+        return self.intersection(other) == set()
     }
 }
