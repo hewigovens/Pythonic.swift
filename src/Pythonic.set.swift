@@ -1,8 +1,11 @@
-// The Swift standard library currently lacks a Set class. This is an attempt to fix that :-)
+// The Swift standard library currently lacks a Set class. This is an
+// attempt to fix that :-)
 //
-//  "A set object is an unordered collection of distinct hashable objects. Common uses include membership 
-//   testing, removing duplicates from a sequence, and computing mathematical operations such as intersection, 
-//   union, difference, and symmetric difference."
+//  "A set object is an unordered collection of distinct hashable
+//   objects. Common uses include membership testing, removing
+//   duplicates from a sequence, and computing mathematical
+//   operations such as intersection, union, difference, and symmetric
+//   difference."
 //
 // Usage:
 //
@@ -18,7 +21,9 @@
 //
 //   assert(Set([1, 1, 1, 2, 2, 3, 3, 4]) == Set([1, 2, 3, 4]))
 
-class Set<T: Hashable> : ArrayLiteralConvertible, Collection, Comparable, Equatable, ExtensibleCollection, Hashable, LogicValue, Printable, Sequence {
+class Set<T: Hashable> : ArrayLiteralConvertible, Collection, Comparable,
+                         Equatable, ExtensibleCollection, Hashable,
+                         LogicValue, Printable, Sequence {
     var _internalDict = Dictionary<T, Bool>()
 
     init() {
