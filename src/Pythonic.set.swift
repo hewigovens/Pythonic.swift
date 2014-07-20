@@ -1,8 +1,11 @@
-// The Swift standard library currently lacks a Set class. This is an attempt to fix that :-)
+// The Swift standard library currently lacks a Set class. This is an
+// attempt to fix that :-)
 //
-//  "A set object is an unordered collection of distinct hashable objects. Common uses include membership 
-//   testing, removing duplicates from a sequence, and computing mathematical operations such as intersection, 
-//   union, difference, and symmetric difference."
+//  "A set object is an unordered collection of distinct hashable
+//   objects. Common uses include membership testing, removing
+//   duplicates from a sequence, and computing mathematical
+//   operations such as intersection, union, difference, and symmetric
+//   difference."
 //
 // Usage:
 //
@@ -18,8 +21,10 @@
 //
 //   assert(Set([1, 1, 1, 2, 2, 3, 3, 4]) == Set([1, 2, 3, 4]))
 
-class Set<T: Hashable> : ArrayLiteralConvertible, Swift.Collection, Comparable, Equatable, ExtensibleCollection, Hashable, LogicValue, Printable, Sequence {
-    var _internalDict = Dictionary<T, T>()
+class Set<T: Hashable> : ArrayLiteralConvertible, Swift.Collection,
+                         Comparable, Equatable, ExtensibleCollection,
+                         Hashable, LogicValue, Printable, Sequence {
+    var _internalDict = Dictionary<T, Bool>()
 
     init() {
     }
@@ -37,7 +42,7 @@ class Set<T: Hashable> : ArrayLiteralConvertible, Swift.Collection, Comparable, 
     }
 
     func add(element: T) {
-        self._internalDict[element] = element
+        self._internalDict[element] = true
     }
 
     func remove(element: T) {
@@ -49,7 +54,7 @@ class Set<T: Hashable> : ArrayLiteralConvertible, Swift.Collection, Comparable, 
     }
 
     func clear() {
-        self._internalDict = Dictionary<T, T>()
+        self._internalDict = Dictionary<T, Bool>()
     }
 
     func intersection(other: Set<T>) -> Set<T> {
@@ -73,7 +78,7 @@ class Set<T: Hashable> : ArrayLiteralConvertible, Swift.Collection, Comparable, 
 
     // Implement Collection (allows for "countElements(set)", etc.)
     subscript (i: Int) -> T {
-        return Array(self._internalDict.values)[i]
+        return Array(self._internalDict.keys)[i]
     }
 
     // Implement Collection (allows for "countElements(set)", etc.)
@@ -128,7 +133,7 @@ class Set<T: Hashable> : ArrayLiteralConvertible, Swift.Collection, Comparable, 
 
     // Implement Sequence (allows for "for x in set")
     func generate() -> IndexingGenerator<[T]> {
-        return Array(self._internalDict.values).generate()
+        return Array(self._internalDict.keys).generate()
     }
 
 }
