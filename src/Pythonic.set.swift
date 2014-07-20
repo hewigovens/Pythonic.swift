@@ -19,7 +19,7 @@
 //   assert(Set([1, 1, 1, 2, 2, 3, 3, 4]) == Set([1, 2, 3, 4]))
 
 class Set<T: Hashable> : ArrayLiteralConvertible, Collection, Comparable, Equatable, ExtensibleCollection, Hashable, LogicValue, Printable, Sequence {
-    var _internalDict = Dictionary<T, T>()
+    var _internalDict = Dictionary<T, Bool>()
 
     init() {
     }
@@ -37,7 +37,7 @@ class Set<T: Hashable> : ArrayLiteralConvertible, Collection, Comparable, Equata
     }
 
     func add(element: T) {
-        self._internalDict[element] = element
+        self._internalDict[element] = true
     }
 
     func remove(element: T) {
@@ -49,7 +49,7 @@ class Set<T: Hashable> : ArrayLiteralConvertible, Collection, Comparable, Equata
     }
 
     func clear() {
-        self._internalDict = Dictionary<T, T>()
+        self._internalDict = Dictionary<T, Bool>()
     }
 
     func intersection(other: Set<T>) -> Set<T> {
@@ -73,7 +73,7 @@ class Set<T: Hashable> : ArrayLiteralConvertible, Collection, Comparable, Equata
 
     // Implement Collection (allows for "countElements(set)", etc.)
     subscript (i: Int) -> T {
-        return Array(self._internalDict.values)[i]
+        return Array(self._internalDict.keys)[i]
     }
 
     // Implement Collection (allows for "countElements(set)", etc.)
@@ -128,7 +128,7 @@ class Set<T: Hashable> : ArrayLiteralConvertible, Collection, Comparable, Equata
 
     // Implement Sequence (allows for "for x in set")
     func generate() -> IndexingGenerator<[T]> {
-        return Array(self._internalDict.values).generate()
+        return Array(self._internalDict.keys).generate()
     }
 
 }
