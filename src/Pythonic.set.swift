@@ -71,6 +71,11 @@ class Set<T: Hashable> : ArrayLiteralConvertible, Swift.Collection,
         return self.intersection(other) == Set()
     }
 
+    // Lowercase name for Python compatability.
+    func isdisjoint(other: Set<T>) -> Bool {
+        return self.isDisjoint(other)
+    }
+
     // Implement ArrayLiteralConvertible (allows for "var set: Set<Int> = [2, 4, 8]")
     class func convertFromArrayLiteral(elements: T...) -> Set<T> {
         return Set(elements)
@@ -210,25 +215,16 @@ func |<T: Hashable>(lhs: Set<T>, rhs: Set<T>) -> Set<T> {
     lhs.remove(rhs)
 }
 
-// set(…) for Python compatibility.
-class set<T: Hashable> : Set<T> {
-    init() {
-        super.init()
-    }
+// For Python compatability.
+func set<T: Hashable>() -> Set<T> {
+    var s: Set<T> = Set()
+    return s
+}
 
-    init(_ initialArray: [T]) {
-        super.init(initialArray)
-    }
+func set<T: Hashable>(initialArray: [T]) -> Set<T> {
+    return Set(initialArray)
+}
 
-    init(_ initialSet: Set<T>) {
-        super.init(initialSet)
-    }
-
-    init(_ initialSet: set<T>) {
-        super.init(initialSet)
-    }
-
-    func isdisjoint(other: set<T>) -> Bool {
-        return self.intersection(other) == set()
-    }
+func set<T: Hashable>(initialSet: Set<T>) -> Set<T> {
+    return Set(initialSet)
 }
