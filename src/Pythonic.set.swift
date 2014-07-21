@@ -217,8 +217,7 @@ func |<T: Hashable>(lhs: Set<T>, rhs: Set<T>) -> Set<T> {
 
 // For Python compatability.
 func set<T: Hashable>() -> Set<T> {
-    var s: Set<T> = Set()
-    return s
+    return Set()
 }
 
 // For Python compatability.
