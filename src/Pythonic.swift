@@ -85,7 +85,7 @@
 //   xrange
 //   zip
 
-import Foundation
+@exported import Foundation
 
 operator infix ** {
     associativity right precedence 160
@@ -426,3 +426,31 @@ func == <T:Equatable> (tuple1:(T,T,T),tuple2:(T,T,T)) -> Bool
 // viewitems()
 // viewkeys()
 // viewvalues()
+
+@infix func %<A0: CVarArg>(lhs: String, rhs: (A0)) -> String {
+    return NSString(format: lhs.replace("%s", "%@"), rhs.0)
+}
+
+@infix func %<A0: CVarArg, A1: CVarArg>(lhs: String, rhs: (A0, A1)) -> String {
+    return NSString(format: lhs.replace("%s", "%@"), rhs.0, rhs.1)
+}
+
+@infix func %<A0: CVarArg, A1: CVarArg, A2: CVarArg>(lhs: String, rhs: (A0, A1, A2)) -> String {
+    return NSString(format: lhs.replace("%s", "%@"), rhs.0, rhs.1, rhs.2)
+}
+
+@infix func %<A0: CVarArg, A1: CVarArg, A2: CVarArg, A3: CVarArg>(lhs: String, rhs: (A0, A1, A2, A3)) -> String {
+    return NSString(format: lhs.replace("%s", "%@"), rhs.0, rhs.1, rhs.2, rhs.3)
+}
+
+@infix func %<A0: CVarArg, A1: CVarArg, A2: CVarArg, A3: CVarArg, A4: CVarArg>(lhs: String, rhs: (A0, A1, A2, A3, A4)) -> String {
+    return NSString(format: lhs.replace("%s", "%@"), rhs.0, rhs.1, rhs.2, rhs.3, rhs.4)
+}
+
+@infix func %<A0: CVarArg, A1: CVarArg, A2: CVarArg, A3: CVarArg, A4: CVarArg, A5: CVarArg>(lhs: String, rhs: (A0, A1, A2, A3, A4, A5)) -> String {
+    return NSString(format: lhs.replace("%s", "%@"), rhs.0, rhs.1, rhs.2, rhs.3, rhs.4, rhs.5)
+}
+
+@infix func %<A0: CVarArg, A1: CVarArg, A2: CVarArg, A3: CVarArg, A4: CVarArg, A5: CVarArg, A6: CVarArg>(lhs: String, rhs: (A0, A1, A2, A3, A4, A5, A6)) -> String {
+    return NSString(format: lhs.replace("%s", "%@"), rhs.0, rhs.1, rhs.2, rhs.3, rhs.4, rhs.5, rhs.6)
+}
