@@ -221,10 +221,12 @@ func set<T: Hashable>() -> Set<T> {
     return s
 }
 
+// For Python compatability.
 func set<T: Hashable>(initialArray: [T]) -> Set<T> {
     return Set(initialArray)
 }
 
+// For Python compatability.
 func set<T: Hashable>(initialSet: Set<T>) -> Set<T> {
     return Set(initialSet)
 }
