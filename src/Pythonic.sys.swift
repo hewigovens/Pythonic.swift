@@ -76,10 +76,16 @@
 
 import Foundation
 
+// Swift compiler issue: "class variables not yet supported" (this should be a class variable)
+var assignedArgv: [String]!
+
 class sys {
     class var argv: [String] {
         get {
-            return Process.arguments
+            return assignedArgv ? assignedArgv : Process.arguments
+        }
+        set {
+            assignedArgv = newValue
         }
     }
 
