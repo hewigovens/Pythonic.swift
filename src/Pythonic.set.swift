@@ -24,7 +24,16 @@
 class Set<T: Hashable> : ArrayLiteralConvertible, Swift.Collection,
                          Comparable, Equatable, ExtensibleCollection,
                          Hashable, LogicValue, Printable, Sequence {
-    var _internalDict = Dictionary<T, Bool>()
+    // @final to speed up things:
+    // "Is your dictionary an property (i.e. ivar) of a class?  If so,
+    //  this is probably a known problem where an extra copy of the
+    //  dictionary is being made for no reason.  As a workaround, try
+    //  marking the property "final"." (quote from Chris Lattner)
+    //
+    // Before @final: 2000 inserts in 7.16 seconds.
+    // After @final: 2000 inserts in 0.030 seconds.
+    // Speed-up: 239x
+    @final var _internalDict = [T : Bool]()
 
     init() {
     }
@@ -54,7 +63,7 @@ class Set<T: Hashable> : ArrayLiteralConvertible, Swift.Collection,
     }
 
     func clear() {
-        self._internalDict = Dictionary<T, Bool>()
+        self._internalDict = [T : Bool]()
     }
 
     func intersection(other: Set<T>) -> Set<T> {
@@ -69,6 +78,11 @@ class Set<T: Hashable> : ArrayLiteralConvertible, Swift.Collection,
 
     func isDisjoint(other: Set<T>) -> Bool {
         return self.intersection(other) == Set()
+    }
+
+    // Lowercase name for Python compatibility.
+    func isdisjoint(other: Set<T>) -> Bool {
+        return self.isDisjoint(other)
     }
 
     // Implement ArrayLiteralConvertible (allows for "var set: Set<Int> = [2, 4, 8]")
@@ -98,7 +112,7 @@ class Set<T: Hashable> : ArrayLiteralConvertible, Swift.Collection,
 
     // Implement ExtensibleCollection
     func extend<R : Sequence where R.GeneratorType.Element == T>(sequence: R) {
-        let elements = Array<T>(sequence)
+        let elements = [T](sequence)
         for element in elements {
             self.add(element)
         }
@@ -210,25 +224,17 @@ func |<T: Hashable>(lhs: Set<T>, rhs: Set<T>) -> Set<T> {
     lhs.remove(rhs)
 }
 
-// set(…) for Python compatibility.
-class set<T: Hashable> : Set<T> {
-    init() {
-        super.init()
-    }
+// For Python compatibility.
+func set<T: Hashable>() -> Set<T> {
+    return Set()
+}
 
-    init(_ initialArray: [T]) {
-        super.init(initialArray)
-    }
+// For Python compatibility.
+func set<T: Hashable>(initialArray: [T]) -> Set<T> {
+    return Set(initialArray)
+}
 
-    init(_ initialSet: Set<T>) {
-        super.init(initialSet)
-    }
-
-    init(_ initialSet: set<T>) {
-        super.init(initialSet)
-    }
-
-    func isdisjoint(other: set<T>) -> Bool {
-        return self.intersection(other) == set()
-    }
+// For Python compatibility.
+func set<T: Hashable>(initialSet: Set<T>) -> Set<T> {
+    return Set(initialSet)
 }

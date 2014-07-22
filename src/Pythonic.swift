@@ -188,12 +188,12 @@ func ord(s: String) -> Int {
     return Int((s as NSString).characterAtIndex(0))
 }
 
-func range(stop: Int) -> Array<Int> {
+func range(stop: Int) -> [Int] {
     return range(0, stop)
 }
 
-func range(start: Int, stop: Int, _ step: Int = 1) -> Array<Int> {
-    var intArray = Array<Int>()
+func range(start: Int, stop: Int, _ step: Int = 1) -> [Int] {
+    var intArray = [Int]()
     if step <= 0 {
         return intArray
     }
@@ -248,16 +248,16 @@ func round(d: Float) -> Float {
     return Darwin.round(d)
 }
 
-func sum(iterable: Array<Double>, _ start: Double = 0) -> Double {
+func sum(iterable: [Double], _ start: Double = 0) -> Double {
     return Swift.reduce(iterable, start, { $0 + $1 })
 }
 
-func sum(iterable: Array<Int>, _ start: Int = 0) -> Int {
+func sum(iterable: [Int], _ start: Int = 0) -> Int {
     return Swift.reduce(iterable, start, { $0 + $1 })
 }
 
-func zip<S1 : Sequence, S2 : Sequence>(s1: S1, s2: S2) -> Array<(S1.GeneratorType.Element, S2.GeneratorType.Element)> {
-    var retArray = Array<(S1.GeneratorType.Element, S2.GeneratorType.Element)>()
+func zip<S1 : Sequence, S2 : Sequence>(s1: S1, s2: S2) -> [(S1.GeneratorType.Element, S2.GeneratorType.Element)] {
+    var retArray: [(S1.GeneratorType.Element, S2.GeneratorType.Element)] = []
     for tuple in Swift.Zip2<S1, S2>(s1, s2) {
         retArray += tuple
     }

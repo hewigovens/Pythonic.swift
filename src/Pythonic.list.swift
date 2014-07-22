@@ -42,7 +42,7 @@ extension Array : LogicValue {
 
     func count<T where T : Equatable>(element: T) -> Int {
         if element is Array.Element {
-            return Swift.countElements(Swift.filter(Swift.reinterpretCast(self) as Array<T>, { $0 == element }))
+            return Swift.countElements(Swift.filter(Swift.reinterpretCast(self) as [T], { $0 == element }))
         }
         return 0
     }
@@ -55,7 +55,7 @@ extension Array : LogicValue {
 
     func index<T where T : Equatable>(element: T) -> Int? {
         if element is Array.Element {
-            if let idx = Swift.find(Swift.reinterpretCast(self) as Array<T>, element) {
+            if let idx = Swift.find(Swift.reinterpretCast(self) as [T], element) {
                 return idx
             }
         }

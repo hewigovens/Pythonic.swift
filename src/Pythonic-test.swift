@@ -235,6 +235,10 @@ assert(sum([1, 2, 3], 1) == 7)
 assert(sum([1.1, 1.2]) == 2.3)
 
 // sys.argv
+if sys.argv && sys.argv[0] == "-i" {
+    // Make sure test case passes also when run using shebang line.
+    sys.argv = ["./Pythonic-test", "arg1", "arg2"]
+}
 assert(sys.argv[0].startswith("./Pythonic-test"))
 assert(sys.argv[1] == "arg1")
 assert(sys.argv[2] == "arg2")
@@ -438,18 +442,19 @@ if pythonIncompatibleTests {
     assert(randomChoice == "foo" || randomChoice == "bar")
 
     // re.search
-    assert(re.search("", "foobarzonk") == Array<String>())
+    assert(re.search("", "foobarzonk") == [String]())
 
     // re.search.group
     assert(re.search("^foo", "foobarzonk").group(0) == "foo")
     assert(re.search("^foo", "foobarzonk")[0] == "foo")
 
     // set
-    assert(!set<int>())
+    var emptyIntSet: Set<Int> = set()
+    assert(!emptyIntSet)
     // assert(set([1, 2, 3]) + set([3, 4, 5]) == set([1, 2, 3, 4, 5])) // Swift compiler bug: Enabling this test increases compilation time by roughly 1.5 seconds.
     // assert(set([set([1, 2, 3]), set([1, 2, 3]), set([2, 4, 8])]) != set([set([1, 2, 3]), set([2, 4, 9])])) // Swift compiler bug: Enabling this test increases compilation time by >60 seconds.
     // assert(set([set([1, 2, 3]), set([1, 2, 3]), set([2, 4, 8])]) == set([set([1, 2, 3]), set([2, 4, 8])])) // Swift compiler bug: Enabling this test increases compilation time by >60 seconds.
-    assert(set<int>([1, 2, 3]))
+    assert(set([1, 2, 3]))
     var set1 = Set<Int>()
     assert(countElements(set1) == 0)
     set1 += 1
