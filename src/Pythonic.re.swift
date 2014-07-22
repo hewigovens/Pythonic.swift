@@ -62,7 +62,7 @@ class RegularExpressionMatch: LogicValue {
     }
 
     func getLogicValue() -> Bool {
-        return countElements(self.matchedGroups) != 0
+        return self.matchedGroups.count != 0
     }
 
     func __conversion() -> [String] {

@@ -102,7 +102,7 @@ class Set<T: Hashable> : ArrayLiteralConvertible, Swift.Collection,
 
     // Implement Collection (allows for "countElements(set)", etc.)
     var endIndex: Int {
-        return countElements(self._internalDict)
+        return self._internalDict.count
     }
 
     // Implement ExtensibleCollection
