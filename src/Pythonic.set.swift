@@ -80,7 +80,7 @@ class Set<T: Hashable> : ArrayLiteralConvertible, Swift.Collection,
         return self.intersection(other) == Set()
     }
 
-    // Lowercase name for Python compatability.
+    // Lowercase name for Python compatibility.
     func isdisjoint(other: Set<T>) -> Bool {
         return self.isDisjoint(other)
     }
@@ -224,17 +224,17 @@ func |<T: Hashable>(lhs: Set<T>, rhs: Set<T>) -> Set<T> {
     lhs.remove(rhs)
 }
 
-// For Python compatability.
+// For Python compatibility.
 func set<T: Hashable>() -> Set<T> {
     return Set()
 }
 
-// For Python compatability.
+// For Python compatibility.
 func set<T: Hashable>(initialArray: [T]) -> Set<T> {
     return Set(initialArray)
 }
 
-// For Python compatability.
+// For Python compatibility.
 func set<T: Hashable>(initialSet: Set<T>) -> Set<T> {
     return Set(initialSet)
 }
