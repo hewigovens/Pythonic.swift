@@ -33,7 +33,7 @@ class Set<T: Hashable> : ArrayLiteralConvertible, Swift.Collection,
     // Before @final: 2000 inserts in 7.16 seconds.
     // After @final: 2000 inserts in 0.030 seconds.
     // Speed-up: 239x
-    @final var _internalDict = Dictionary<T, Bool>()
+    @final var _internalDict = [T : Bool]()
 
     init() {
     }
@@ -63,7 +63,7 @@ class Set<T: Hashable> : ArrayLiteralConvertible, Swift.Collection,
     }
 
     func clear() {
-        self._internalDict = Dictionary<T, Bool>()
+        self._internalDict = [T : Bool]()
     }
 
     func intersection(other: Set<T>) -> Set<T> {
@@ -112,7 +112,7 @@ class Set<T: Hashable> : ArrayLiteralConvertible, Swift.Collection,
 
     // Implement ExtensibleCollection
     func extend<R : Sequence where R.GeneratorType.Element == T>(sequence: R) {
-        let elements = Array<T>(sequence)
+        let elements = [T](sequence)
         for element in elements {
             self.add(element)
         }

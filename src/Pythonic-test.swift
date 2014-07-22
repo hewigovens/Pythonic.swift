@@ -442,7 +442,7 @@ if pythonIncompatibleTests {
     assert(randomChoice == "foo" || randomChoice == "bar")
 
     // re.search
-    assert(re.search("", "foobarzonk") == Array<String>())
+    assert(re.search("", "foobarzonk") == [String]())
 
     // re.search.group
     assert(re.search("^foo", "foobarzonk").group(0) == "foo")
