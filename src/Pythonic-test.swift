@@ -530,7 +530,6 @@ if pythonIncompatibleTests {
     var (l2, r2) = zipped[1]
     assert(l2 == 4 && r2 == 16)
 
-    
     // This could probably be turned into valid Python code if we implemented the StringIO module
     func fileHandleFromString(text: String) -> NSFileHandle {
         let pipe = NSPipe.pipe()

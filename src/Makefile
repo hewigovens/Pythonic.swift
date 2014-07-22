@@ -15,6 +15,6 @@ clean:
 test: module
 	(printf "#!/usr/bin/env python2.7\nimport math\nimport os\nimport random\nimport re\nimport sys\nimport time\n"; egrep ^assert Pythonic-test.swift | sed 's/nil/None/g' | sed 's/true/True/g' | sed 's/false/False/g' | sed 's/!/not /g') > $(TEST_APPLICATION_PYTHON)
 	chmod +x $(TEST_APPLICATION_PYTHON)
-	./$(TEST_APPLICATION_PYTHON) arg1 arg2 < Makefile && echo "All tests successfully passed when executing as Python code."
+	./$(TEST_APPLICATION_PYTHON) arg1 arg2 && echo "All tests successfully passed when executing as Python code."
 	xcrun -sdk macosx swift $(TEST_APPLICATION_SWIFT).swift -o $(TEST_APPLICATION_SWIFT) -I $(PWD) -L $(PWD) -Xlinker -rpath -Xlinker @executable_path/
-	./$(TEST_APPLICATION_SWIFT) arg1 arg2 < Makefile && echo "All tests successfully passed when executing as Swift code."
+	./$(TEST_APPLICATION_SWIFT) arg1 arg2 && echo "All tests successfully passed when executing as Swift code."
