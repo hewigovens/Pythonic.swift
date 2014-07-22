@@ -525,6 +525,30 @@ if pythonIncompatibleTests {
     var (l2, r2) = zipped[1]
     assert(l2 == 4 && r2 == 16)
 
+    
+    // This could probably be turned into valid Python code if we implemented the StringIO module
+    func fileHandleFromString(text: String) -> NSFileHandle {
+        let pipe = NSPipe.pipe()
+        let input = pipe.fileHandleForWriting
+        input.writeData(text.dataUsingEncoding(NSUTF8StringEncoding))
+        input.closeFile()
+        return pipe.fileHandleForReading
+    }
+
+    // file.__iter__ , as in "for line in open(filename)"
+    var filehandletest = ""
+    for line in fileHandleFromString("line 1\nline 2\n") {
+        filehandletest += line + "\n"
+    }
+    assert(filehandletest == "line 1\nline 2\n")
+    assert(["line 1","line 2"] == Array(fileHandleFromString("line 1\nline 2\n")))
+
+    assert(["line 1"] == Array(fileHandleFromString("line 1\n")))
+    assert(["line 1"] == Array(fileHandleFromString("line 1")))
+    assert(["line 1","", "line 3"] == Array(fileHandleFromString("line 1\n\nline 3")))
+    assert(["","line 2", "line 3"] == Array(fileHandleFromString("\nline 2\nline 3")))
+    assert(["","", "line 3"] == Array(fileHandleFromString("\n\nline 3")))
+    
     // Others:
     assert("foobar"[0..<2] == "fo")
     assert("x" as Character)
