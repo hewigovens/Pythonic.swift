@@ -58,17 +58,45 @@ extension NSFileHandle {
 }
 
 extension NSFileHandle : Sequence {
-    
-    // TODO: Make this function read line-by-line instead of reading entire file at once.
-    func generate() -> GeneratorOf<String> {
-        var i = 0
-        var lines = self.readLines().map { $0 + "\n" }
-        return GeneratorOf<String> {
-            if i >= len(lines) {
-                return .None
+
+    func availableText () -> String? {
+        let data: NSData = self.availableData
+        if data.length == 0 {
+            return nil
+        } else {
+            return NSString(data: data, encoding: NSUTF8StringEncoding) as String
+        }
+    }
+
+    func generate() -> _FileHandle_Generator {
+        return _FileHandle_Generator(filehandle: self)
+    }
+}
+
+// The Swift compiler (Beta 3) crashes when this is contained in the extension,
+// but this should definitely be moved to the "generate" function when that is fixed.
+class _FileHandle_Generator : Generator {
+    let filehandle : NSFileHandle
+    var cache = ""
+
+    init (filehandle : NSFileHandle) {
+        self.filehandle = filehandle
+    }
+
+    func next () -> String? {
+        let (nextline, returnedseparator, remainder) = cache.partition("\n")
+        let newlinewasfound = returnedseparator != ""
+        cache = remainder
+
+        if newlinewasfound {
+            return nextline
+        } else {
+            if let newcache = filehandle.availableText() {
+                cache = nextline + newcache
+                return next()
             } else {
-                return lines[i++]
+                return nextline == "" ? nil : nextline
             }
         }
-    }    
+    }
 }
