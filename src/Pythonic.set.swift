@@ -24,7 +24,16 @@
 class Set<T: Hashable> : ArrayLiteralConvertible, Swift.Collection,
                          Comparable, Equatable, ExtensibleCollection,
                          Hashable, LogicValue, Printable, Sequence {
-    var _internalDict = Dictionary<T, Bool>()
+    // @final to speed up things:
+    // "Is your dictionary an property (i.e. ivar) of a class?  If so,
+    //  this is probably a known problem where an extra copy of the
+    //  dictionary is being made for no reason.  As a workaround, try
+    //  marking the property "final"." (quote from Chris Lattner)
+    //
+    // Before @final: 2000 inserts in 7.16 seconds.
+    // After @final: 2000 inserts in 0.030 seconds.
+    // Speed-up: 239x
+    @final var _internalDict = Dictionary<T, Bool>()
 
     init() {
     }
