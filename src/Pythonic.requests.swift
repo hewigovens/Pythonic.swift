@@ -17,6 +17,18 @@ enum HttpMethod {
     case GET, POST
 }
 
+class HttpUtils {
+    class func encodeDictionaryAsPercentEscapedString(dictionary: Dictionary<String, String>) -> String {
+        var parts: [String] = []
+        for (key, value) in dictionary {
+            var encodedKey = (key as NSString).stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
+            var encodedValue = (value as NSString).stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
+            parts += "\(encodedKey)=\(encodedValue)"
+        }
+        return join("&", parts)
+    }
+}
+
 class HttpSession {
     var cookies: [String : String] = [:]
 
@@ -31,7 +43,19 @@ class HttpSession {
             case .GET:
                 nsMutableUrlRequest.HTTPMethod = "GET"
             case .POST:
+                var stringToPost: String!
+                if let dictToPost = data {
+                    stringToPost = HttpUtils.encodeDictionaryAsPercentEscapedString(dictToPost)
+                } else if dataAsString != nil {
+                    stringToPost = dataAsString!
+                } else {
+                    assert(false)
+                }
                 nsMutableUrlRequest.HTTPMethod = "POST"
+                var postData: NSData = NSString(string: stringToPost).dataUsingEncoding(NSUTF8StringEncoding)
+                nsMutableUrlRequest.setValue("\(postData.length)", forHTTPHeaderField: "Content-Length")
+                nsMutableUrlRequest.setValue("application/x-www-form-urlencoded charset=utf-8", forHTTPHeaderField: "Content-Type")
+                nsMutableUrlRequest.HTTPBody = postData
         }
         var nsUrlResponse: NSURLResponse?
         var nsError: NSError?

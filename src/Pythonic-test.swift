@@ -340,8 +340,8 @@ extension Dictionary {
 //     return false
 // }
 
-let pythonIncompatibleTests = true
-if pythonIncompatibleTests {
+let performPythonIncompatibleTests = true
+if performPythonIncompatibleTests {
     // dict
     assert(!dict<str, str>())
     assert(["foo": "bar"])
@@ -556,6 +556,22 @@ if pythonIncompatibleTests {
     // Others:
     assert("foobar"[0..<2] == "fo")
     assert("x" as Character)
+}
+
+var performTestsRequiringNetworkConnectivity = false
+if performTestsRequiringNetworkConnectivity &&
+   performPythonIncompatibleTests {
+    var getTest = requests.get("http://httpbin.org/get")
+    println("GET:")
+    println(getTest.text)
+    var postDataString = "…"
+    var postTestWithString = requests.post("http://httpbin.org/post", postDataString)
+    println("POST(str):")
+    println(postTestWithString.text)
+    var postDataDict = ["…": "…", "key": "value", "number": "123"]
+    var postTestWithDict = requests.post("http://httpbin.org/post", postDataDict)
+    println("POST(dict):")
+    println(postTestWithDict.text)
 }
 
 sys.exit(0)
