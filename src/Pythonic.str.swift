@@ -52,14 +52,14 @@
 
 import Foundation
 
-typealias str = Swift.String
+public typealias str = Swift.String
 
 extension String : LogicValue {
-    func getLogicValue() -> Bool {
+    public func getLogicValue() -> Bool {
         return len(self) != 0
     }
 
-    func count(c: Character) -> Int {
+    public func count(c: Character) -> Int {
         var counter = 0
         for ch in self {
             if ch == c {
@@ -69,76 +69,81 @@ extension String : LogicValue {
         return counter
     }
 
-    func capitalize() -> String {
+    public func capitalize() -> String {
         if len(self) == 0 {
             return self
         }
         return self[0].upper() + self[1..<len(self)].lower()
     }
 
-    func endsWith(suffix: String) -> Bool {
+    public func endsWith(suffix: String) -> Bool {
         return self.hasSuffix(suffix)
     }
 
-    func endswith(suffix: String) -> Bool {
+    public func endswith(suffix: String) -> Bool {
         return self.endsWith(suffix)
     }
 
-    func lower() -> String {
+    public func lower() -> String {
         return self.lowercaseString
     }
 
-    func replace(replaceOldString: String, _ withString: String) -> String {
+    public func replace(replaceOldString: String, _ withString: String) -> String {
         return self.stringByReplacingOccurrencesOfString(replaceOldString, withString: withString)
     }
 
     // TODO: More arguments. string.split(s[, sep[, maxsplit]])¶
-    func split(sep: String) -> [String] {
+    public func split(sep: String) -> [String] {
         return self.componentsSeparatedByString(sep)
     }
 
-    func startsWith(prefix: String) -> Bool {
+    public func startsWith(prefix: String) -> Bool {
         return self.hasPrefix(prefix)
     }
 
-    func startswith(prefix: String) -> Bool {
+    public func startswith(prefix: String) -> Bool {
         return self.startsWith(prefix)
     }
 
     // TODO: Handle character set to trim.
     // TODO: lstrip(...), rstrip(...)
-    func strip() -> String {
+    public func strip() -> String {
         return self.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
     }
 
     // NOTE: Not equivalent to Python, but better.
-    func title() -> String {
+    public func title() -> String {
         return self.capitalizedString
     }
 
-    func upper() -> String {
+    public func upper() -> String {
         return self.uppercaseString
     }
 
-    subscript (index: Int) -> String {
+    public subscript (index: Int) -> String {
         return String(Array(self)[index])
     }
 
-    subscript (range: Range<Int>) -> String {
+    public subscript (range: Range<Int>) -> String {
         let start = Swift.advance(self.startIndex, range.startIndex)
         let end = Swift.advance(self.startIndex, range.endIndex)
         return self.substringWithRange(Range(start: start, end: end))
     }
     
+    public subscript (range: NSRange) -> String {
+        return self[range.location..<(range.location + range.length)]
+    }
+    
     /// Split the string at the first occurrence of sep, and return a 3-tuple containing the part before the separator, the separator itself, and the part after the separator. If the separator is not found, return a 3-tuple containing the string itself, followed by two empty strings.
-    func partition(separator: String) -> (String, String, String) {
-        let separatorrange = self.rangeOfString(separator)
-        if separatorrange.isEmpty {
-            return (self,"","")
-        } 
-        let firstpart = self[self.startIndex ..< separatorrange.startIndex]
-        let secondpart = self[separatorrange.endIndex ..< self.endIndex]
+    public func partition(separator: String) -> (String, String, String) {
+        if let separatorRange = self.rangeOfString(separator) {
+            if !separatorRange.isEmpty {
+                let firstpart = self[self.startIndex ..< separatorRange.startIndex]
+                let secondpart = self[separatorRange.endIndex ..< self.endIndex]
         
-        return (firstpart, separator, secondpart)
+                return (firstpart, separator, secondpart)
+            }
+        }
+        return (self,"","")
     }
 }

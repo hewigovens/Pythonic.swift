@@ -21,18 +21,18 @@
 
 import Foundation
 
-typealias list = Swift.Array
+public typealias list = Swift.Array
 
 extension Array : LogicValue {
-    func getLogicValue() -> Bool {
+    public func getLogicValue() -> Bool {
         return len(self) != 0
     }
 
-    mutating func clear() {
+    mutating public func clear() {
         self.removeAll()
     }
 
-    mutating func reverseInPlace() {
+    mutating public func reverseInPlace() {
         var newArrayElements = Array(self.reverse())
         self.clear()
         for element in newArrayElements {
@@ -40,20 +40,20 @@ extension Array : LogicValue {
         }
     }
 
-    func count<T where T : Equatable>(element: T) -> Int {
+    public func count<T where T : Equatable>(element: T) -> Int {
         if element is Array.Element {
             return Swift.countElements(Swift.filter(Swift.reinterpretCast(self) as [T], { $0 == element }))
         }
         return 0
     }
 
-    mutating func remove<T where T : Equatable>(element: T) {
+    mutating public func remove<T where T : Equatable>(element: T) {
         if let i = index(element) {
             self.removeAtIndex(i)
         }
     }
 
-    func index<T where T : Equatable>(element: T) -> Int? {
+    public func index<T where T : Equatable>(element: T) -> Int? {
         if element is Array.Element {
             if let idx = Swift.find(Swift.reinterpretCast(self) as [T], element) {
                 return idx

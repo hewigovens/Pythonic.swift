@@ -79,8 +79,8 @@ import Foundation
 // Swift compiler issue: "class variables not yet supported" (this should be a class variable)
 var assignedArgv: [String]!
 
-class sys {
-    class var argv: [String] {
+public class sys {
+    public class var argv: [String] {
         get {
             return assignedArgv ? assignedArgv : Process.arguments
         }
@@ -89,25 +89,25 @@ class sys {
         }
     }
 
-    class var stdin: NSFileHandle {
+    public class var stdin: NSFileHandle {
         get {
             return NSFileHandle.fileHandleWithStandardInput()
         }
     }
 
-    class var stdout: NSFileHandle {
+    public class var stdout: NSFileHandle {
         get {
             return NSFileHandle.fileHandleWithStandardOutput()
         }
     }
 
-    class var stderr: NSFileHandle {
+    public class var stderr: NSFileHandle {
         get {
             return NSFileHandle.fileHandleWithStandardError()
         }
     }
 
-    class func exit(exitCode: Int) {
+    public class func exit(exitCode: Int) {
         Darwin.exit(Int32(exitCode))
     }
 }

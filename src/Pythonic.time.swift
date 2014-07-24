@@ -33,13 +33,13 @@
 
 import Foundation
 
-class time {
-    class func time() -> Double {
+public class time {
+    public class func time() -> Double {
         let now = NSDate()
         return now.timeIntervalSince1970
     }
 
-    class func sleep(seconds: Double) {
+    public class func sleep(seconds: Double) {
         NSThread.sleepForTimeInterval(seconds)
     }
 }

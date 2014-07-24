@@ -36,30 +36,30 @@
 
 import Foundation
 
-typealias file = NSFileHandle
+public typealias file = NSFileHandle
 
 extension NSFileHandle {
-    func read() -> String {
+    public func read() -> String {
         let data: NSData = self.readDataToEndOfFile()
         return NSString(data: data, encoding: NSUTF8StringEncoding) as String
     }
 
-    func readLines() -> [String] {
+    public func readLines() -> [String] {
         return self.read().strip().split("\n")
     }
 
-    func readlines() -> [String] {
+    public func readlines() -> [String] {
         return self.readLines()
     }
 
-    func close() {
+    public func close() {
         self.closeFile()
     }
 }
 
 extension NSFileHandle : Sequence {
 
-    func availableText () -> String? {
+    public func availableText () -> String? {
         let data: NSData = self.availableData
         if data.length == 0 {
             return nil
@@ -68,22 +68,22 @@ extension NSFileHandle : Sequence {
         }
     }
 
-    func generate() -> _FileHandle_Generator {
+    public func generate() -> _FileHandle_Generator {
         return _FileHandle_Generator(filehandle: self)
     }
 }
 
 // The Swift compiler (Beta 3) crashes when this is contained in the extension,
 // but this should definitely be moved to the "generate" function when that is fixed.
-class _FileHandle_Generator : Generator {
-    let filehandle : NSFileHandle
-    var cache = ""
+public class _FileHandle_Generator : Generator {
+    public let filehandle : NSFileHandle
+    public var cache = ""
 
-    init (filehandle : NSFileHandle) {
+    public init (filehandle : NSFileHandle) {
         self.filehandle = filehandle
     }
 
-    func next () -> String? {
+    public func next () -> String? {
         let (nextline, returnedseparator, remainder) = cache.partition("\n")
         let newlinewasfound = returnedseparator != ""
         cache = remainder

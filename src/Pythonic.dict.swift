@@ -29,17 +29,17 @@
 
 import Foundation
 
-typealias dict = Swift.Dictionary
+public typealias dict = Swift.Dictionary
 
 extension Dictionary : LogicValue {
-    func getLogicValue() -> Bool {
+    public func getLogicValue() -> Bool {
         return len(self) != 0
     }
 
-    mutating func clear() {
+    mutating public func clear() {
         self.removeAll()
     }
-
+    
     // NOTE: get(…) implemented directly in Pythonic-test.swift to work around compiler bug.
     // NOTE: hasKey(…) implemented directly in Pythonic-test.swift to work around compiler bug.
     // NOTE: pop(…) implemented directly in Pythonic-test.swift to work around compiler bug.

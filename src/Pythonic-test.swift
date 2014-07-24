@@ -532,7 +532,7 @@ if performPythonIncompatibleTests {
 
     // This could probably be turned into valid Python code if we implemented the StringIO module
     func fileHandleFromString(text: String) -> NSFileHandle {
-        let pipe = NSPipe.pipe()
+        let pipe = NSPipe()
         let input = pipe.fileHandleForWriting
         input.writeData(text.dataUsingEncoding(NSUTF8StringEncoding))
         input.closeFile()

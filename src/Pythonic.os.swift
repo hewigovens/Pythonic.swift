@@ -172,9 +172,9 @@
 
 import Foundation
 
-class os {
-    class path {
-        class func exists(path: String) -> Bool {
+public class os {
+    public class path {
+        public class func exists(path: String) -> Bool {
             return NSFileManager.defaultManager().fileExistsAtPath(path)
         }
     }
