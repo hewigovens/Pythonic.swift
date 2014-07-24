@@ -12,7 +12,7 @@
 //
 // >>> filter(lambda s: not s.startswith("_"), dir(""))
 //   capitalize: Added.
-//   center: TODO.
+//   center: Added.
 //   count: Added.
 //   decode: TODO.
 //   encode: TODO.
@@ -29,14 +29,14 @@
 //   istitle: TODO.
 //   isupper: TODO.
 //   join: Already in Swift.
-//   ljust: TODO.
+//   ljust: Added.
 //   lower: TODO.
 //   lstrip: TODO.
 //   partition: Added.
 //   replace: Added.
 //   rfind: TODO.
 //   rindex: TODO.
-//   rjust: TODO.
+//   rjust: Added.
 //   rpartition: TODO.
 //   rsplit: TODO.
 //   rstrip: TODO.
@@ -146,4 +146,26 @@ extension String : LogicValue {
         }
         return (self,"","")
     }
+    
+    // justification
+    
+    public func ljust(width: Int, _ fillchar: Character = " ") -> String {
+        let length = len(self)
+        if length >= width { return self }
+        return self + String(count: width - length, repeatedValue: fillchar)
+    }
+    
+    public func rjust(width: Int, _ fillchar: Character = " ") -> String {
+        let length = len(self)
+        if length >= width { return self }
+        return String(count: width - length, repeatedValue: fillchar) + self
+    }
+    
+    public func center(width: Int, _ fillchar: Character = " ") -> String {
+        let length = len(self)
+        let oddShift = length % 2 == 1 ? 0.5 : 0.0 // Python is weird about string centering
+        let left = Int((Double(width) + Double(length)) / 2.0 + oddShift)
+        return self.ljust(left, fillchar).rjust(width, fillchar)
+    }
+
 }
