@@ -28,10 +28,11 @@ public class Set<T: Hashable> : ArrayLiteralConvertible, Swift.Collection,
     // "Is your dictionary an property (i.e. ivar) of a class?  If so,
     //  this is probably a known problem where an extra copy of the
     //  dictionary is being made for no reason.  As a workaround, try
-    //  marking the property "final"." (quote from Chris Lattner)
+    //  marking the property "final"." (quoting a dev forum post by
+    //  Chris Lattner)
     //
     // Before final: 2000 inserts in 7.16 seconds.
-    // After final: 2000 inserts in 0.030 seconds.
+    // After final:  2000 inserts in 0.03 seconds.
     // Speed-up: 239x
     final var _internalDict = [T : Void]()
 
