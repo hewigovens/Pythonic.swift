@@ -33,7 +33,7 @@ public class Set<T: Hashable> : ArrayLiteralConvertible, Swift.Collection,
     // Before final: 2000 inserts in 7.16 seconds.
     // After final: 2000 inserts in 0.030 seconds.
     // Speed-up: 239x
-    final var _internalDict = [T : Bool]()
+    final var _internalDict = [T : Void]()
 
     public init() {
     }
@@ -47,11 +47,14 @@ public class Set<T: Hashable> : ArrayLiteralConvertible, Swift.Collection,
     }
 
     public func contains(element: T) -> Bool {
-        return self._internalDict[element] != nil
+        if let _ = self._internalDict[element] {
+            return true
+        }
+        return false
     }
 
     public func add(element: T) {
-        self._internalDict[element] = true
+        self._internalDict[element] = Void()
     }
 
     public func remove(element: T) {
@@ -63,7 +66,7 @@ public class Set<T: Hashable> : ArrayLiteralConvertible, Swift.Collection,
     }
 
     public func clear() {
-        self._internalDict = [T : Bool]()
+        self._internalDict = [T : Void]()
     }
 
     public func intersection(other: Set<T>) -> Set<T> {
