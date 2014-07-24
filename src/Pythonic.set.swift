@@ -21,52 +21,52 @@
 //
 //   assert(Set([1, 1, 1, 2, 2, 3, 3, 4]) == Set([1, 2, 3, 4]))
 
-class Set<T: Hashable> : ArrayLiteralConvertible, Swift.Collection,
+public class Set<T: Hashable> : ArrayLiteralConvertible, Swift.Collection,
                          Comparable, Equatable, ExtensibleCollection,
                          Hashable, LogicValue, Printable, Sequence {
-    // @final to speed up things:
+    // final to speed up things:
     // "Is your dictionary an property (i.e. ivar) of a class?  If so,
     //  this is probably a known problem where an extra copy of the
     //  dictionary is being made for no reason.  As a workaround, try
     //  marking the property "final"." (quote from Chris Lattner)
     //
-    // Before @final: 2000 inserts in 7.16 seconds.
-    // After @final: 2000 inserts in 0.030 seconds.
+    // Before final: 2000 inserts in 7.16 seconds.
+    // After final: 2000 inserts in 0.030 seconds.
     // Speed-up: 239x
-    @final var _internalDict = [T : Bool]()
+    final var _internalDict = [T : Bool]()
 
-    init() {
+    public init() {
     }
 
-    init(_ initialArray: [T]) {
+    public init(_ initialArray: [T]) {
         self.extend(initialArray)
     }
 
-    init(_ initialSet: Set<T>) {
+    public init(_ initialSet: Set<T>) {
         self.extend(initialSet)
     }
 
-    func contains(element: T) -> Bool {
+    public func contains(element: T) -> Bool {
         return self._internalDict[element] != nil
     }
 
-    func add(element: T) {
+    public func add(element: T) {
         self._internalDict[element] = true
     }
 
-    func remove(element: T) {
+    public func remove(element: T) {
         self._internalDict[element] = nil
     }
 
-    func discard(element: T) {
+    public func discard(element: T) {
         self.remove(element)
     }
 
-    func clear() {
+    public func clear() {
         self._internalDict = [T : Bool]()
     }
 
-    func intersection(other: Set<T>) -> Set<T> {
+    public func intersection(other: Set<T>) -> Set<T> {
         var newSet = Set<T>()
         for entry in self {
             if other.contains(entry) {
@@ -76,42 +76,42 @@ class Set<T: Hashable> : ArrayLiteralConvertible, Swift.Collection,
         return newSet
     }
 
-    func isDisjoint(other: Set<T>) -> Bool {
+    public func isDisjoint(other: Set<T>) -> Bool {
         return self.intersection(other) == Set()
     }
 
     // Lowercase name for Python compatibility.
-    func isdisjoint(other: Set<T>) -> Bool {
+    public func isdisjoint(other: Set<T>) -> Bool {
         return self.isDisjoint(other)
     }
 
     // Implement ArrayLiteralConvertible (allows for "var set: Set<Int> = [2, 4, 8]")
-    class func convertFromArrayLiteral(elements: T...) -> Set<T> {
+    public class func convertFromArrayLiteral(elements: T...) -> Set<T> {
         return Set(elements)
     }
 
     // Implement Collection (allows for "countElements(set)", etc.)
-    subscript (i: Int) -> T {
+    public subscript (i: Int) -> T {
         return Array(self._internalDict.keys)[i]
     }
 
     // Implement Collection (allows for "countElements(set)", etc.)
-    var startIndex: Int {
+    public var startIndex: Int {
         return 0
     }
 
     // Implement Collection (allows for "countElements(set)", etc.)
-    var endIndex: Int {
+    public var endIndex: Int {
         return self._internalDict.count
     }
 
     // Implement ExtensibleCollection
-    func reserveCapacity(n: Int) {
+    public func reserveCapacity(n: Int) {
         // NOOP.
     }
 
     // Implement ExtensibleCollection
-    func extend<R : Sequence where R.GeneratorType.Element == T>(sequence: R) {
+    public func extend<R : Sequence where R.GeneratorType.Element == T>(sequence: R) {
         let elements = [T](sequence)
         for element in elements {
             self.add(element)
@@ -119,7 +119,7 @@ class Set<T: Hashable> : ArrayLiteralConvertible, Swift.Collection,
     }
 
     // Implement Hashable
-    var hashValue: Int {
+    public var hashValue: Int {
         var totalHash = 0
         for entry in self {
             totalHash += entry != nil ? entry.hashValue : 0
@@ -128,12 +128,12 @@ class Set<T: Hashable> : ArrayLiteralConvertible, Swift.Collection,
     }
 
     // Implement LogicValue (allows for "if set { … }")
-    func getLogicValue() -> Bool {
+    public func getLogicValue() -> Bool {
         return countElements(self) != 0
     }
 
     // Implement Printable (allows for "println(set)")
-    var description: String {
+    public var description: String {
         var s = "Set(["
         for (i, value) in enumerate(self) {
             s += "\(value)"
@@ -146,14 +146,14 @@ class Set<T: Hashable> : ArrayLiteralConvertible, Swift.Collection,
     }
 
     // Implement Sequence (allows for "for x in set")
-    func generate() -> IndexingGenerator<[T]> {
+    public func generate() -> IndexingGenerator<[T]> {
         return Array(self._internalDict.keys).generate()
     }
 
 }
 
 // Implement Comparable (allows for "if set1 < set2 { … }")
-func <<T: Hashable>(lhs: Set<T>, rhs: Set<T>) -> Bool {
+public func <<T: Hashable>(lhs: Set<T>, rhs: Set<T>) -> Bool {
     if lhs == rhs {
         return false
     }
@@ -166,17 +166,17 @@ func <<T: Hashable>(lhs: Set<T>, rhs: Set<T>) -> Bool {
 }
 
 // Implement Equatable (allows for "if set1 == set2 { … }")
-func ==<T: Hashable>(lhs: Set<T>, rhs: Set<T>) -> Bool {
+public func ==<T: Hashable>(lhs: Set<T>, rhs: Set<T>) -> Bool {
     return lhs.hashValue == rhs.hashValue
 }
 
-func +<T: Hashable>(lhs: Set<T>, rhs: Set<T>) -> Set<T> {
+public func +<T: Hashable>(lhs: Set<T>, rhs: Set<T>) -> Set<T> {
     var newSet = Set<T>(lhs)
     newSet.extend(rhs)
     return newSet
 }
 
-func -<T: Hashable>(lhs: Set<T>, rhs: Set<T>) -> Set<T> {
+public func -<T: Hashable>(lhs: Set<T>, rhs: Set<T>) -> Set<T> {
     var newSet = Set<T>(lhs)
     for entry in rhs {
         newSet.remove(entry)
@@ -184,23 +184,23 @@ func -<T: Hashable>(lhs: Set<T>, rhs: Set<T>) -> Set<T> {
     return newSet
 }
 
-func &<T: Hashable>(lhs: Set<T>, rhs: Set<T>) -> Set<T> {
+public func &<T: Hashable>(lhs: Set<T>, rhs: Set<T>) -> Set<T> {
     return lhs.intersection(rhs)
 }
 
-func |<T: Hashable>(lhs: Set<T>, rhs: Set<T>) -> Set<T> {
+public func |<T: Hashable>(lhs: Set<T>, rhs: Set<T>) -> Set<T> {
     return lhs + rhs
 }
 
-@assignment func +=<T: Hashable>(inout lhs: Set<T>, rhs: Set<T>) {
+@assignment public func +=<T: Hashable>(inout lhs: Set<T>, rhs: Set<T>) {
     lhs.extend(rhs)
 }
 
-@assignment func |=<T: Hashable>(inout lhs: Set<T>, rhs: Set<T>) {
+@assignment public func |=<T: Hashable>(inout lhs: Set<T>, rhs: Set<T>) {
     lhs.extend(rhs)
 }
 
-@assignment func &=<T: Hashable>(inout lhs: Set<T>, rhs: Set<T>) {
+@assignment public func &=<T: Hashable>(inout lhs: Set<T>, rhs: Set<T>) {
     for entry in lhs {
         if rhs.contains(entry) {
             lhs.add(entry)
@@ -210,31 +210,31 @@ func |<T: Hashable>(lhs: Set<T>, rhs: Set<T>) -> Set<T> {
     }
 }
 
-@assignment func +=<T: Hashable>(inout lhs: Set<T>, rhs: T) {
+@assignment public func +=<T: Hashable>(inout lhs: Set<T>, rhs: T) {
     lhs.add(rhs)
 }
 
-@assignment func -=<T: Hashable>(inout lhs: Set<T>, rhs: Set<T>) {
+@assignment public func -=<T: Hashable>(inout lhs: Set<T>, rhs: Set<T>) {
     for entry in rhs {
         lhs.remove(entry)
     }
 }
 
-@assignment func -=<T: Hashable>(inout lhs: Set<T>, rhs: T) {
+@assignment public func -=<T: Hashable>(inout lhs: Set<T>, rhs: T) {
     lhs.remove(rhs)
 }
 
 // For Python compatibility.
-func set<T: Hashable>() -> Set<T> {
+public func set<T: Hashable>() -> Set<T> {
     return Set()
 }
 
 // For Python compatibility.
-func set<T: Hashable>(initialArray: [T]) -> Set<T> {
+public func set<T: Hashable>(initialArray: [T]) -> Set<T> {
     return Set(initialArray)
 }
 
 // For Python compatibility.
-func set<T: Hashable>(initialSet: Set<T>) -> Set<T> {
+public func set<T: Hashable>(initialSet: Set<T>) -> Set<T> {
     return Set(initialSet)
 }

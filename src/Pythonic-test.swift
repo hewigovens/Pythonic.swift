@@ -223,6 +223,22 @@ assert("foo bar".title() == "Foo Bar")
 // str.upper
 assert("FooBar".upper() == "FOOBAR")
 
+// str.ljust
+assert("foo".ljust(5) == "foo  ")
+assert("foo".ljust(10, "-") == "foo-------")
+assert("foobar".ljust(4) == "foobar")
+
+// str.rjust
+assert("foo".rjust(5) == "  foo")
+assert("foo".rjust(10, "-") == "-------foo")
+assert("foobar".rjust(4) == "foobar")
+
+// str.center
+assert("foo".center(5) == " foo ")
+assert("foo".center(6, "-") == "-foo--")
+assert("foobar".center(9, "-") == "--foobar-")
+assert("foobar".center(4) == "foobar")
+
 // str.partition
 assert("the first part\nthe second part".partition("\n") == ("the first part","\n","the second part"))
 assert("the first part".partition("\n") == ("the first part", "", ""))
@@ -532,7 +548,7 @@ if performPythonIncompatibleTests {
 
     // This could probably be turned into valid Python code if we implemented the StringIO module
     func fileHandleFromString(text: String) -> NSFileHandle {
-        let pipe = NSPipe.pipe()
+        let pipe = NSPipe()
         let input = pipe.fileHandleForWriting
         input.writeData(text.dataUsingEncoding(NSUTF8StringEncoding))
         input.closeFile()

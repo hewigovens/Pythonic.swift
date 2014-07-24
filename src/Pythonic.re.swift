@@ -48,34 +48,34 @@
 
 import Foundation
 
-class RegularExpressionMatch: LogicValue {
-    var matchedGroups: [String] = []
+public class RegularExpressionMatch: LogicValue {
+    public var matchedGroups: [String] = []
 
-    init(_ matchedGroups: [String]) {
+    public init(_ matchedGroups: [String]) {
         if matchedGroups {
             self.matchedGroups.extend(matchedGroups)
         }
     }
 
-    func group(i: Int) -> String? {
+    public func group(i: Int) -> String? {
         return self.matchedGroups[0]
     }
 
-    func getLogicValue() -> Bool {
+    public func getLogicValue() -> Bool {
         return self.matchedGroups.count != 0
     }
 
-    func __conversion() -> [String] {
+    public func __conversion() -> [String] {
         return self.matchedGroups
     }
 
-    subscript (index: Int) -> String? {
+    public subscript (index: Int) -> String? {
         return self.group(index)
     }
 }
 
-class re {
-    class func search(pattern: String, _ string: String) -> RegularExpressionMatch {
+public class re {
+    public class func search(pattern: String, _ string: String) -> RegularExpressionMatch {
         var returnedMatches: [String] = []
         if pattern == "" {
             return RegularExpressionMatch(returnedMatches)

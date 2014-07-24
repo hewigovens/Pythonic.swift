@@ -11,32 +11,32 @@
 
 import Foundation
 
-typealias float = Swift.Double
+public typealias float = Swift.Double
 
 extension Double : LogicValue {
-    func getLogicValue() -> Bool {
+    public func getLogicValue() -> Bool {
         return self != 0
     }
 
-    func isInteger() -> Bool {
+    public func isInteger() -> Bool {
         return floor(self) == self
     }
 
-    func is_integer() -> Bool {
+    public func is_integer() -> Bool {
         return self.isInteger()
     }
 }
 
 extension Float : LogicValue {
-    func getLogicValue() -> Bool {
+    public func getLogicValue() -> Bool {
         return self != 0
     }
 
-    func isInteger() -> Bool {
+    public func isInteger() -> Bool {
         return Darwin.floor(self) == self
     }
 
-    func is_integer() -> Bool {
+    public func is_integer() -> Bool {
         return self.isInteger()
     }
 }

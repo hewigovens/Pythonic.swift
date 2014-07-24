@@ -87,15 +87,15 @@
 
 @exported import Foundation
 
-operator infix ** {
+public operator infix ** {
     associativity right precedence 160
 }
 
-@infix func **(lhs: Double, rhs: Double) -> Double {
+@infix public func **(lhs: Double, rhs: Double) -> Double {
     return Darwin.pow(lhs, rhs)
 }
 
-func all<R : Sequence where R.GeneratorType.Element : LogicValue>(iterable: R) -> Bool {
+public func all<R : Sequence where R.GeneratorType.Element : LogicValue>(iterable: R) -> Bool {
     for element in iterable {
         if !element {
             return false
@@ -104,7 +104,7 @@ func all<R : Sequence where R.GeneratorType.Element : LogicValue>(iterable: R) -
     return true
 }
 
-func any<R : Sequence where R.GeneratorType.Element : LogicValue>(iterable: R) -> Bool {
+public func any<R : Sequence where R.GeneratorType.Element : LogicValue>(iterable: R) -> Bool {
     for element in iterable {
         if element {
             return true
@@ -113,11 +113,11 @@ func any<R : Sequence where R.GeneratorType.Element : LogicValue>(iterable: R) -
     return false
 }
 
-func chr(i: Int) -> String {
+public func chr(i: Int) -> String {
     return String(UnicodeScalar(i))
 }
 
-func cmp<T : Comparable>(x: T, y: T) -> Int {
+public func cmp<T : Comparable>(x: T, y: T) -> Int {
     if x < y {
         return -1
     }
@@ -127,38 +127,38 @@ func cmp<T : Comparable>(x: T, y: T) -> Int {
     return 0
 }
 
-func hex(i: Int) -> String {
+public func hex(i: Int) -> String {
     let o = NSString(format: "%x", i)
     return "0x" + o
 }
 
-func len<C: _Collection>(x: C) -> Int {
+public func len<C: _Collection>(x: C) -> Int {
     return Swift.countElements(x) as Int
 }
 
 // NOTE: This max(…) function is totally redundant since [Int] fulfills requirements of the generics
 //       based max(…) function below. However, this version is needed to work around a compiler bug
 //       which caused the compilation time to increase +5 seconds per call.
-func max(range: [Int]) -> Int {
+public func max(range: [Int]) -> Int {
     return Swift.maxElement(range)
 }
 
-func max<R : Sequence where R.GeneratorType.Element : Comparable>(range: R) -> R.GeneratorType.Element {
+public func max<R : Sequence where R.GeneratorType.Element : Comparable>(range: R) -> R.GeneratorType.Element {
     return Swift.maxElement(range)
 }
 
 // NOTE: This min(…) function is totally redundant since [Int] fulfills requirements of the generics
 //       based min(…) function below. However, this version is needed to work around a compiler bug
 //       which caused the compilation time to increase +5 seconds per call.
-func min(range: [Int]) -> Int {
+public func min(range: [Int]) -> Int {
     return Swift.minElement(range)
 }
 
-func min<R : Sequence where R.GeneratorType.Element : Comparable>(range: R) -> R.GeneratorType.Element {
+public func min<R : Sequence where R.GeneratorType.Element : Comparable>(range: R) -> R.GeneratorType.Element {
     return Swift.minElement(range)
 }
 
-func oct(i: Int) -> String {
+public func oct(i: Int) -> String {
     let o = NSString(format: "%o", i)
     if o == "0" {
         return o
@@ -166,7 +166,7 @@ func oct(i: Int) -> String {
     return "0" + o
 }
 
-func open(name: String, _ mode: String = "") -> NSFileHandle {
+public func open(name: String, _ mode: String = "") -> NSFileHandle {
     // TODO: Not all modes are implemented.
     switch mode {
         case "r":
@@ -180,19 +180,19 @@ func open(name: String, _ mode: String = "") -> NSFileHandle {
     }
 }
 
-func ord(c: Character) -> Int {
+public func ord(c: Character) -> Int {
     return ord(String(c))
 }
 
-func ord(s: String) -> Int {
+public func ord(s: String) -> Int {
     return Int((s as NSString).characterAtIndex(0))
 }
 
-func range(stop: Int) -> [Int] {
+public func range(stop: Int) -> [Int] {
     return range(0, stop)
 }
 
-func range(start: Int, stop: Int, _ step: Int = 1) -> [Int] {
+public func range(start: Int, stop: Int, _ step: Int = 1) -> [Int] {
     var intArray = [Int]()
     if step <= 0 {
         return intArray
@@ -200,17 +200,17 @@ func range(start: Int, stop: Int, _ step: Int = 1) -> [Int] {
     if start > stop {
         return intArray
     }
-    for i in (start..<stop).by(step) {
+    for i in stride(from: start, to: stop, by: step) {
         intArray += i
     }
     return intArray
 }
 
-func raw_input(prompt: String) -> String {
+public func raw_input(prompt: String) -> String {
     return rawInput(prompt)
 }
 
-func rawInput(prompt: String) -> String {
+public func rawInput(prompt: String) -> String {
     if (prompt != "") {
         // NOTE: Workaround for print(...) which appears not to flush properly.
         let nsPromptString = prompt as NSString
@@ -236,27 +236,27 @@ func rawInput(prompt: String) -> String {
     return ""
 }
 
-func raw_input() -> String {
+public func raw_input() -> String {
     return rawInput()
 }
 
-func rawInput() -> String {
+public func rawInput() -> String {
     return rawInput("")
 }
 
-func round(d: Float) -> Float {
+public func round(d: Float) -> Float {
     return Darwin.round(d)
 }
 
-func sum(iterable: [Double], _ start: Double = 0) -> Double {
+public func sum(iterable: [Double], _ start: Double = 0) -> Double {
     return Swift.reduce(iterable, start, { $0 + $1 })
 }
 
-func sum(iterable: [Int], _ start: Int = 0) -> Int {
+public func sum(iterable: [Int], _ start: Int = 0) -> Int {
     return Swift.reduce(iterable, start, { $0 + $1 })
 }
 
-func zip<S1 : Sequence, S2 : Sequence>(s1: S1, s2: S2) -> [(S1.GeneratorType.Element, S2.GeneratorType.Element)] {
+public func zip<S1 : Sequence, S2 : Sequence>(s1: S1, s2: S2) -> [(S1.GeneratorType.Element, S2.GeneratorType.Element)] {
     var retArray: [(S1.GeneratorType.Element, S2.GeneratorType.Element)] = []
     for tuple in Swift.Zip2<S1, S2>(s1, s2) {
         retArray += tuple
@@ -264,30 +264,30 @@ func zip<S1 : Sequence, S2 : Sequence>(s1: S1, s2: S2) -> [(S1.GeneratorType.Ele
     return retArray
 }
 
-typealias bool = Swift.Bool
-typealias long = Swift.Int
-typealias object = NSObject
+public typealias bool = Swift.Bool
+public typealias long = Swift.Int
+public typealias object = NSObject
 
 extension Character : LogicValue {
-    func getLogicValue() -> Bool {
+    public func getLogicValue() -> Bool {
         return true
     }
 }
 
 extension NSObject : LogicValue {
-    func getLogicValue() -> Bool {
+    public func getLogicValue() -> Bool {
         return true
     }
 }
 
 // Comparison of 2-part tuples
-func == <T:Equatable> (tuple1:(T,T),tuple2:(T,T)) -> Bool
+public func == <T:Equatable> (tuple1:(T,T),tuple2:(T,T)) -> Bool
 {
     return (tuple1.0 == tuple2.0) && (tuple1.1 == tuple2.1)
 }
 
 // Comparison of 3-part tuples
-func == <T:Equatable> (tuple1:(T,T,T),tuple2:(T,T,T)) -> Bool
+public func == <T:Equatable> (tuple1:(T,T,T),tuple2:(T,T,T)) -> Bool
 {
     return (tuple1.0 == tuple2.0) && (tuple1.1 == tuple2.1) && (tuple1.2 == tuple2.2)
 }
@@ -427,30 +427,30 @@ func == <T:Equatable> (tuple1:(T,T,T),tuple2:(T,T,T)) -> Bool
 // viewkeys()
 // viewvalues()
 
-@infix func %<A0: CVarArg>(lhs: String, rhs: (A0)) -> String {
+@infix public func %<A0: CVarArg>(lhs: String, rhs: (A0)) -> String {
     return NSString(format: lhs.replace("%s", "%@"), rhs.0)
 }
 
-@infix func %<A0: CVarArg, A1: CVarArg>(lhs: String, rhs: (A0, A1)) -> String {
+@infix public func %<A0: CVarArg, A1: CVarArg>(lhs: String, rhs: (A0, A1)) -> String {
     return NSString(format: lhs.replace("%s", "%@"), rhs.0, rhs.1)
 }
 
-@infix func %<A0: CVarArg, A1: CVarArg, A2: CVarArg>(lhs: String, rhs: (A0, A1, A2)) -> String {
+@infix public func %<A0: CVarArg, A1: CVarArg, A2: CVarArg>(lhs: String, rhs: (A0, A1, A2)) -> String {
     return NSString(format: lhs.replace("%s", "%@"), rhs.0, rhs.1, rhs.2)
 }
 
-@infix func %<A0: CVarArg, A1: CVarArg, A2: CVarArg, A3: CVarArg>(lhs: String, rhs: (A0, A1, A2, A3)) -> String {
+@infix public func %<A0: CVarArg, A1: CVarArg, A2: CVarArg, A3: CVarArg>(lhs: String, rhs: (A0, A1, A2, A3)) -> String {
     return NSString(format: lhs.replace("%s", "%@"), rhs.0, rhs.1, rhs.2, rhs.3)
 }
 
-@infix func %<A0: CVarArg, A1: CVarArg, A2: CVarArg, A3: CVarArg, A4: CVarArg>(lhs: String, rhs: (A0, A1, A2, A3, A4)) -> String {
+@infix public func %<A0: CVarArg, A1: CVarArg, A2: CVarArg, A3: CVarArg, A4: CVarArg>(lhs: String, rhs: (A0, A1, A2, A3, A4)) -> String {
     return NSString(format: lhs.replace("%s", "%@"), rhs.0, rhs.1, rhs.2, rhs.3, rhs.4)
 }
 
-@infix func %<A0: CVarArg, A1: CVarArg, A2: CVarArg, A3: CVarArg, A4: CVarArg, A5: CVarArg>(lhs: String, rhs: (A0, A1, A2, A3, A4, A5)) -> String {
+@infix public func %<A0: CVarArg, A1: CVarArg, A2: CVarArg, A3: CVarArg, A4: CVarArg, A5: CVarArg>(lhs: String, rhs: (A0, A1, A2, A3, A4, A5)) -> String {
     return NSString(format: lhs.replace("%s", "%@"), rhs.0, rhs.1, rhs.2, rhs.3, rhs.4, rhs.5)
 }
 
-@infix func %<A0: CVarArg, A1: CVarArg, A2: CVarArg, A3: CVarArg, A4: CVarArg, A5: CVarArg, A6: CVarArg>(lhs: String, rhs: (A0, A1, A2, A3, A4, A5, A6)) -> String {
+@infix public func %<A0: CVarArg, A1: CVarArg, A2: CVarArg, A3: CVarArg, A4: CVarArg, A5: CVarArg, A6: CVarArg>(lhs: String, rhs: (A0, A1, A2, A3, A4, A5, A6)) -> String {
     return NSString(format: lhs.replace("%s", "%@"), rhs.0, rhs.1, rhs.2, rhs.3, rhs.4, rhs.5, rhs.6)
 }

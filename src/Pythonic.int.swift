@@ -8,10 +8,10 @@
 
 import Foundation
 
-typealias int = Swift.Int
+public typealias int = Swift.Int
 
 extension Int : LogicValue {
-    func getLogicValue() -> Bool {
+    public func getLogicValue() -> Bool {
         return self != 0
     }
 }
