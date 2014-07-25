@@ -588,7 +588,7 @@ if performPythonIncompatibleTests {
     assert(["line 1","", "line 3"] == Array(fileHandleFromString("line 1\n\nline 3")))
     assert(["","line 2", "line 3"] == Array(fileHandleFromString("\nline 2\nline 3")))
     assert(["","", "line 3"] == Array(fileHandleFromString("\n\nline 3")))
-    
+
     // Others:
     assert("foobar"[0..<2] == "fo")
     assert("x" as Character)
@@ -596,7 +596,7 @@ if performPythonIncompatibleTests {
 
 var performTestsRequiringNetworkConnectivity = false
 if performTestsRequiringNetworkConnectivity &&
-   performPythonIncompatibleTests {
+    performPythonIncompatibleTests {
     var getTest = requests.get("http://httpbin.org/get")
     println("GET:")
     println(getTest.text)

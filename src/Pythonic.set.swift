@@ -22,8 +22,8 @@
 //   assert(Set([1, 1, 1, 2, 2, 3, 3, 4]) == Set([1, 2, 3, 4]))
 
 public class Set<T: Hashable> : ArrayLiteralConvertible, Swift.Collection,
-                         Comparable, Equatable, ExtensibleCollection,
-                         Hashable, LogicValue, Printable, Sequence {
+    Comparable, Equatable, ExtensibleCollection, Hashable, LogicValue,
+    Printable, Sequence {
     // final to speed up things:
     // "Is your dictionary an property (i.e. ivar) of a class?  If so,
     //  this is probably a known problem where an extra copy of the

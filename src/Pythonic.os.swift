@@ -105,7 +105,7 @@
 //   pardir
 //   path: TODO (frequently used).
 //   pathconf
-//   pathconf_names 
+//   pathconf_names
 //   pathsep
 //   pipe
 //   popen: TODO (frequently used).

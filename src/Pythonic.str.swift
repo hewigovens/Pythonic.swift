@@ -129,43 +129,40 @@ extension String : LogicValue {
         let end = Swift.advance(self.startIndex, range.endIndex)
         return self.substringWithRange(Range(start: start, end: end))
     }
-    
+
     public subscript (range: NSRange) -> String {
         return self[range.location..<(range.location + range.length)]
     }
-    
+
     /// Split the string at the first occurrence of sep, and return a 3-tuple containing the part before the separator, the separator itself, and the part after the separator. If the separator is not found, return a 3-tuple containing the string itself, followed by two empty strings.
     public func partition(separator: String) -> (String, String, String) {
         if let separatorRange = self.rangeOfString(separator) {
             if !separatorRange.isEmpty {
                 let firstpart = self[self.startIndex ..< separatorRange.startIndex]
                 let secondpart = self[separatorRange.endIndex ..< self.endIndex]
-        
                 return (firstpart, separator, secondpart)
             }
         }
         return (self,"","")
     }
-    
+
     // justification
-    
     public func ljust(width: Int, _ fillchar: Character = " ") -> String {
         let length = len(self)
         if length >= width { return self }
         return self + String(count: width - length, repeatedValue: fillchar)
     }
-    
+
     public func rjust(width: Int, _ fillchar: Character = " ") -> String {
         let length = len(self)
         if length >= width { return self }
         return String(count: width - length, repeatedValue: fillchar) + self
     }
-    
+
     public func center(width: Int, _ fillchar: Character = " ") -> String {
         let length = len(self)
         let oddShift = length % 2 == 1 ? 0.5 : 0.0 // Python is weird about string centering
         let left = Int((Double(width) + Double(length)) / 2.0 + oddShift)
         return self.ljust(left, fillchar).rjust(width, fillchar)
     }
-
 }

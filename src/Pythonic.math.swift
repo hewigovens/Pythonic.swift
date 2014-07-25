@@ -197,14 +197,14 @@ public class math {
     public class func trunc(arg1: Double) -> Double {
         return Darwin.trunc(arg1)
     }
-    
+
     public class func degrees(r: Double) -> Double {
         return r / pi * 180
     }
     public class func radians(d: Double) -> Double {
         return d / 180 * pi
     }
-    
+
     private class func integerToDouble<T: Integer>(n: T) -> Double {
         switch n {
         case let x as Int8: return Double(x)
@@ -220,7 +220,7 @@ public class math {
         default: return 0
         }
     }
-    
+
     public class func factorial<T: Integer>(n: T) -> Double {
         assert(n >= 0, "factorial() not defined for negative values")
         if n < 2 { return 1 }
@@ -230,7 +230,7 @@ public class math {
         }
         return r
     }
-    
+
     public class func factorial<T: Integer>(num: T) -> T {
         assert(num >= 0, "factorial() not defined for negative values")
         if num < 2 { return 1 }

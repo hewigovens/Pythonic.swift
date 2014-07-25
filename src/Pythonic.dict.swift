@@ -39,7 +39,7 @@ extension Dictionary : LogicValue {
     mutating public func clear() {
         self.removeAll()
     }
-    
+
     // NOTE: get(…) implemented directly in Pythonic-test.swift to work around compiler bug.
     // NOTE: hasKey(…) implemented directly in Pythonic-test.swift to work around compiler bug.
     // NOTE: pop(…) implemented directly in Pythonic-test.swift to work around compiler bug.
