@@ -34,7 +34,7 @@ public class Set<T: Hashable> : ArrayLiteralConvertible, Swift.Collection,
     // Before final: 2000 inserts in 7.16 seconds.
     // After final:  2000 inserts in 0.03 seconds.
     // Speed-up: 239x
-    final var _internalDict = [T : Void]()
+    private final var internalDict = [T : Void]()
 
     public init() {
     }
@@ -48,21 +48,21 @@ public class Set<T: Hashable> : ArrayLiteralConvertible, Swift.Collection,
     }
 
     public func contains(element: T) -> Bool {
-        // "return self._internalDict[element] != nil" gives …
+        // "return self.internalDict[element] != nil" gives …
         // "error: 'T' is not convertible to 'DictionaryIndex<T, Void>'"
         // Workaround:
-        if let _ = self._internalDict[element] {
+        if let _ = self.internalDict[element] {
             return true
         }
         return false
     }
 
     public func add(element: T) {
-        self._internalDict[element] = Void()
+        self.internalDict[element] = Void()
     }
 
     public func remove(element: T) {
-        self._internalDict[element] = nil
+        self.internalDict[element] = nil
     }
 
     public func discard(element: T) {
@@ -70,7 +70,7 @@ public class Set<T: Hashable> : ArrayLiteralConvertible, Swift.Collection,
     }
 
     public func clear() {
-        self._internalDict = [T : Void]()
+        self.internalDict = [T : Void]()
     }
 
     public func intersection(other: Set<T>) -> Set<T> {
@@ -99,7 +99,7 @@ public class Set<T: Hashable> : ArrayLiteralConvertible, Swift.Collection,
 
     // Implement Collection (allows for "countElements(set)", etc.)
     public subscript (i: Int) -> T {
-        return Array(self._internalDict.keys)[i]
+        return Array(self.internalDict.keys)[i]
     }
 
     // Implement Collection (allows for "countElements(set)", etc.)
@@ -109,7 +109,7 @@ public class Set<T: Hashable> : ArrayLiteralConvertible, Swift.Collection,
 
     // Implement Collection (allows for "countElements(set)", etc.)
     public var endIndex: Int {
-        return self._internalDict.count
+        return self.internalDict.count
     }
 
     // Implement ExtensibleCollection
@@ -154,7 +154,7 @@ public class Set<T: Hashable> : ArrayLiteralConvertible, Swift.Collection,
 
     // Implement Sequence (allows for "for x in set")
     public func generate() -> IndexingGenerator<[T]> {
-        return Array(self._internalDict.keys).generate()
+        return Array(self.internalDict.keys).generate()
     }
 
 }

@@ -13,12 +13,12 @@ public struct HttpResponse {
     // TODO: func json()
 }
 
-public enum HttpMethod {
+private enum HttpMethod {
     case GET, POST
 }
 
-public class HttpUtils {
-    public class func encodeDictionaryAsPercentEscapedString(dictionary: Dictionary<String, String>) -> String {
+private class HttpUtils {
+    private class func encodeDictionaryAsPercentEscapedString(dictionary: Dictionary<String, String>) -> String {
         var parts: [String] = []
         for (key, value) in dictionary {
             var encodedKey = (key as NSString).stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
@@ -30,9 +30,9 @@ public class HttpUtils {
 }
 
 public class HttpSession {
-    public var cookies: [String : String] = [:]
+    private var cookies: [String : String] = [:]
 
-    public func _make_request(methodType: HttpMethod, url: String, data: [String : String]? = nil, dataAsString: String? = nil, params: [String : String]? = nil, auth: (String, String)? = nil, headers: [String : String]? = nil, timeout: Double? = nil, cookies: [String : String]? = nil) -> HttpResponse {
+    private func makeHttpRequest(methodType: HttpMethod, url: String, data: [String : String]? = nil, dataAsString: String? = nil, params: [String : String]? = nil, auth: (String, String)? = nil, headers: [String : String]? = nil, timeout: Double? = nil, cookies: [String : String]? = nil) -> HttpResponse {
         // TODO: Handle all options.
         var nsUrl = NSURL(string: url)
         var nsMutableUrlRequest = NSMutableURLRequest(URL: nsUrl)
@@ -71,15 +71,15 @@ public class HttpSession {
     }
 
     public func get(url: String, params: [String : String]? = nil, auth: (String, String)? = nil, headers: [String : String]? = nil, timeout: Double? = nil, cookies: [String : String]? = nil) -> HttpResponse {
-        return _make_request(.GET, url: url, params: params, auth: auth, headers: headers, timeout: timeout, cookies: cookies)
+        return makeHttpRequest(.GET, url: url, params: params, auth: auth, headers: headers, timeout: timeout, cookies: cookies)
     }
 
     public func post(url: String, _ data: [String : String], auth: (String, String)? = nil, headers: [String : String]? = nil, timeout: Double? = nil, cookies: [String : String]? = nil) -> HttpResponse {
-        return _make_request(.POST, url: url, data: data, auth: auth, headers: headers, timeout: timeout, cookies: cookies)
+        return makeHttpRequest(.POST, url: url, data: data, auth: auth, headers: headers, timeout: timeout, cookies: cookies)
     }
 
     public func post(url: String, _ data: String, auth: (String, String)? = nil, headers: [String : String]? = nil, timeout: Double? = nil, cookies: [String : String]? = nil) -> HttpResponse {
-        return _make_request(.POST, url: url, dataAsString: data, auth: auth, headers: headers, timeout: timeout, cookies: cookies)
+        return makeHttpRequest(.POST, url: url, dataAsString: data, auth: auth, headers: headers, timeout: timeout, cookies: cookies)
     }
 }
 
