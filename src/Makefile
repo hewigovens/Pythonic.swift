@@ -18,4 +18,4 @@ test: module
 	./$(TEST_APPLICATION_PYTHON) arg1 arg2 && echo "All tests successfully passed when executing as Python code."
 	xcrun -sdk macosx swift $(TEST_APPLICATION_SWIFT).swift -o $(TEST_APPLICATION_SWIFT) -I $(PWD) -L $(PWD) -Xlinker -rpath -Xlinker @executable_path/
 	./$(TEST_APPLICATION_SWIFT) arg1 arg2 && echo "All tests successfully passed when executing as Swift code."
-	./Pythonic-linter.swift Pythonic*.swift
+	./swift-style-checker.swift *.swift
