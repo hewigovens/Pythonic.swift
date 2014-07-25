@@ -1,9 +1,13 @@
 #!/usr/bin/env xcrun swift -I . -i
 
+// Usage: swift-style-checker.swift [FILE...]
+//
+// This is work in progress. Feel free to add additional checks! :-)
+
 import Pythonic
 
 if len(sys.argv) <= 1 {
-    println("Usage: Pythonic-linter.swift <file name pattern such as *.swift>")
+    println("Usage: swift-style-checker.swift [FILE...]")
     sys.exit(0)
 }
 
