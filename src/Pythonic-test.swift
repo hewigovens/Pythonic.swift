@@ -523,6 +523,8 @@ if performPythonIncompatibleTests {
     assert(set9 + set10 == Set([0, 1, 2, 3, 4, 8, 16]))
     assert(set9 - set10 == Set([0, 1, 3]))
     assert(set9 & set10 == Set([2]))
+    assert(set([1, 2, 3]).contains(1))
+    assert(!set([1, 2, 3]).contains(4))
 
     // str.endsWith
     assert("foobar".endsWith("bar"))
