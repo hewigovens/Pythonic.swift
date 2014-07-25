@@ -48,6 +48,9 @@ public class Set<T: Hashable> : ArrayLiteralConvertible, Swift.Collection,
     }
 
     public func contains(element: T) -> Bool {
+        // "return self._internalDict[element] != nil" gives …
+        // "error: 'T' is not convertible to 'DictionaryIndex<T, Void>'"
+        // Workaround:
         if let _ = self._internalDict[element] {
             return true
         }
