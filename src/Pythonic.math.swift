@@ -24,14 +24,14 @@
 //   copysign: Added.
 //   cos: Added.
 //   cosh: Added.
-//   degrees: TODO.
+//   degrees: Added.
 //   e: Added.
 //   erf: Added.
 //   erfc: Added.
 //   exp: Added.
 //   expm1: Added.
 //   fabs: Added.
-//   factorial: TODO.
+//   factorial: Added.
 //   floor: Added.
 //   fmod: Added.
 //   frexp: TODO.
@@ -48,7 +48,7 @@
 //   modf: TODO.
 //   pi: Added.
 //   pow: Added.
-//   radians: TODO.
+//   radians: Added.
 //   sin: Added.
 //   sinh: Added.
 //   sqrt: Added.
@@ -58,9 +58,21 @@
 
 import Foundation
 
+public protocol FloatArithmetic : FloatLiteralConvertible {
+    func +(lhs: Self, rhs: Self) -> Self
+    func -(lhs: Self, rhs: Self) -> Self
+    func *(lhs: Self, rhs: Self) -> Self
+    func /(lhs: Self, rhs: Self) -> Self
+    func %(lhs: Self, rhs: Self) -> Self
+    init(_ value: Double)
+    init(_ value: Float)
+}
+extension Float : FloatArithmetic { }
+extension Double : FloatArithmetic { }
+
 public class math {
-    let e = 2.718281828459045
-    let pi = 3.141592653589793
+    public class var e: Double { return 2.718281828459045 }
+    public class var pi: Double { return Darwin.acos(-1.0) }
 
     public class func acos(arg1: Double) -> Double {
         return Darwin.acos(arg1)
@@ -184,5 +196,48 @@ public class math {
 
     public class func trunc(arg1: Double) -> Double {
         return Darwin.trunc(arg1)
+    }
+    
+    public class func degrees(r: Double) -> Double {
+        return r / pi * 180
+    }
+    public class func radians(d: Double) -> Double {
+        return d / 180 * pi
+    }
+    
+    private class func _integerToDouble<T: Integer>(n: T) -> Double {
+        switch n {
+        case let x as Int8: return Double(x)
+        case let x as Int16: return Double(x)
+        case let x as Int32: return Double(x)
+        case let x as Int64: return Double(x)
+        case let x as Int: return Double(x)
+        case let x as UInt8: return Double(x)
+        case let x as UInt16: return Double(x)
+        case let x as UInt32: return Double(x)
+        case let x as UInt64: return Double(x)
+        case let x as UInt: return Double(x)
+        default: return 0
+        }
+    }
+    
+    public class func factorial<T: Integer>(n: T) -> Double {
+        assert(n >= 0, "factorial() not defined for negative values")
+        if n < 2 { return 1 }
+        var r: Double = 2
+        for i in 3...n {
+            r = r * _integerToDouble(n)
+        }
+        return r
+    }
+    
+    public class func factorial<T: Integer>(num: T) -> T {
+        assert(num >= 0, "factorial() not defined for negative values")
+        if num < 2 { return 1 }
+        var result: T = 2
+        for i in 3...num {
+            result *= i
+        }
+        return result
     }
 }
