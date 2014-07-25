@@ -23,8 +23,8 @@ func countLeadingSpaces(s: String) -> Int {
 func lintFile(fileName: String) -> Bool {
     var passed = true
     for (lineNumber, originalLine) in enumerate(open(fileName)) {
-        var numberOfLeadingSpaces = countLeadingSpaces(originalLine)
-        var lineWithoutLeadingSpaces = originalLine[numberOfLeadingSpaces..<len(originalLine)]
+        let numberOfLeadingSpaces = countLeadingSpaces(originalLine)
+        let lineWithoutLeadingSpaces = originalLine[numberOfLeadingSpaces..<len(originalLine)]
         if re.search("\t", originalLine) {
             println("ERROR – Line #\(lineNumber + 1) of \(fileName) contains an raw/unquoted tab (\t):")
             println(originalLine.replace("\t", "\\t") + "\\n")
@@ -43,7 +43,7 @@ func lintFile(fileName: String) -> Bool {
 }
 
 var hasErrors = false
-var fileNames = sys.argv[1..<len(sys.argv)]
+let fileNames = sys.argv[1..<len(sys.argv)]
 for fileName in fileNames {
     if !lintFile(fileName) {
         hasErrors = true
