@@ -73,13 +73,13 @@ extension NSFileHandle : Sequence {
     }
 }
 
-// The Swift compiler (Beta 3) crashes when this is contained in the extension,
+// The Swift compiler (Beta 4) crashes when this is contained in the extension,
 // but this should definitely be moved to the "generate" function when that is fixed.
 public class _FileHandle_Generator : Generator {
-    public let filehandle : NSFileHandle
-    public var cache = ""
+    private let filehandle : NSFileHandle
+    private var cache = ""
 
-    public init (filehandle : NSFileHandle) {
+    private init (filehandle : NSFileHandle) {
         self.filehandle = filehandle
     }
 
