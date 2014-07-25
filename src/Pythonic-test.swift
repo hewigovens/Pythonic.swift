@@ -96,6 +96,24 @@ assert(long(1.1) == 1)
 assert(math.sqrt(9) == 3)
 assert(math.pow(2, 2) == 4)
 
+// factorial
+assert(math.factorial(0) == 1)
+assert(math.factorial(20) == 2432902008176640000)
+
+// degrees / radians
+assert(math.degrees(math.pi) == 180)
+assert(math.radians(270) == math.pi * 1.5)
+
+// trig
+assert(math.sin(math.pi / 2) == 1)
+assert(math.cos(math.pi) == -1)
+// Python returns 0.999... for tan(π / 4)
+assert(math.tan(math.pi / 4) > 0.9999999)
+assert(math.tan(math.pi / 4) <= 1)
+assert(math.asin(1) == math.pi / 2)
+assert(math.acos(-1) == math.pi)
+assert(math.atan(1) == math.pi / 4)
+
 // max
 assert(max(1, 2) == 2)
 assert(max(1, 2, 3) == 3)
