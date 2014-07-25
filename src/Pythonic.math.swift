@@ -205,7 +205,7 @@ public class math {
         return d / 180 * pi
     }
     
-    private class func _integerToDouble<T: Integer>(n: T) -> Double {
+    private class func integerToDouble<T: Integer>(n: T) -> Double {
         switch n {
         case let x as Int8: return Double(x)
         case let x as Int16: return Double(x)
@@ -226,7 +226,7 @@ public class math {
         if n < 2 { return 1 }
         var r: Double = 2
         for i in 3...n {
-            r = r * _integerToDouble(n)
+            r = r * integerToDouble(n)
         }
         return r
     }
