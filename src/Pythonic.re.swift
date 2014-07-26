@@ -49,7 +49,7 @@
 import Foundation
 
 public class RegularExpressionMatch: LogicValue {
-    public var matchedGroups: [String] = []
+    private var matchedGroups: [String] = []
 
     public init(_ matchedGroups: [String]) {
         if matchedGroups {
