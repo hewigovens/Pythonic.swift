@@ -20,7 +20,7 @@ func countLeadingSpaces(s: String) -> Int {
     return 0
 }
 
-func lintFile(fileName: String) -> Bool {
+func checkFile(fileName: String) -> Bool {
     var passed = true
     for (lineNumber, originalLine) in enumerate(open(fileName)) {
         let numberOfLeadingSpaces = countLeadingSpaces(originalLine)
@@ -45,7 +45,7 @@ func lintFile(fileName: String) -> Bool {
 var hasErrors = false
 let fileNames = sys.argv[1..<len(sys.argv)]
 for fileName in fileNames {
-    if !lintFile(fileName) {
+    if !checkFile(fileName) {
         hasErrors = true
     }
 }
