@@ -81,11 +81,17 @@ public class re {
             return RegularExpressionMatch(returnedMatches)
         }
         if let regex = NSRegularExpression.regularExpressionWithPattern(pattern, options: nil, error: nil) {
-            let range = NSRange(location: 0, length: countElements(string))
-            if let matches = regex.matchesInString(string, options: nil, range: range) as? [NSTextCheckingResult] {
+            if let matches = regex.matchesInString(string, options: nil, range: NSMakeRange(0, countElements(string))) as? [NSTextCheckingResult] {
                 returnedMatches = matches.map { string[$0.range] }
             }
         }
         return RegularExpressionMatch(returnedMatches)
+    }
+
+    public class func sub(pattern: String, _ repl: String, _ string: String) -> String {
+        if let regex = NSRegularExpression.regularExpressionWithPattern(pattern, options: nil, error: nil) {
+            return regex.stringByReplacingMatchesInString(string, options: nil, range: NSMakeRange(0, countElements(string)), withTemplate: repl)
+        }
+        return string
     }
 }
