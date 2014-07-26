@@ -92,6 +92,26 @@ public class re {
         return re.search(pattern.startsWith("^") ? pattern : "^" + pattern, string)
     }
 
+    public class func split(pattern: String, _ string: String) -> [String] {
+        if pattern == "" {
+            return [string]
+        }
+        var returnedMatches: [String] = []
+        if let regex = NSRegularExpression.regularExpressionWithPattern(pattern, options: nil, error: nil) {
+            if let matches = regex.matchesInString(string, options: nil, range: NSMakeRange(0, countElements(string))) as? [NSTextCheckingResult] {
+                var lastLocation = 0
+                for match in matches {
+                    var matchedString = string[lastLocation..<match.range.location]
+                    returnedMatches += matchedString
+                    lastLocation = match.range.location + match.range.length
+                }
+                var matchedString = string[lastLocation..<len(string)]
+                returnedMatches += matchedString
+            }
+        }
+        return returnedMatches
+    }
+
     public class func sub(pattern: String, _ repl: String, _ string: String) -> String {
         if let regex = NSRegularExpression.regularExpressionWithPattern(pattern, options: nil, error: nil) {
             return regex.stringByReplacingMatchesInString(string, options: nil, range: NSMakeRange(0, countElements(string)), withTemplate: repl)

@@ -175,6 +175,17 @@ assert(!re.match("o", "foobarzonk"))
 assert(re.match("^foo", "foobarzonk"))
 assert(re.match("foo", "foobarzonk"))
 
+// re.split
+assert(re.split("/", "") == [""])
+assert(re.split("/", "/") == ["", ""])
+assert(re.split("/", "foo/") == ["foo", ""])
+assert(re.split("/", "foo/bar") == ["foo", "bar"])
+assert(re.split("/", "foo/bar/") == ["foo", "bar", ""])
+assert(re.split("/", "foo/bar/zonk") == ["foo", "bar", "zonk"])
+assert(re.split("/", "foo/bar/zonk/") == ["foo", "bar", "zonk", ""])
+assert(re.split("[0-9]", "foo/bar/zonk") == ["foo/bar/zonk"])
+assert(re.split("[0-9]", "foo/bar/zonk/") == ["foo/bar/zonk/"])
+
 // re.sub
 assert(re.sub("^foo", "bar", "foofoo") == "barfoo")
 assert(re.sub("^zfoo", "bar", "foofoo") == "foofoo")
