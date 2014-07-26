@@ -88,6 +88,10 @@ public class re {
         return RegularExpressionMatch(returnedMatches)
     }
 
+    public class func match(pattern: String, _ string: String) -> RegularExpressionMatch {
+        return re.search(pattern.startsWith("^") ? pattern : "^" + pattern, string)
+    }
+
     public class func sub(pattern: String, _ repl: String, _ string: String) -> String {
         if let regex = NSRegularExpression.regularExpressionWithPattern(pattern, options: nil, error: nil) {
             return regex.stringByReplacingMatchesInString(string, options: nil, range: NSMakeRange(0, countElements(string)), withTemplate: repl)

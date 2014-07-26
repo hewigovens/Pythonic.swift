@@ -170,6 +170,11 @@ assert(re.search("^foo.*zonk$", "foobarzonk"))
 assert(re.search("foo", "foobarzonk"))
 assert(re.search("o", "foobarzonk"))
 
+// re.match
+assert(!re.match("o", "foobarzonk"))
+assert(re.match("^foo", "foobarzonk"))
+assert(re.match("foo", "foobarzonk"))
+
 // re.sub
 assert(re.sub("^foo", "bar", "foofoo") == "barfoo")
 assert(re.sub("^zfoo", "bar", "foofoo") == "foofoo")
