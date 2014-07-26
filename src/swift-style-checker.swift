@@ -26,7 +26,7 @@ func lintFile(fileName: String) -> Bool {
         let numberOfLeadingSpaces = countLeadingSpaces(originalLine)
         let lineWithoutLeadingSpaces = originalLine[numberOfLeadingSpaces..<len(originalLine)]
         if re.search("\t", originalLine) {
-            println("ERROR – Line #\(lineNumber + 1) of \(fileName) contains an raw/unquoted tab (\t):")
+            println("ERROR – Line #\(lineNumber + 1) of \(fileName) contains an raw/unquoted tab (\\t):")
             println(originalLine.replace("\t", "\\t") + "\\n")
             passed = false
         } else if numberOfLeadingSpaces % 4 != 0 {
