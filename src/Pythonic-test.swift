@@ -306,6 +306,11 @@ assert("\nfoo\rfoo\nfoo\r\nfoo\n\rfoo\nfoo\n".splitlines() == ["", "foo", "foo",
 // str.startswith
 assert("foobar".startswith("foo"))
 
+// str.swapcase
+assert("foo".swapcase() == "FOO")
+assert("FooBar".swapcase() == "fOObAR")
+assert("›ƒé".swapcase() == "›ƒé")
+
 // str.title
 assert("foo bar".title() == "Foo Bar")
 

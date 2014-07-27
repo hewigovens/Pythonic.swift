@@ -44,7 +44,7 @@
 //   splitlines: Added.
 //   startswith: Added.
 //   strip: Added.
-//   swapcase: TODO.
+//   swapcase: Added.
 //   title: Added.
 //   translate: TODO.
 //   upper: Added.
@@ -205,6 +205,25 @@ extension String : LogicValue {
 
     public func istitle() -> Bool {
         return self.isTitle()
+    }
+
+    public func swapCase() -> String {
+        var returnString = ""
+        for ch in self {
+            var s = String(ch)
+            if s.isLower() {
+                returnString += s.upper()
+            } else if s.isUpper() {
+                returnString += s.lower()
+            } else {
+                returnString += s
+            }
+        }
+        return returnString
+    }
+
+    public func swapcase() -> String {
+        return self.swapCase()
     }
 
     private var WHITESPACE_REGEXP: String {
