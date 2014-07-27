@@ -111,6 +111,26 @@ extension String : LogicValue {
         return self.startsWith(prefix)
     }
 
+    private var ASCII_UPPERCASE_REGEXP: String {
+        return "[A-Z]"
+    }
+
+    private var ASCII_LOWERCASE_REGEXP: String {
+        return "[a-z]"
+    }
+
+    private var ASCII_LETTERS_REGEXP: String {
+        return "[A-Za-z]"
+    }
+
+    private var DIGITS_REGEXP: String {
+        return "[0-9]"
+    }
+
+    private var HEX_REGEXP: String {
+        return "[0-9a-fA-F]"
+    }
+
     private var WHITESPACE_REGEXP: String {
         return "[\t\n\r\u{11}\u{12} ]"
     }
