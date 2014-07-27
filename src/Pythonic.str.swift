@@ -30,7 +30,7 @@
 //   isupper: Added.
 //   join: Already in Swift.
 //   ljust: Added.
-//   lower: TODO.
+//   lower: Added.
 //   lstrip: Added.
 //   partition: Added.
 //   replace: Added.
