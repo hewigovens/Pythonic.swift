@@ -111,36 +111,48 @@ extension String : LogicValue {
         return self.startsWith(prefix)
     }
 
-    private var ASCII_UPPERCASE_REGEXP: String {
-        return "[A-Z]"
+    private var ASCII_UPPERCASE_SET: Set<String> {
+        return Set(["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"])
     }
 
-    private var ASCII_LOWERCASE_REGEXP: String {
-        return "[a-z]"
+    private var ASCII_LOWERCASE_SET: Set<String> {
+        return Set(["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"])
     }
 
-    private var ASCII_LETTERS_REGEXP: String {
-        return "[A-Za-z]"
+    private var DIGITS_SET: Set<String> {
+        return Set(["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"])
     }
 
-    private var DIGITS_REGEXP: String {
-        return "[0-9]"
+    private var ASCII_SET: Set<String> {
+        return ASCII_UPPERCASE_SET + ASCII_LOWERCASE_SET
     }
 
-    private var HEX_REGEXP: String {
-        return "[0-9a-fA-F]"
+    private var HEX_SET: Set<String> {
+        return DIGITS_SET + Set(["a", "A", "b", "B", "c", "C", "d", "D", "e", "E", "f", "F"])
     }
 
-    private var WHITESPACE_REGEXP: String {
-        return "[\t\n\r\u{11}\u{12} ]"
+    private var WHITESPACE_SET: Set<String> {
+        return Set(["\t", "\n", "\r", "\u{11}", "\u{12}", " "])
     }
 
     public func isSpace() -> Bool {
-        return re.search("^" + WHITESPACE_REGEXP + "+$", self).getLogicValue()
+        if self == "" {
+            return false
+        }
+        for ch in self {
+            if !WHITESPACE_SET.contains(String(ch)) {
+                return false
+            }
+        }
+        return true
     }
 
     public func isspace() -> Bool {
         return self.isSpace()
+    }
+
+    private var WHITESPACE_REGEXP: String {
+        return "[\t\n\r\u{11}\u{12} ]"
     }
 
     public func lstrip() -> String {
