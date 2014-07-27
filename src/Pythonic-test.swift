@@ -233,6 +233,13 @@ assert(" foobar ".strip() == "foobar")
 assert("".strip() == "")
 assert("foobar".strip() == "foobar")
 
+// str.lstrip/rstrip/strip
+assert(" \n\t foobar \n\t ".lstrip() == "foobar \n\t ")
+assert(" \n\t foobar \n\t ".rstrip() == " \n\t foobar")
+assert(" \n\t foobar \n\t ".strip() == "foobar")
+
+// str.lstrip
+
 // str.capitalize
 assert("".capitalize() == "")
 assert("f".capitalize() == "F")

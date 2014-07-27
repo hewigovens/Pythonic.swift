@@ -31,7 +31,7 @@
 //   join: Already in Swift.
 //   ljust: Added.
 //   lower: TODO.
-//   lstrip: TODO.
+//   lstrip: Added.
 //   partition: Added.
 //   replace: Added.
 //   rfind: TODO.
@@ -39,7 +39,7 @@
 //   rjust: Added.
 //   rpartition: TODO.
 //   rsplit: TODO.
-//   rstrip: TODO.
+//   rstrip: Added.
 //   split: Added.
 //   splitlines: TODO.
 //   startswith: Added.
@@ -105,10 +105,20 @@ extension String : LogicValue {
         return self.startsWith(prefix)
     }
 
-    // TODO: Handle character set to trim.
-    // TODO: lstrip(...), rstrip(...)
+    private var WHITESPACE_REGEXP: String {
+        return "[ \t\n]"
+    }
+
+    public func lstrip() -> String {
+        return re.sub("^" + self.WHITESPACE_REGEXP + "+", "", self)
+    }
+
+    public func rstrip() -> String {
+        return re.sub(self.WHITESPACE_REGEXP + "+$", "", self)
+    }
+
     public func strip() -> String {
-        return self.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        return self.lstrip().rstrip()
     }
 
     // NOTE: Not equivalent to Python, but better.
