@@ -268,6 +268,8 @@ assert("foo bar".split(" ") == ["foo", "bar"])
 
 // str.splitlines
 assert("foo\naw\tef\roa\r\nwef".splitlines() == ["foo", "aw\tef", "oa", "wef"])
+assert("foo\rfoo\nfoo\r\nfoo\n\rfoo\nfoo".splitlines() == ["foo", "foo", "foo", "foo", "", "foo", "foo"])
+assert("\nfoo\rfoo\nfoo\r\nfoo\n\rfoo\nfoo\n".splitlines() == ["", "foo", "foo", "foo", "foo", "", "foo", "foo"])
 
 // str.startswith
 assert("foobar".startswith("foo"))

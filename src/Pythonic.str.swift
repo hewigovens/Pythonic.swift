@@ -38,10 +38,10 @@
 //   rindex: TODO.
 //   rjust: Added.
 //   rpartition: TODO.
-//   rsplit: TODO.
+//   rsplit: Added.
 //   rstrip: Added.
 //   split: Added.
-//   splitlines: TODO.
+//   splitlines: Added.
 //   startswith: Added.
 //   strip: Added.
 //   swapcase: TODO.
@@ -98,7 +98,9 @@ extension String : LogicValue {
     }
 
     public func splitlines() -> [String] {
-        return re.split("\n", self.replace("\r\n", "\n").replace("\r", "\n"))
+        var normalized = self.replace("\r\n", "\n").replace("\r", "\n")
+        normalized = re.sub("\n$", "", normalized)
+        return re.split("\n", normalized)
     }
 
     public func startsWith(prefix: String) -> Bool {
