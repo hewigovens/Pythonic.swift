@@ -21,13 +21,13 @@
 //   find: TODO.
 //   format: TODO.
 //   index: TODO.
-//   isalnum: TODO.
-//   isalpha: TODO.
-//   isdigit: TODO.
+//   isalnum: Added.
+//   isalpha: Added.
+//   isdigit: Added.
 //   islower: Added.
-//   isspace: TODO.
-//   istitle: TODO.
-//   isupper: TODO.
+//   isspace: Added.
+//   istitle: Added.
+//   isupper: Added.
 //   join: Already in Swift.
 //   ljust: Added.
 //   lower: TODO.
@@ -111,24 +111,20 @@ extension String : LogicValue {
         return self.startsWith(prefix)
     }
 
-    private var ASCII_UPPERCASE_SET: Set<String> {
-        return Set(["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"])
-    }
-
-    private var ASCII_LOWERCASE_SET: Set<String> {
-        return Set(["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"])
-    }
-
-    private var DIGITS_SET: Set<String> {
-        return Set(["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"])
-    }
-
-    private var ASCII_SET: Set<String> {
-        return ASCII_UPPERCASE_SET + ASCII_LOWERCASE_SET
-    }
-
     private var HEX_SET: Set<String> {
         return DIGITS_SET + Set(["a", "A", "b", "B", "c", "C", "d", "D", "e", "E", "f", "F"])
+    }
+
+    private func isComposedOnlyOfCharacterSet(characterSet: Set<String>) -> Bool {
+        if self == "" {
+            return false
+        }
+        for ch in self {
+            if !characterSet.contains(String(ch)) {
+                return false
+            }
+        }
+        return true
     }
 
     private var WHITESPACE_SET: Set<String> {
@@ -136,19 +132,79 @@ extension String : LogicValue {
     }
 
     public func isSpace() -> Bool {
-        if self == "" {
-            return false
-        }
-        for ch in self {
-            if !WHITESPACE_SET.contains(String(ch)) {
-                return false
-            }
-        }
-        return true
+        return self.isComposedOnlyOfCharacterSet(WHITESPACE_SET)
     }
 
     public func isspace() -> Bool {
         return self.isSpace()
+    }
+
+    private var ASCII_LOWERCASE_SET: Set<String> {
+        return Set(["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"])
+    }
+
+    public func isLower() -> Bool {
+        return self.isComposedOnlyOfCharacterSet(ASCII_LOWERCASE_SET)
+    }
+
+    public func islower() -> Bool {
+        return self.isLower()
+    }
+
+    private var ASCII_UPPERCASE_SET: Set<String> {
+        return Set(["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"])
+    }
+
+    public func isUpper() -> Bool {
+        return self.isComposedOnlyOfCharacterSet(ASCII_UPPERCASE_SET)
+    }
+
+    public func isupper() -> Bool {
+        return self.isUpper()
+    }
+
+    private var DIGITS_SET: Set<String> {
+        return Set(["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"])
+    }
+
+    public func isDigit() -> Bool {
+        return self.isComposedOnlyOfCharacterSet(DIGITS_SET)
+    }
+
+    public func isdigit() -> Bool {
+        return self.isDigit()
+    }
+
+    private var ASCII_ALPHA_SET: Set<String> {
+        return ASCII_UPPERCASE_SET + ASCII_LOWERCASE_SET
+    }
+
+    public func isAlpha() -> Bool {
+        return self.isComposedOnlyOfCharacterSet(ASCII_ALPHA_SET)
+    }
+
+    public func isalpha() -> Bool {
+        return self.isAlpha()
+    }
+
+    private var ASCII_ALPHANUMERIC_SET: Set<String> {
+        return ASCII_ALPHA_SET + DIGITS_SET
+    }
+
+    public func isAlnum() -> Bool {
+        return self.isComposedOnlyOfCharacterSet(ASCII_ALPHANUMERIC_SET)
+    }
+
+    public func isalnum() -> Bool {
+        return self.isAlnum()
+    }
+
+    public func isTitle() -> Bool {
+        return self == self.title()
+    }
+
+    public func istitle() -> Bool {
+        return self.isTitle()
     }
 
     private var WHITESPACE_REGEXP: String {

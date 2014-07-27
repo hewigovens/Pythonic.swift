@@ -225,9 +225,37 @@ assert("foo %d" % (123) == "foo 123")
 assert("foo %% bar %011d zonk %s" % (100, "foobar") == "foo % bar 00000000100 zonk foobar")
 assert("With commit %d, this string building syntax is now %s!" % (197, "supported") == "With commit 197, this string building syntax is now supported!")
 
+// str.isalnum
+assert("foo1".isalnum())
+assert(!"foo ".isalnum())
+
+// str.isalpha
+assert("fooo".isalpha())
+assert(!"foo1".isalpha())
+
+// str.isdigit
+assert("123".isdigit())
+assert(!"foo1".isdigit())
+
 // str.isspace
 assert(" \t".isspace())
 assert(!" a\t".isspace())
+assert("   ".isspace())
+assert(!"  x ".isspace())
+
+// str.islower
+assert("foo".islower())
+assert(!"FOO".islower())
+
+// str.isupper
+assert("FOO".isupper())
+assert(!"foo".isupper())
+
+// str.istitle
+assert("Foo".istitle())
+assert(!"foo".istitle())
+assert("Foo Foo".istitle())
+assert(!"foo foo".istitle())
 
 // str.lower
 assert("FooBar".lower() == "foobar")
