@@ -112,7 +112,15 @@ extension String : LogicValue {
     }
 
     private var WHITESPACE_REGEXP: String {
-        return "[ \t\n]"
+        return "[\t\n\r\u{11}\u{12} ]"
+    }
+
+    public func isSpace() -> Bool {
+        return re.search("^" + WHITESPACE_REGEXP + "+$", self).getLogicValue()
+    }
+
+    public func isspace() -> Bool {
+        return self.isSpace()
     }
 
     public func lstrip() -> String {

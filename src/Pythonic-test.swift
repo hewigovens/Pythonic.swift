@@ -225,6 +225,10 @@ assert("foo %d" % (123) == "foo 123")
 assert("foo %% bar %011d zonk %s" % (100, "foobar") == "foo % bar 00000000100 zonk foobar")
 assert("With commit %d, this string building syntax is now %s!" % (197, "supported") == "With commit 197, this string building syntax is now supported!")
 
+// str.isspace
+assert(" \t".isspace())
+assert(!" a\t".isspace())
+
 // str.lower
 assert("FooBar".lower() == "foobar")
 
