@@ -97,6 +97,10 @@ extension String : LogicValue {
         return self.componentsSeparatedByString(sep)
     }
 
+    public func splitlines() -> [String] {
+        return re.split("\n", self.replace("\r\n", "\n").replace("\r", "\n"))
+    }
+
     public func startsWith(prefix: String) -> Bool {
         return self.hasPrefix(prefix)
     }
