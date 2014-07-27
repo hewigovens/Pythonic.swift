@@ -1,4 +1,3 @@
-import Cocoa
 import Foundation
 
 public class uuid {
