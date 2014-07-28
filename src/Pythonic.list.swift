@@ -23,6 +23,7 @@ import Foundation
 
 public typealias list = Swift.Array
 
+// TODO: Add negative indexing.
 extension Array : LogicValue {
     public func getLogicValue() -> Bool {
         return len(self) != 0
@@ -62,6 +63,5 @@ extension Array : LogicValue {
         return nil
     }
 
-    // NOTE: group(…) implemented directly in Pythonic-test.swift to work around compiler bug.
     // NOTE: pop(…) implemented directly in Pythonic-test.swift to work around compiler bug.
 }
