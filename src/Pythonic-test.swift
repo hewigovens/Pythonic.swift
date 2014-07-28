@@ -170,6 +170,7 @@ assert(re.search("^foo.*zonk$", "foobarzonk"))
 assert(re.search("foo", "foobarzonk"))
 assert(re.search("o", "foobarzonk"))
 assert(re.search("\r\n", "foo\r\nfoo").group(0) == "\r\n")
+assert(re.search("^foo", "foobarzonk").group(0) == "foo")
 
 // re.match
 assert(!re.match("o", "foobarzonk"))
@@ -573,7 +574,6 @@ if performPythonIncompatibleTests {
     assert(re.search("", "foobarzonk") == [String]())
 
     // re.search.group
-    assert(re.search("^foo", "foobarzonk").group(0) == "foo")
     assert(re.search("^foo", "foobarzonk")[0] == "foo")
 
     // set
