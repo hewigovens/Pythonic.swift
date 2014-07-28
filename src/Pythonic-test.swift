@@ -140,6 +140,9 @@ assert(oct(1000) == "01750")
 assert(ord("a") == 97)
 assert(ord(chr(98)) == 98)
 
+// os.getcwd()
+assert(os.getcwd())
+
 // os.path.exists
 assert(os.path.exists("/tmp/"))
 assert(!os.path.exists("/tmp.foo/"))

@@ -178,4 +178,8 @@ public class os {
             return NSFileManager.defaultManager().fileExistsAtPath(path)
         }
     }
+
+    public class func getcwd() -> String {
+        return NSFileManager.defaultManager().currentDirectoryPath
+    }
 }
