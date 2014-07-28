@@ -370,6 +370,9 @@ assert(sys.argv[1] == "arg1")
 assert(sys.argv[2] == "arg2")
 assert(len(sys.argv) == 3)
 
+// sys.platform
+assert(sys.platform == "darwin")
+
 // time.time
 assert(time.time() > 1405028001.224846)
 

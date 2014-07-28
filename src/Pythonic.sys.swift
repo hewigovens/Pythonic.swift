@@ -107,6 +107,10 @@ public class sys {
         }
     }
 
+    public class var platform: String {
+        return "darwin"
+    }
+
     public class func exit(exitCode: Int) {
         Darwin.exit(Int32(exitCode))
     }
