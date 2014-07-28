@@ -221,6 +221,14 @@ assert(!set([1, 2, 3]).isdisjoint(set([3, 4, 5])))
 // str
 assert(str(123) == "123")
 
+// str * int (repeat string)
+assert("foo" * 3 == "foofoofoo")
+assert("foo" * 3 == "foofoofoo")
+assert(0 * "foo" == "")
+assert(1 * "foo" == "foo")
+assert(2 * "foo" * 2 == "foofoofoofoo")
+assert(2 * "foo" == "foofoo")
+
 // str % tuple
 assert("foo %d" % (123) == "foo 123")
 assert("foo %% bar %011d zonk %s" % (100, "foobar") == "foo % bar 00000000100 zonk foobar")

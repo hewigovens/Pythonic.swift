@@ -297,3 +297,15 @@ extension String : LogicValue {
         return self.ljust(left, fillchar).rjust(width, fillchar)
     }
 }
+
+@infix public func *(lhs: Int, rhs: String) -> String {
+    var ret = ""
+    for _ in 0..<lhs {
+        ret += rhs
+    }
+    return ret
+}
+
+@infix public func *(lhs: String, rhs: Int) -> String {
+    return rhs * lhs
+}
