@@ -192,6 +192,7 @@ assert(re.split("a-z", "e8f8z888ee88ch838h23fhh3h2ui388sh3") == ["e8f8z888ee88ch
 assert(re.split("[0-9]", "e8f8z888ee88ch838h23fhh3h2ui388sh3") == ["e", "f", "z", "", "", "ee", "", "ch", "", "", "h", "", "fhh", "h", "ui", "", "", "sh", ""])
 assert(re.split("[XY]+", "aXYbXYc") == ["a", "b", "c"])
 assert(re.split("[\r\n]+", "foo\naw\tef\roa\r\nwef") == ["foo", "aw\tef", "oa", "wef"])
+assert(re.split("[\r\n]", "\r\n\t\t\r\n\r\t\n\r\r\n\n\t\t") == ["", "", "\t\t", "", "", "\t", "", "", "", "", "\t\t"])
 
 // re.sub
 assert(re.sub("^foo", "bar", "foofoo") == "barfoo")
