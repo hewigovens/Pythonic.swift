@@ -304,6 +304,9 @@ extension String : LogicValue {
 }
 
 @infix public func *(lhs: Int, rhs: String) -> String {
+    if lhs < 0 {
+        return ""
+    }
     var ret = ""
     for _ in 0..<lhs {
         ret += rhs
