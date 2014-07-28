@@ -169,6 +169,7 @@ assert(re.search("^foo", "foobarzonk"))
 assert(re.search("^foo.*zonk$", "foobarzonk"))
 assert(re.search("foo", "foobarzonk"))
 assert(re.search("o", "foobarzonk"))
+assert(re.search("\r\n", "foo\r\nfoo").group(0) == "\r\n")
 
 // re.match
 assert(!re.match("o", "foobarzonk"))
@@ -176,10 +177,10 @@ assert(re.match("^foo", "foobarzonk"))
 assert(re.match("foo", "foobarzonk"))
 
 // re.split
+assert(re.split("/", "foo/bar") == ["foo", "bar"])
 assert(re.split("/", "") == [""])
 assert(re.split("/", "/") == ["", ""])
 assert(re.split("/", "foo/") == ["foo", ""])
-assert(re.split("/", "foo/bar") == ["foo", "bar"])
 assert(re.split("/", "foo/bar/") == ["foo", "bar", ""])
 assert(re.split("/", "foo/bar/zonk") == ["foo", "bar", "zonk"])
 assert(re.split("/", "foo/bar/zonk/") == ["foo", "bar", "zonk", ""])
@@ -190,8 +191,7 @@ assert(re.split("[a-z]", "e8f8z888ee88ch838h23fhh3h2ui388sh3") == ["", "8", "8",
 assert(re.split("a-z", "e8f8z888ee88ch838h23fhh3h2ui388sh3") == ["e8f8z888ee88ch838h23fhh3h2ui388sh3"])
 assert(re.split("[0-9]", "e8f8z888ee88ch838h23fhh3h2ui388sh3") == ["e", "f", "z", "", "", "ee", "", "ch", "", "", "h", "", "fhh", "h", "ui", "", "", "sh", ""])
 assert(re.split("[XY]+", "aXYbXYc") == ["a", "b", "c"])
-// BUG: The following is a bug. Should be consistent with Python result.
-// assert(re.split("[\r\n]+", "foo\naw\tef\roa\r\nwef") == ["foo", "aw\tef", "oa", "wef"])
+assert(re.split("[\r\n]+", "foo\naw\tef\roa\r\nwef") == ["foo", "aw\tef", "oa", "wef"])
 
 // re.sub
 assert(re.sub("^foo", "bar", "foofoo") == "barfoo")

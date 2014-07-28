@@ -80,9 +80,13 @@ public class re {
         if pattern == "" {
             return RegularExpressionMatch(returnedMatches)
         }
+        // NOTE: Must use NSString:s below to avoid off-by-one issues when countElements(swiftString) != nsString.length.
+        //       Example case: countElements("\r\n") [1] != ("\r\n" as NSString).length [2]
         if let regex = NSRegularExpression.regularExpressionWithPattern(pattern, options: nil, error: nil) {
-            if let matches = regex.matchesInString(string, options: nil, range: NSMakeRange(0, countElements(string))) as? [NSTextCheckingResult] {
-                returnedMatches = matches.map { string[$0.range] }
+            if let matches = regex.matchesInString(string, options: nil, range: NSMakeRange(0, (string as NSString).length)) as? [NSTextCheckingResult] {
+                for match in matches {
+                    returnedMatches += (string as NSString).substringWithRange(match.range)
+                }
             }
         }
         return RegularExpressionMatch(returnedMatches)
@@ -97,15 +101,17 @@ public class re {
             return [string]
         }
         var returnedMatches: [String] = []
+        // NOTE: Must use NSString:s below to avoid off-by-one issues when countElements(swiftString) != nsString.length.
+        //       Example case: countElements("\r\n") [1] != ("\r\n" as NSString).length [2]
         if let regex = NSRegularExpression.regularExpressionWithPattern(pattern, options: nil, error: nil) {
-            if let matches = regex.matchesInString(string, options: nil, range: NSMakeRange(0, countElements(string))) as? [NSTextCheckingResult] {
+            if let matches = regex.matchesInString(string, options: nil, range: NSMakeRange(0, (string as NSString).length)) as? [NSTextCheckingResult] {
                 var lastLocation = 0
                 for match in matches {
-                    var matchedString = string[lastLocation..<match.range.location]
+                    var matchedString = (string as NSString).substringWithRange(NSMakeRange(lastLocation, match.range.location - lastLocation))
                     returnedMatches += matchedString
                     lastLocation = match.range.location + match.range.length
                 }
-                var matchedString = string[lastLocation..<len(string)]
+                var matchedString = (string as NSString).substringWithRange(NSMakeRange(lastLocation, (string as NSString).length - lastLocation))
                 returnedMatches += matchedString
             }
         }
@@ -114,7 +120,7 @@ public class re {
 
     public class func sub(pattern: String, _ repl: String, _ string: String) -> String {
         if let regex = NSRegularExpression.regularExpressionWithPattern(pattern, options: nil, error: nil) {
-            return regex.stringByReplacingMatchesInString(string, options: nil, range: NSMakeRange(0, countElements(string)), withTemplate: repl)
+            return regex.stringByReplacingMatchesInString(string, options: nil, range: NSMakeRange(0, (string as NSString).length), withTemplate: repl)
         }
         return string
     }
