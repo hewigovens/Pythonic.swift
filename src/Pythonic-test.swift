@@ -221,6 +221,12 @@ assert(!set([1, 2, 3]).isdisjoint(set([3, 4, 5])))
 // str
 assert(str(123) == "123")
 
+// str (positive and negative indexing)
+assert("foo"[0] == "f")
+assert("foo"[len("foo")-1] == "o")
+assert("foo"[-1] == "o")
+assert("foo"[-2] == "o")
+
 // str * int (repeat string)
 assert("foo" * 3 == "foofoofoo")
 assert("foo" * 3 == "foofoofoo")

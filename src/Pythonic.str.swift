@@ -252,7 +252,12 @@ extension String : LogicValue {
     }
 
     public subscript (index: Int) -> String {
-        return String(Array(self)[index])
+        var arr = Array(self)
+        var idx = index
+        if idx < 0 {
+            idx = arr.count + index
+        }
+        return String(arr[idx])
     }
 
     public subscript (range: Range<Int>) -> String {
