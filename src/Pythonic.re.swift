@@ -49,24 +49,30 @@
 import Foundation
 
 public class RegularExpressionMatch: LogicValue {
-    private var matchedGroups: [String] = []
+    private var matchedStrings: [String] = []
 
-    public init(_ matchedGroups: [String]) {
-        if matchedGroups {
-            self.matchedGroups.extend(matchedGroups)
+    public init(_ matchedStrings: [String]) {
+        self.matchedStrings.extend(matchedStrings)
+    }
+
+    public func groups() -> [String] {
+        var newArr: [String] = []
+        for i in 1..<len(self.matchedStrings) {
+            newArr += self.matchedStrings[i]
         }
+        return newArr
     }
 
     public func group(i: Int) -> String? {
-        return self.matchedGroups[0]
+        return self.matchedStrings[i]
     }
 
     public func getLogicValue() -> Bool {
-        return self.matchedGroups.count != 0
+        return self.matchedStrings.count != 0
     }
 
     public func __conversion() -> [String] {
-        return self.matchedGroups
+        return self.matchedStrings
     }
 
     public subscript (index: Int) -> String? {
@@ -76,20 +82,24 @@ public class RegularExpressionMatch: LogicValue {
 
 public class re {
     public class func search(pattern: String, _ string: String) -> RegularExpressionMatch {
-        var returnedMatches: [String] = []
+        var matchedStrings: [String] = []
         if pattern == "" {
-            return RegularExpressionMatch(returnedMatches)
+            return RegularExpressionMatch(matchedStrings)
         }
         // NOTE: Must use NSString:s below to avoid off-by-one issues when countElements(swiftString) != nsString.length.
         //       Example case: countElements("\r\n") [1] != ("\r\n" as NSString).length [2]
         if let regex = NSRegularExpression.regularExpressionWithPattern(pattern, options: nil, error: nil) {
             if let matches = regex.matchesInString(string, options: nil, range: NSMakeRange(0, (string as NSString).length)) as? [NSTextCheckingResult] {
                 for match in matches {
-                    returnedMatches += (string as NSString).substringWithRange(match.range)
+                    for i in 0..<match.numberOfRanges {
+                        var range = match.rangeAtIndex(i)
+                        var matchString = (string as NSString).substringWithRange(range)
+                        matchedStrings += matchString
+                    }
                 }
             }
         }
-        return RegularExpressionMatch(returnedMatches)
+        return RegularExpressionMatch(matchedStrings)
     }
 
     public class func match(pattern: String, _ string: String) -> RegularExpressionMatch {
